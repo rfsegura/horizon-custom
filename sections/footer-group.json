@@ -39,6 +39,9 @@
       "block_order": [
         "menu_VDrpqt"
       ],
+      "custom_css": [
+        ".menu__heading {display: none !important;}"
+      ],
       "name": "t:names.custom_section",
       "settings": {
         "content_direction": "column",
