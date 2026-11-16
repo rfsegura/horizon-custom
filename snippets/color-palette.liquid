@@ -165,8 +165,9 @@
 {% style %}
   /* Palette colors */
   :root {
-    --color-background: {{ settings.page_background_color }};
-    --color-background-rgb: {{ settings.page_background_color.rgb }};
+    /* The website background is always white (#FFFFFF), whatever the theme setting says. */
+    --color-background: #ffffff;
+    --color-background-rgb: 255 255 255;
     --color-foreground: {{ settings.page_text_color }};
     --color-foreground-rgb: {{ settings.page_text_color.rgb }};
     --color-border: {{ settings.page_text_color }};
@@ -234,5 +235,28 @@
   body {
     color: var(--color-foreground);
     background-color: var(--color-background);
+  }
+
+  /*
+    Always white, on every page and section. A section with its own background color setting
+    (.color-custom-<id>, see snippets/contrast-override.liquid) is forced back to white, with the
+    page text color so its text stays readable.
+  */
+  html,
+  body {
+    background-color: #ffffff !important;
+  }
+
+  [class*='color-custom-'],
+  [class*='color-custom-'] .text-block {
+    --color-background: #ffffff !important;
+    --color-background-rgb: 255 255 255 !important;
+    --color: {{ settings.page_text_color }} !important;
+    --color-rgb: {{ settings.page_text_color.rgb }} !important;
+    --color-foreground: {{ settings.page_text_color }} !important;
+    --color-foreground-rgb: {{ settings.page_text_color.rgb }} !important;
+    --color-border: {{ settings.page_text_color }} !important;
+    --color-border-rgb: {{ settings.page_text_color.rgb }} !important;
+    background-color: #ffffff !important;
   }
 {% endstyle %}
