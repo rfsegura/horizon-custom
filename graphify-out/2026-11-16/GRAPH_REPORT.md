@@ -1,27 +1,27 @@
 # Graph Report - horizon-custom  (2026-11-16)
 
 ## Corpus Check
-- 163 files · ~230,457 words
+- 163 files · ~230,557 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1305 nodes · 2532 edges · 83 communities (38 shown, 45 thin omitted)
+- 1309 nodes · 2538 edges · 84 communities (38 shown, 46 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 6 edges (avg confidence: 0.6)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3d5ac347`
+- Built from commit: `94800ef2`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - facets.js
 - component.js
-- ThemeDrawer
-- CartItemsComponent
+- onAnimationEnd
+- component-cart-items.js
 - standard-events.d.ts
 - ProductFormComponent
-- PaginatedList
+- paginated-list.js
 - popover-polyfill.js
 - utilities.js
 - ProductCard
@@ -32,7 +32,7 @@
 - PredictiveSearchComponent
 - QuantitySelectorComponent
 - HeaderMenu
-- startViewTransition
+- zoom-dialog.js
 - QuickAddComponent
 - Slideshow
 - DragZoomWrapper
@@ -40,16 +40,16 @@
 - morph.js
 - OverflowList
 - GiftCardRecipientForm
-- .connectedCallback
+- events.js
 - qr-code-generator.js
-- paginated-list.js
+- requestIdleCallback
 - CatalogGrid
 - compilerOptions
 - DeferredMedia
-- onAnimationEnd
+- PaginatedList
 - ProductHotspotComponent
-- Scroller
-- SwatchesVariantPickerComponent
+- StickyAddToCartComponent
+- JumboText
 - AccordionCustom
 - AnchoredPopoverComponent
 - AnnouncementBar
@@ -59,7 +59,7 @@
 - DisclosuresSummaryFit
 - PaginatedListAspectRatioHelper
 - ProductCardLink
-- RTEFormatter
+- theme-drawer.js
 - theme-editor.js
 - Horizon
 - ComparisonSliderComponent
@@ -71,11 +71,10 @@
 - ShowMoreComponent
 - CartIcon
 - SearchPageInputComponent
-- ThemePerformance
-- view-event-elements.d.ts
+- .connectedCallback
+- HeaderActions
+- Scheduler
 - view-transitions.js
-- ScrollHint
-- FloatingPanelComponent
 - ProductPrice
 - ProductSkuComponent
 - StandardStorefrontEventMap
@@ -105,49 +104,45 @@
 10. `DragZoomWrapper` - 22 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `CollectionComponent` --inherits--> `Component`  [EXTRACTED]
-  assets/view-event-elements.d.ts → assets/component.js
-- `ProductComponent` --inherits--> `Component`  [EXTRACTED]
-  assets/view-event-elements.d.ts → assets/component.js
 - `morphSection()` --calls--> `morph()`  [EXTRACTED]
   assets/section-renderer.js → assets/morph.js
 - `hydrate()` --calls--> `requestIdleCallback`  [EXTRACTED]
   assets/section-hydration.js → assets/utilities.js
+- `CollectionComponent` --inherits--> `Component`  [EXTRACTED]
+  assets/view-event-elements.d.ts → assets/component.js
+- `ProductComponent` --inherits--> `Component`  [EXTRACTED]
+  assets/view-event-elements.d.ts → assets/component.js
 - `hydrateSection()` --calls--> `buildSectionSelector()`  [EXTRACTED]
   assets/section-hydration.js → assets/section-renderer.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (83 total, 45 thin omitted)
+## Communities (84 total, 46 thin omitted)
 
 ### Community 0 - "facets.js"
 Cohesion: 0.05
 Nodes (13): FacetClearComponent, FacetInputsComponent, FacetRemoveComponent, FacetsFormComponent, FacetStatusComponent, PriceFacetComponent, SortingFilterComponent, convertMoneyToMinorUnits() (+5 more)
 
 ### Community 1 - "component.js"
-Cohesion: 0.10
-Nodes (9): Component, MissingRefError, CopyToClipboardComponent, MediaStartedPlayingEvent, QuantitySelectorUpdateEvent, ThemeEvents, ZoomMediaSelectedEvent, VideoBackgroundComponent (+1 more)
-
-### Community 2 - "ThemeDrawer"
 Cohesion: 0.06
-Nodes (16): DialogComponent, getFocusableElements(), removeTrapFocus(), trapFocus(), trapFocusHandlers, HeaderActions, HeaderDrawer, reset() (+8 more)
+Nodes (17): Component, getAncestor(), getClosestComponent(), MissingRefError, parseData(), parseValue(), registerEventListeners(), CopyToClipboardComponent (+9 more)
 
-### Community 3 - "CartItemsComponent"
+### Community 2 - "onAnimationEnd"
 Cohesion: 0.07
-Nodes (15): CartDiscount, CartItemsComponent, MORPH_OPTIONS, ProductRecommendations, hydrate(), hydrateSection(), buildSectionRenderingURL(), buildSectionSelector() (+7 more)
+Nodes (14): DialogComponent, getFocusableElements(), removeTrapFocus(), trapFocus(), trapFocusHandlers, HeaderDrawer, reset(), ThemeDrawer (+6 more)
+
+### Community 3 - "component-cart-items.js"
+Cohesion: 0.06
+Nodes (20): CartDiscount, CartNote, CartItemsComponent, MORPH_OPTIONS, cartPerformance, ThemePerformance, ProductRecommendations, hydrate() (+12 more)
 
 ### Community 4 - "standard-events.d.ts"
 Cohesion: 0.05
 Nodes (38): CartAjaxLine, CartAjaxResponse, CartDiscountUpdatePayloadDetail, CartDiscountUpdateResult, CartDiscountUpdateResultDetail, CartErrorPayloadDetail, CartLinesUpdatePayload, CartLinesUpdatePayloadDetail (+30 more)
 
-### Community 5 - "ProductFormComponent"
-Cohesion: 0.11
-Nodes (4): AddToCartComponent, ProductFormComponent, normalizeVariantId(), resolveVariantId()
-
-### Community 6 - "PaginatedList"
-Cohesion: 0.09
-Nodes (13): BlogPostsList, HeaderComponent, JumboText, PaginatedList, getIntersectionRoot(), getScrollContainer(), getScrollEventTarget(), getScrollTop() (+5 more)
+### Community 6 - "paginated-list.js"
+Cohesion: 0.16
+Nodes (11): HeaderComponent, getIntersectionRoot(), getScrollContainer(), getScrollEventTarget(), getScrollTop(), originalPushState, restoreSavedScrollTop(), saveScrollPosition() (+3 more)
 
 ### Community 7 - "popover-polyfill.js"
 Cohesion: 0.16
@@ -155,7 +150,7 @@ Nodes (29): apply(), checkPopoverValidity(), closeAllOpenPopovers(), closeAllOpe
 
 ### Community 8 - "utilities.js"
 Cohesion: 0.11
-Nodes (19): MegaMenuHoverEvent, calculateHeaderGroupHeight(), changeMetaThemeColor(), getIOSVersion(), isClickedOutside(), isMobileBreakpoint(), isPointWithinElement(), isTouchDevice() (+11 more)
+Nodes (19): DialogCloseEvent, DialogOpenEvent, calculateHeaderGroupHeight(), debounce(), getIOSVersion(), isClickedOutside(), isMobileBreakpoint(), isPointWithinElement() (+11 more)
 
 ### Community 10 - "standard-actions.d.ts"
 Cohesion: 0.07
@@ -170,44 +165,44 @@ Cohesion: 0.12
 Nodes (4): DrawerLocalizationComponent, DropdownLocalizationComponent, LocalizationFormComponent, normalizeString()
 
 ### Community 15 - "QuantitySelectorComponent"
-Cohesion: 0.17
+Cohesion: 0.16
 Nodes (3): CartQuantitySelectorComponent, QuantitySelectorComponent, parseIntOrDefault()
 
 ### Community 16 - "HeaderMenu"
 Cohesion: 0.15
 Nodes (3): findMenuItem(), findSubmenu(), HeaderMenu
 
-### Community 17 - "startViewTransition"
-Cohesion: 0.14
-Nodes (7): ResultsList, isLowPowerDevice(), shouldDisableCrossDocumentViewTransitions(), startViewTransition(), supportsViewTransitions(), getMostVisibleElement(), ZoomDialog
+### Community 17 - "zoom-dialog.js"
+Cohesion: 0.07
+Nodes (15): ResultsList, calculatePaddingStart(), getScrollAxis(), Scroller, ScrollHint, scrollIntoView(), isLowPowerDevice(), prefersReducedMotion() (+7 more)
+
+### Community 20 - "DragZoomWrapper"
+Cohesion: 0.17
+Nodes (3): DragZoomWrapper, getDistance(), preventDefault()
 
 ### Community 21 - "global.d.ts"
 Cohesion: 0.09
 Nodes (15): CartDiscountUpdateResultDetail, CartErrorPayloadDetail, CartLinesUpdateResultDetail, LoadCallback, ModelViewer, NavigationActivation, NavigationHistoryEntry, Navigator (+7 more)
 
 ### Community 22 - "morph.js"
-Cohesion: 0.06
-Nodes (24): LocalPickup, attributesEqual(), collectHydrationTargets(), copyAttributes(), getNodeKey(), morph(), morphHydrationByKey(), PRESERVED_ATTRIBUTES (+16 more)
+Cohesion: 0.08
+Nodes (23): LocalPickup, attributesEqual(), collectHydrationTargets(), copyAttributes(), getNodeKey(), morph(), morphHydrationByKey(), PRESERVED_ATTRIBUTES (+15 more)
 
-### Community 25 - ".connectedCallback"
-Cohesion: 0.28
-Nodes (5): getAncestor(), getClosestComponent(), parseData(), parseValue(), registerEventListeners()
+### Community 25 - "events.js"
+Cohesion: 0.19
+Nodes (5): MediaStartedPlayingEvent, MegaMenuHoverEvent, QuantitySelectorUpdateEvent, ThemeEvents, ZoomMediaSelectedEvent
 
 ### Community 26 - "qr-code-generator.js"
-Cohesion: 0.11
-Nodes (8): getTypeNumber(), getUTF8Length(), onMakeImage(), QRCode(), QRErrorCorrectLevel, QRMaskPattern, QRMode, QRCodeImage
+Cohesion: 0.12
+Nodes (7): getTypeNumber(), getUTF8Length(), onMakeImage(), QRCode(), QRErrorCorrectLevel, QRMaskPattern, QRMode
+
+### Community 27 - "requestIdleCallback"
+Cohesion: 0.28
+Nodes (3): FloatingPanelComponent, requestIdleCallback, viewTransition
 
 ### Community 29 - "compilerOptions"
 Cohesion: 0.12
 Nodes (15): compilerOptions, baseUrl, checkJs, noImplicitAny, noUncheckedIndexedAccess, paths, strictNullChecks, target (+7 more)
-
-### Community 31 - "onAnimationEnd"
-Cohesion: 0.18
-Nodes (8): CartNote, DialogCloseEvent, DialogOpenEvent, ANIMATION_OPTIONS, cartPerformance, debounce(), onAnimationEnd(), preloadImage()
-
-### Community 33 - "Scroller"
-Cohesion: 0.19
-Nodes (3): calculatePaddingStart(), getScrollAxis(), Scroller
 
 ### Community 39 - "ShopifyStandardEvent"
 Cohesion: 0.15
@@ -222,16 +217,12 @@ Cohesion: 0.18
 Nodes (10): Contributing, Developer tools, Getting started, Horizon, License, Shopify CLI, Shopify/theme-check-action, Shopify Theme Store development (+2 more)
 
 ### Community 48 - "product-card.js"
-Cohesion: 0.14
-Nodes (9): DeclarativeShadowElement, FlyToCart, OverflowMinimumEvent, getViewParameterValue(), isDesktopBreakpoint(), ResizeNotifier, yieldToMainThread(), CollectionComponent (+1 more)
+Cohesion: 0.12
+Nodes (10): DeclarativeShadowElement, FlyToCart, OverflowMinimumEvent, SwatchesVariantPickerComponent, getViewParameterValue(), isDesktopBreakpoint(), ResizeNotifier, yieldToMainThread() (+2 more)
 
 ### Community 51 - "slideshow.js"
-Cohesion: 0.17
-Nodes (10): SlideshowSelectEvent, scrollIntoView(), center(), clamp(), closest(), getVisibleElements(), prefersReducedMotion(), preventDefault() (+2 more)
-
-### Community 61 - "view-event-elements.d.ts"
-Cohesion: 0.33
-Nodes (3): CollectionComponent, ProductComponent, Refs
+Cohesion: 0.29
+Nodes (5): SlideshowSelectEvent, center(), clamp(), closest(), getVisibleElements()
 
 ### Community 62 - "view-transitions.js"
 Cohesion: 0.53
@@ -248,22 +239,22 @@ Nodes (3): Fixes and improvements, Release Notes - Version 4.1.5, What's Changed
 ## Knowledge Gaps
 - **115 isolated node(s):** `BlogPostsList`, `CartNote`, `trapFocusHandlers`, `Theme`, `NavigationActivation` (+110 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **45 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **46 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Component` connect `component.js` to `facets.js`, `ThemeDrawer`, `utilities.js`, `product-card.js`, `slideshow.js`, `morph.js`, `.connectedCallback`, `qr-code-generator.js`, `paginated-list.js`, `view-event-elements.d.ts`, `onAnimationEnd`?**
-  _High betweenness centrality (0.144) - this node is a cross-community bridge._
+- **Why does `Component` connect `component.js` to `facets.js`, `onAnimationEnd`, `component-cart-items.js`, `paginated-list.js`, `utilities.js`, `theme-drawer.js`, `QuantitySelectorComponent`, `product-card.js`, `zoom-dialog.js`, `slideshow.js`, `morph.js`, `events.js`, `requestIdleCallback`?**
+  _High betweenness centrality (0.145) - this node is a cross-community bridge._
 - **Why does `LayeredSlideshowComponent` connect `LayeredSlideshowComponent` to `utilities.js`?**
   _High betweenness centrality (0.064) - this node is a cross-community bridge._
-- **Why does `QuickOrderListComponent` connect `QuickOrderListComponent` to `component.js`, `PaginatedList`?**
-  _High betweenness centrality (0.043) - this node is a cross-community bridge._
+- **Why does `QuickOrderListComponent` connect `QuickOrderListComponent` to `paginated-list.js`?**
+  _High betweenness centrality (0.045) - this node is a cross-community bridge._
 - **What connects `BlogPostsList`, `CartNote`, `trapFocusHandlers` to the rest of the system?**
   _115 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `facets.js` be split into smaller, more focused modules?**
   _Cohesion score 0.05472636815920398 - nodes in this community are weakly interconnected._
 - **Should `component.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.09966777408637874 - nodes in this community are weakly interconnected._
-- **Should `ThemeDrawer` be split into smaller, more focused modules?**
-  _Cohesion score 0.05698778833107191 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06377551020408163 - nodes in this community are weakly interconnected._
+- **Should `onAnimationEnd` be split into smaller, more focused modules?**
+  _Cohesion score 0.07407407407407407 - nodes in this community are weakly interconnected._

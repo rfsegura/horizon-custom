@@ -178,8 +178,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_anchored_popover",
-      "community": 27,
-      "community_name": "requestIdleCallback",
+      "community": 1,
+      "community_name": "component.js",
       "norm_label": "anchored-popover.js"
     },
     {
@@ -335,8 +335,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_anchored_popover_registeranchoredpopover",
-      "community": 27,
-      "community_name": "requestIdleCallback",
+      "community": 1,
+      "community_name": "component.js",
       "norm_label": "registeranchoredpopover()"
     },
     {
@@ -537,8 +537,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_blog_posts_list",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": "blog-posts-list.js"
     },
     {
@@ -550,8 +550,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_blog_posts_list_blogpostslist",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": "blogpostslist"
     },
     {
@@ -561,7 +561,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_cart_discount",
-      "community": 3,
+      "community": 28,
       "community_name": "component-cart-items.js",
       "norm_label": "cart-discount.js"
     },
@@ -575,7 +575,7 @@
       "_origin": "ast",
       "id": "assets_cart_discount_cartdiscount",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "cartdiscount"
     },
     {
@@ -587,7 +587,7 @@
       "_origin": "ast",
       "id": "assets_cart_discount_cartdiscount_createabortcontroller",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#createabortcontroller()"
     },
     {
@@ -599,7 +599,7 @@
       "_origin": "ast",
       "id": "assets_cart_discount_cartdiscount_applydiscount",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".applydiscount()"
     },
     {
@@ -611,7 +611,7 @@
       "_origin": "ast",
       "id": "assets_cart_discount_cartdiscount_removediscount",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".removediscount()"
     },
     {
@@ -623,7 +623,7 @@
       "_origin": "ast",
       "id": "assets_cart_discount_cartdiscount_handlediscounterror",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#handlediscounterror()"
     },
     {
@@ -635,7 +635,7 @@
       "_origin": "ast",
       "id": "assets_cart_discount_cartdiscount_existingdiscounts",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#existingdiscounts()"
     },
     {
@@ -645,8 +645,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_cart_drawer",
-      "community": 44,
-      "community_name": "theme-drawer.js",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": "cart-drawer.js"
     },
     {
@@ -873,7 +873,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_cart_note",
-      "community": 3,
+      "community": 28,
       "community_name": "component-cart-items.js",
       "norm_label": "cart-note.js"
     },
@@ -886,7 +886,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_cart_note_cartnote",
-      "community": 3,
+      "community": 28,
       "community_name": "component-cart-items.js",
       "norm_label": "cartnote"
     },
@@ -897,106 +897,141 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_catalog_grid",
-      "community": 28,
-      "community_name": "CatalogGrid",
+      "community": 17,
+      "community_name": "startViewTransition",
       "norm_label": "catalog-grid.js"
     },
     {
       "label": "CatalogGrid",
       "file_type": "code",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L5",
+      "source_location": "L9",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid",
-      "community": 28,
-      "community_name": "CatalogGrid",
+      "community": 17,
+      "community_name": "startViewTransition",
       "norm_label": "cataloggrid"
     },
     {
       "label": ".connectedCallback()",
       "file_type": "code",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L6",
+      "source_location": "L13",
       "_callable": true,
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid_connectedcallback",
-      "community": 28,
-      "community_name": "CatalogGrid",
+      "community": 17,
+      "community_name": "startViewTransition",
       "norm_label": ".connectedcallback()"
     },
     {
       "label": ".#mainGrid()",
       "file_type": "code",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L30",
+      "source_location": "L39",
       "_callable": true,
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid_maingrid",
-      "community": 28,
-      "community_name": "CatalogGrid",
+      "community": 17,
+      "community_name": "startViewTransition",
       "norm_label": ".#maingrid()"
     },
     {
       "label": ".#colorGrid()",
       "file_type": "code",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L34",
+      "source_location": "L43",
       "_callable": true,
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid_colorgrid",
-      "community": 28,
-      "community_name": "CatalogGrid",
+      "community": 17,
+      "community_name": "startViewTransition",
       "norm_label": ".#colorgrid()"
+    },
+    {
+      "label": ".#syncIcon()",
+      "file_type": "code",
+      "source_file": "assets/catalog-grid.js",
+      "source_location": "L48",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "assets_catalog_grid_cataloggrid_syncicon",
+      "community": 17,
+      "community_name": "startViewTransition",
+      "norm_label": ".#syncicon()"
+    },
+    {
+      "label": ".#morph()",
+      "file_type": "code",
+      "source_file": "assets/catalog-grid.js",
+      "source_location": "L58",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "assets_catalog_grid_cataloggrid_morph",
+      "community": 17,
+      "community_name": "startViewTransition",
+      "norm_label": ".#morph()"
     },
     {
       "label": ".#openColors()",
       "file_type": "code",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L39",
+      "source_location": "L74",
       "_callable": true,
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid_opencolors",
-      "community": 28,
-      "community_name": "CatalogGrid",
+      "community": 17,
+      "community_name": "startViewTransition",
       "norm_label": ".#opencolors()"
     },
     {
       "label": ".#closeColors()",
       "file_type": "code",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L46",
+      "source_location": "L92",
       "_callable": true,
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid_closecolors",
-      "community": 28,
-      "community_name": "CatalogGrid",
+      "community": 17,
+      "community_name": "startViewTransition",
       "norm_label": ".#closecolors()"
     },
     {
       "label": ".#showGender()",
       "file_type": "code",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L53",
+      "source_location": "L109",
       "_callable": true,
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid_showgender",
-      "community": 28,
-      "community_name": "CatalogGrid",
+      "community": 17,
+      "community_name": "startViewTransition",
       "norm_label": ".#showgender()"
     },
     {
-      "label": ".#toggleDensity()",
+      "label": "catalog-transitions.js",
       "file_type": "code",
-      "source_file": "assets/catalog-grid.js",
-      "source_location": "L65",
+      "source_file": "assets/catalog-transitions.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "assets_catalog_transitions",
+      "community": 56,
+      "community_name": "catalog-transitions.js",
+      "norm_label": "catalog-transitions.js"
+    },
+    {
+      "label": "markTriggered()",
+      "file_type": "code",
+      "source_file": "assets/catalog-transitions.js",
+      "source_location": "L10",
       "_callable": true,
       "_origin": "ast",
-      "id": "assets_catalog_grid_cataloggrid_toggledensity",
-      "community": 28,
-      "community_name": "CatalogGrid",
-      "norm_label": ".#toggledensity()"
+      "id": "assets_catalog_transitions_marktriggered",
+      "community": 56,
+      "community_name": "catalog-transitions.js",
+      "norm_label": "marktriggered()"
     },
     {
       "label": "collection-links.js",
@@ -1281,7 +1316,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_component_cart_items",
-      "community": 3,
+      "community": 28,
       "community_name": "component-cart-items.js",
       "norm_label": "component-cart-items.js"
     },
@@ -1295,7 +1330,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "cartitemscomponent"
     },
     {
@@ -1307,7 +1342,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_isexternalcartupdate",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#isexternalcartupdate()"
     },
     {
@@ -1319,7 +1354,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_handlediscountupdate",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#handlediscountupdate()"
     },
     {
@@ -1331,7 +1366,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_handlenoteupdate",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#handlenoteupdate()"
     },
     {
@@ -1343,7 +1378,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_connectedcallback",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -1355,7 +1390,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_disconnectedcallback",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -1367,7 +1402,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_onquantitychange",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#onquantitychange()"
     },
     {
@@ -1379,7 +1414,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_onlineitemremove",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".onlineitemremove()"
     },
     {
@@ -1391,7 +1426,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_updatequantity",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".updatequantity()"
     },
     {
@@ -1403,7 +1438,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_handlecarterror",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#handlecarterror()"
     },
     {
@@ -1415,7 +1450,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_handlecartupdate",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#handlecartupdate()"
     },
     {
@@ -1427,7 +1462,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_disablecartitems",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#disablecartitems()"
     },
     {
@@ -1439,7 +1474,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_enablecartitems",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#enablecartitems()"
     },
     {
@@ -1451,7 +1486,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_updatequantityselectors",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#updatequantityselectors()"
     },
     {
@@ -1463,7 +1498,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_updatecartquantityselectorbuttonstates",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#updatecartquantityselectorbuttonstates()"
     },
     {
@@ -1475,7 +1510,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_fetchcartdata",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".fetchcartdata()"
     },
     {
@@ -1487,7 +1522,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_sectionid",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".sectionid()"
     },
     {
@@ -1499,7 +1534,7 @@
       "_origin": "ast",
       "id": "assets_component_cart_items_cartitemscomponent_isdrawer",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".isdrawer()"
     },
     {
@@ -1557,8 +1592,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_component_quantity_selector",
-      "community": 15,
-      "community_name": "QuantitySelectorComponent",
+      "community": 25,
+      "community_name": "events.js",
       "norm_label": "component-quantity-selector.js"
     },
     {
@@ -2053,7 +2088,7 @@
       "_origin": "ast",
       "id": "assets_dialog_dialogcomponent",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": "dialogcomponent"
     },
     {
@@ -2065,7 +2100,7 @@
       "_origin": "ast",
       "id": "assets_dialog_dialogcomponent_connectedcallback",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -2077,7 +2112,7 @@
       "_origin": "ast",
       "id": "assets_dialog_dialogcomponent_disconnectedcallback",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -2089,7 +2124,7 @@
       "_origin": "ast",
       "id": "assets_dialog_dialogcomponent_showdialog",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".showdialog()"
     },
     {
@@ -2101,7 +2136,7 @@
       "_origin": "ast",
       "id": "assets_dialog_dialogcomponent_closedialog",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".closedialog()"
     },
     {
@@ -2113,7 +2148,7 @@
       "_origin": "ast",
       "id": "assets_dialog_dialogcomponent_toggledialog",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".toggledialog()"
     },
     {
@@ -2125,7 +2160,7 @@
       "_origin": "ast",
       "id": "assets_dialog_dialogcomponent_handleclick",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#handleclick()"
     },
     {
@@ -2137,7 +2172,7 @@
       "_origin": "ast",
       "id": "assets_dialog_dialogcomponent_handlekeydown",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#handlekeydown()"
     },
     {
@@ -2149,7 +2184,7 @@
       "_origin": "ast",
       "id": "assets_dialog_dialogcomponent_minwidth",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".minwidth()"
     },
     {
@@ -2161,7 +2196,7 @@
       "_origin": "ast",
       "id": "assets_dialog_dialogcomponent_maxwidth",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".maxwidth()"
     },
     {
@@ -3540,8 +3575,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_floating_panel",
-      "community": 27,
-      "community_name": "requestIdleCallback",
+      "community": 51,
+      "community_name": "slideshow.js",
       "norm_label": "floating-panel.js"
     },
     {
@@ -3553,8 +3588,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_floating_panel_floatingpanelcomponent",
-      "community": 27,
-      "community_name": "requestIdleCallback",
+      "community": 3,
+      "community_name": "CartItemsComponent",
       "norm_label": "floatingpanelcomponent"
     },
     {
@@ -3565,8 +3600,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_floating_panel_floatingpanelcomponent_updateposition",
-      "community": 27,
-      "community_name": "requestIdleCallback",
+      "community": 3,
+      "community_name": "CartItemsComponent",
       "norm_label": ".#updateposition()"
     },
     {
@@ -3577,8 +3612,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_floating_panel_floatingpanelcomponent_connectedcallback",
-      "community": 27,
-      "community_name": "requestIdleCallback",
+      "community": 3,
+      "community_name": "CartItemsComponent",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -3589,8 +3624,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_floating_panel_floatingpanelcomponent_disconnectedcallback",
-      "community": 27,
-      "community_name": "requestIdleCallback",
+      "community": 3,
+      "community_name": "CartItemsComponent",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -3649,7 +3684,7 @@
       "_origin": "ast",
       "id": "assets_focus",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": "focus.js"
     },
     {
@@ -3660,7 +3695,7 @@
       "_origin": "ast",
       "id": "assets_focus_trapfocushandlers",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": "trapfocushandlers"
     },
     {
@@ -3672,7 +3707,7 @@
       "_origin": "ast",
       "id": "assets_focus_getfocusableelements",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": "getfocusableelements()"
     },
     {
@@ -3684,7 +3719,7 @@
       "_origin": "ast",
       "id": "assets_focus_trapfocus",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": "trapfocus()"
     },
     {
@@ -3696,7 +3731,7 @@
       "_origin": "ast",
       "id": "assets_focus_removetrapfocus",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": "removetrapfocus()"
     },
     {
@@ -4232,8 +4267,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_header_actions",
-      "community": 44,
-      "community_name": "theme-drawer.js",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": "header-actions.js"
     },
     {
@@ -4245,8 +4280,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_header_actions_headeractions",
-      "community": 57,
-      "community_name": "HeaderActions",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": "headeractions"
     },
     {
@@ -4257,8 +4292,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_actions_headeractions_connectedcallback",
-      "community": 57,
-      "community_name": "HeaderActions",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -4269,8 +4304,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_actions_headeractions_disconnectedcallback",
-      "community": 57,
-      "community_name": "HeaderActions",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -4281,8 +4316,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_actions_headeractions_synccarttriggerariaexpanded",
-      "community": 57,
-      "community_name": "HeaderActions",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": ".#synccarttriggerariaexpanded()"
     },
     {
@@ -4293,8 +4328,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_actions_headeractions_ondrawerstatechange",
-      "community": 57,
-      "community_name": "HeaderActions",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": ".#ondrawerstatechange()"
     },
     {
@@ -4305,8 +4340,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_actions_headeractions_oncartupdate",
-      "community": 57,
-      "community_name": "HeaderActions",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": ".#oncartupdate()"
     },
     {
@@ -4316,8 +4351,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_header_drawer",
-      "community": 2,
-      "community_name": "onAnimationEnd",
+      "community": 8,
+      "community_name": "utilities.js",
       "norm_label": "header-drawer.js"
     },
     {
@@ -4330,7 +4365,7 @@
       "_origin": "ast",
       "id": "assets_header_drawer_headerdrawer",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": "headerdrawer"
     },
     {
@@ -4342,7 +4377,7 @@
       "_origin": "ast",
       "id": "assets_header_drawer_headerdrawer_connectedcallback",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -4354,7 +4389,7 @@
       "_origin": "ast",
       "id": "assets_header_drawer_headerdrawer_disconnectedcallback",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -4366,7 +4401,7 @@
       "_origin": "ast",
       "id": "assets_header_drawer_headerdrawer_onkeyup",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#onkeyup()"
     },
     {
@@ -4378,7 +4413,7 @@
       "_origin": "ast",
       "id": "assets_header_drawer_headerdrawer_isopen",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".isopen()"
     },
     {
@@ -4390,7 +4425,7 @@
       "_origin": "ast",
       "id": "assets_header_drawer_headerdrawer_getdetailselement",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#getdetailselement()"
     },
     {
@@ -4402,7 +4437,7 @@
       "_origin": "ast",
       "id": "assets_header_drawer_headerdrawer_toggle",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".toggle()"
     },
     {
@@ -4414,7 +4449,7 @@
       "_origin": "ast",
       "id": "assets_header_drawer_headerdrawer_open",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".open()"
     },
     {
@@ -4426,7 +4461,7 @@
       "_origin": "ast",
       "id": "assets_header_drawer_headerdrawer_back",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".back()"
     },
     {
@@ -4438,7 +4473,7 @@
       "_origin": "ast",
       "id": "assets_header_drawer_headerdrawer_close",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".close()"
     },
     {
@@ -4450,7 +4485,7 @@
       "_origin": "ast",
       "id": "assets_header_drawer_headerdrawer_setupanimatedelementlisteners",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#setupanimatedelementlisteners()"
     },
     {
@@ -4462,7 +4497,7 @@
       "_origin": "ast",
       "id": "assets_header_drawer_headerdrawer_preventinitialaccordionanimations",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".preventinitialaccordionanimations()"
     },
     {
@@ -4474,7 +4509,7 @@
       "_origin": "ast",
       "id": "assets_header_drawer_reset",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": "reset()"
     },
     {
@@ -4796,8 +4831,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_header",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 8,
+      "community_name": "utilities.js",
       "norm_label": "header.js"
     },
     {
@@ -5092,8 +5127,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_jumbo_text",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 48,
+      "community_name": "product-card.js",
       "norm_label": "jumbo-text.js"
     },
     {
@@ -5105,8 +5140,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext",
-      "community": 34,
-      "community_name": "JumboText",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": "jumbotext"
     },
     {
@@ -5117,8 +5152,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_connectedcallback",
-      "community": 34,
-      "community_name": "JumboText",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -5129,8 +5164,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_disconnectedcallback",
-      "community": 34,
-      "community_name": "JumboText",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -5141,8 +5176,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_setintersectionobserver",
-      "community": 34,
-      "community_name": "JumboText",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#setintersectionobserver()"
     },
     {
@@ -5153,8 +5188,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_calculateoptimalfontsize",
-      "community": 34,
-      "community_name": "JumboText",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#calculateoptimalfontsize()"
     },
     {
@@ -5165,8 +5200,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_findwidestchild",
-      "community": 34,
-      "community_name": "JumboText",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#findwidestchild()"
     },
     {
@@ -5177,8 +5212,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_clampfontsize",
-      "community": 34,
-      "community_name": "JumboText",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#clampfontsize()"
     },
     {
@@ -5189,8 +5224,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_handleresize",
-      "community": 34,
-      "community_name": "JumboText",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#handleresize()"
     },
     {
@@ -5201,8 +5236,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_windowresizelistener",
-      "community": 34,
-      "community_name": "JumboText",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#windowresizelistener()"
     },
     {
@@ -6601,7 +6636,7 @@
       "_origin": "ast",
       "id": "assets_morph_morph_options",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "morph_options"
     },
     {
@@ -7127,7 +7162,7 @@
       "_origin": "ast",
       "id": "assets_page_view_event",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "page-view-event.js"
     },
     {
@@ -7137,8 +7172,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio",
-      "community": 42,
-      "community_name": "PaginatedListAspectRatioHelper",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": "paginated-list-aspect-ratio.js"
     },
     {
@@ -7150,8 +7185,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper",
-      "community": 42,
-      "community_name": "PaginatedListAspectRatioHelper",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": "paginatedlistaspectratiohelper"
     },
     {
@@ -7162,8 +7197,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_constructor",
-      "community": 42,
-      "community_name": "PaginatedListAspectRatioHelper",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".constructor()"
     },
     {
@@ -7174,8 +7209,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_processnewelements",
-      "community": 42,
-      "community_name": "PaginatedListAspectRatioHelper",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".processnewelements()"
     },
     {
@@ -7186,8 +7221,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_storeimageratiosettings",
-      "community": 42,
-      "community_name": "PaginatedListAspectRatioHelper",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#storeimageratiosettings()"
     },
     {
@@ -7198,8 +7233,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_fixadaptiveaspectratios",
-      "community": 42,
-      "community_name": "PaginatedListAspectRatioHelper",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#fixadaptiveaspectratios()"
     },
     {
@@ -7210,8 +7245,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_applyfixedaspectratio",
-      "community": 42,
-      "community_name": "PaginatedListAspectRatioHelper",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#applyfixedaspectratio()"
     },
     {
@@ -7222,8 +7257,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_getsafeimageaspectratio",
-      "community": 42,
-      "community_name": "PaginatedListAspectRatioHelper",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#getsafeimageaspectratio()"
     },
     {
@@ -7234,8 +7269,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_getaspectratiovalue",
-      "community": 42,
-      "community_name": "PaginatedListAspectRatioHelper",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#getaspectratiovalue()"
     },
     {
@@ -7246,8 +7281,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_applyaspectratiotogallery",
-      "community": 42,
-      "community_name": "PaginatedListAspectRatioHelper",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#applyaspectratiotogallery()"
     },
     {
@@ -7258,8 +7293,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_getunprocessedgalleries",
-      "community": 42,
-      "community_name": "PaginatedListAspectRatioHelper",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#getunprocessedgalleries()"
     },
     {
@@ -7270,8 +7305,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_markasprocessed",
-      "community": 42,
-      "community_name": "PaginatedListAspectRatioHelper",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#markasprocessed()"
     },
     {
@@ -7294,8 +7329,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": "paginatedlist"
     },
     {
@@ -7306,8 +7341,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_connectedcallback",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -7318,8 +7353,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_disconnectedcallback",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -7330,8 +7365,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_observeviewmore",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#observeviewmore()"
     },
     {
@@ -7342,8 +7377,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_shouldusepage",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#shouldusepage()"
     },
     {
@@ -7354,8 +7389,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_fetchpage",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#fetchpage()"
     },
     {
@@ -7366,8 +7401,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_fetchspecificpage",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#fetchspecificpage()"
     },
     {
@@ -7378,8 +7413,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_rendernextpage",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#rendernextpage()"
     },
     {
@@ -7390,8 +7425,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_renderpreviouspage",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#renderpreviouspage()"
     },
     {
@@ -7402,8 +7437,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_getpage",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#getpage()"
     },
     {
@@ -7414,8 +7449,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_getgridforpage",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#getgridforpage()"
     },
     {
@@ -7426,8 +7461,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_sectionid",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".sectionid()"
     },
     {
@@ -7438,8 +7473,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_handlefilterupdate",
-      "community": 31,
-      "community_name": "PaginatedList",
+      "community": 6,
+      "community_name": "paginated-list.js",
       "norm_label": ".#handlefilterupdate()"
     },
     {
@@ -7449,7 +7484,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_performance",
-      "community": 3,
+      "community": 28,
       "community_name": "component-cart-items.js",
       "norm_label": "performance.js"
     },
@@ -7462,8 +7497,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_performance_themeperformance",
-      "community": 3,
-      "community_name": "component-cart-items.js",
+      "community": 31,
+      "community_name": "ThemePerformance",
       "norm_label": "themeperformance"
     },
     {
@@ -7474,8 +7509,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_performance_themeperformance_constructor",
-      "community": 3,
-      "community_name": "component-cart-items.js",
+      "community": 31,
+      "community_name": "ThemePerformance",
       "norm_label": ".constructor()"
     },
     {
@@ -7486,8 +7521,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_performance_themeperformance_createstartingmarker",
-      "community": 3,
-      "community_name": "component-cart-items.js",
+      "community": 31,
+      "community_name": "ThemePerformance",
       "norm_label": ".createstartingmarker()"
     },
     {
@@ -7498,8 +7533,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_performance_themeperformance_measurefromevent",
-      "community": 3,
-      "community_name": "component-cart-items.js",
+      "community": 31,
+      "community_name": "ThemePerformance",
       "norm_label": ".measurefromevent()"
     },
     {
@@ -7510,8 +7545,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_performance_themeperformance_measurefrommarker",
-      "community": 3,
-      "community_name": "component-cart-items.js",
+      "community": 31,
+      "community_name": "ThemePerformance",
       "norm_label": ".measurefrommarker()"
     },
     {
@@ -7522,8 +7557,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_performance_themeperformance_measure",
-      "community": 3,
-      "community_name": "component-cart-items.js",
+      "community": 31,
+      "community_name": "ThemePerformance",
       "norm_label": ".measure()"
     },
     {
@@ -7533,7 +7568,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "assets_performance_cartperformance",
-      "community": 3,
+      "community": 28,
       "community_name": "component-cart-items.js",
       "norm_label": "cartperformance"
     },
@@ -8734,8 +8769,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_product_card_swatchesvariantpickercomponent",
-      "community": 48,
-      "community_name": "product-card.js",
+      "community": 42,
+      "community_name": "SwatchesVariantPickerComponent",
       "norm_label": "swatchesvariantpickercomponent"
     },
     {
@@ -8746,8 +8781,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_product_card_swatchesvariantpickercomponent_variantchanged",
-      "community": 48,
-      "community_name": "product-card.js",
+      "community": 42,
+      "community_name": "SwatchesVariantPickerComponent",
       "norm_label": ".variantchanged()"
     },
     {
@@ -8758,8 +8793,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_product_card_swatchesvariantpickercomponent_showallswatches",
-      "community": 48,
-      "community_name": "product-card.js",
+      "community": 42,
+      "community_name": "SwatchesVariantPickerComponent",
       "norm_label": ".showallswatches()"
     },
     {
@@ -8817,7 +8852,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_product_form",
-      "community": 3,
+      "community": 28,
       "community_name": "component-cart-items.js",
       "norm_label": "product-form.js"
     },
@@ -8902,8 +8937,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_product_form_addtocartcomponent_preloadimage",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 5,
+      "community_name": "ProductFormComponent",
       "norm_label": ".#preloadimage()"
     },
     {
@@ -9430,8 +9465,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_product_inventory",
-      "community": 22,
-      "community_name": "morph.js",
+      "community": 25,
+      "community_name": "events.js",
       "norm_label": "product-inventory.js"
     },
     {
@@ -9564,7 +9599,7 @@
       "_origin": "ast",
       "id": "assets_product_recommendations_productrecommendations",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "productrecommendations"
     },
     {
@@ -9576,7 +9611,7 @@
       "_origin": "ast",
       "id": "assets_product_recommendations_productrecommendations_connectedcallback",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -9588,7 +9623,7 @@
       "_origin": "ast",
       "id": "assets_product_recommendations_productrecommendations_disconnectedcallback",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -9600,7 +9635,7 @@
       "_origin": "ast",
       "id": "assets_product_recommendations_productrecommendations_loadrecommendations",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#loadrecommendations()"
     },
     {
@@ -9612,7 +9647,7 @@
       "_origin": "ast",
       "id": "assets_product_recommendations_productrecommendations_fetchcachedrecommendations",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#fetchcachedrecommendations()"
     },
     {
@@ -9624,7 +9659,7 @@
       "_origin": "ast",
       "id": "assets_product_recommendations_productrecommendations_handleerror",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#handleerror()"
     },
     {
@@ -10291,8 +10326,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_quick_order_list",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 25,
+      "community_name": "events.js",
       "norm_label": "quick-order-list.js"
     },
     {
@@ -10711,8 +10746,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_results_list",
-      "community": 8,
-      "community_name": "utilities.js",
+      "community": 3,
+      "community_name": "CartItemsComponent",
       "norm_label": "results-list.js"
     },
     {
@@ -10724,8 +10759,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_results_list_resultslist",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 3,
+      "community_name": "CartItemsComponent",
       "norm_label": "resultslist"
     },
     {
@@ -10736,8 +10771,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_results_list_resultslist_connectedcallback",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 3,
+      "community_name": "CartItemsComponent",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -10748,8 +10783,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_results_list_resultslist_disconnectedcallback",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 3,
+      "community_name": "CartItemsComponent",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -10760,8 +10795,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_results_list_resultslist_updatelayout",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 3,
+      "community_name": "CartItemsComponent",
       "norm_label": ".updatelayout()"
     },
     {
@@ -10772,8 +10807,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_results_list_resultslist_animatelayoutchange",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 3,
+      "community_name": "CartItemsComponent",
       "norm_label": ".#animatelayoutchange()"
     },
     {
@@ -10784,8 +10819,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_results_list_resultslist_setlayout",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 3,
+      "community_name": "CartItemsComponent",
       "norm_label": ".#setlayout()"
     },
     {
@@ -10796,8 +10831,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_results_list_resultslist_handlemediaquerychange",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 3,
+      "community_name": "CartItemsComponent",
       "norm_label": ".#handlemediaquerychange()"
     },
     {
@@ -10820,8 +10855,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_rte_formatter_rteformatter",
-      "community": 1,
-      "community_name": "component.js",
+      "community": 44,
+      "community_name": "RTEFormatter",
       "norm_label": "rteformatter"
     },
     {
@@ -10832,8 +10867,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_rte_formatter_rteformatter_connectedcallback",
-      "community": 1,
-      "community_name": "component.js",
+      "community": 44,
+      "community_name": "RTEFormatter",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -10844,8 +10879,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_rte_formatter_rteformatter_formattable",
-      "community": 1,
-      "community_name": "component.js",
+      "community": 44,
+      "community_name": "RTEFormatter",
       "norm_label": ".#formattable()"
     },
     {
@@ -10972,8 +11007,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_scrolling",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 51,
+      "community_name": "slideshow.js",
       "norm_label": "scrolling.js"
     },
     {
@@ -10985,8 +11020,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": "scroller"
     },
     {
@@ -10997,8 +11032,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_constructor",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": ".constructor()"
     },
     {
@@ -11009,8 +11044,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_to",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": ".to()"
     },
     {
@@ -11021,8 +11056,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_by",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": ".by()"
     },
     {
@@ -11033,8 +11068,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_scroll",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": ".#scroll()"
     },
     {
@@ -11045,8 +11080,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_axis",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": ".axis()"
     },
     {
@@ -11057,8 +11092,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_finished",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": ".finished()"
     },
     {
@@ -11069,8 +11104,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_edge",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": ".#edge()"
     },
     {
@@ -11081,8 +11116,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_setup",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": ".#setup()"
     },
     {
@@ -11093,8 +11128,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_reset",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": ".#reset()"
     },
     {
@@ -11105,8 +11140,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_handlescroll",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": ".#handlescroll()"
     },
     {
@@ -11117,8 +11152,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_snap",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": ".snap()"
     },
     {
@@ -11129,8 +11164,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_destroy",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": ".destroy()"
     },
     {
@@ -11141,8 +11176,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_getscrollaxis",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": "getscrollaxis()"
     },
     {
@@ -11153,8 +11188,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_calculatepaddingstart",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 27,
+      "community_name": "Scroller",
       "norm_label": "calculatepaddingstart()"
     },
     {
@@ -11165,8 +11200,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scrollintoview",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 51,
+      "community_name": "slideshow.js",
       "norm_label": "scrollintoview()"
     },
     {
@@ -11178,8 +11213,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_scrolling_scrollhint",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 34,
+      "community_name": "ScrollHint",
       "norm_label": "scrollhint"
     },
     {
@@ -11190,8 +11225,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scrollhint_connectedcallback",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 34,
+      "community_name": "ScrollHint",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -11202,8 +11237,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scrollhint_disconnectedcallback",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 34,
+      "community_name": "ScrollHint",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -11214,8 +11249,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scrollhint_handlescroll",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 34,
+      "community_name": "ScrollHint",
       "norm_label": ".#handlescroll()"
     },
     {
@@ -11226,8 +11261,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scrollhint_update",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 34,
+      "community_name": "ScrollHint",
       "norm_label": ".#update()"
     },
     {
@@ -11237,8 +11272,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_search_page_input",
-      "community": 8,
-      "community_name": "utilities.js",
+      "community": 51,
+      "community_name": "slideshow.js",
       "norm_label": "search-page-input.js"
     },
     {
@@ -11286,7 +11321,7 @@
       "_origin": "ast",
       "id": "assets_section_hydration",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "section-hydration.js"
     },
     {
@@ -11298,7 +11333,7 @@
       "_origin": "ast",
       "id": "assets_section_hydration_hydratesection",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "hydratesection()"
     },
     {
@@ -11310,7 +11345,7 @@
       "_origin": "ast",
       "id": "assets_section_hydration_hydrate",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "hydrate()"
     },
     {
@@ -11321,7 +11356,7 @@
       "_origin": "ast",
       "id": "assets_section_renderer",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "section-renderer.js"
     },
     {
@@ -11334,7 +11369,7 @@
       "_origin": "ast",
       "id": "assets_section_renderer_sectionrenderer",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "sectionrenderer"
     },
     {
@@ -11346,7 +11381,7 @@
       "_origin": "ast",
       "id": "assets_section_renderer_sectionrenderer_constructor",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".constructor()"
     },
     {
@@ -11358,7 +11393,7 @@
       "_origin": "ast",
       "id": "assets_section_renderer_sectionrenderer_rendersection",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".rendersection()"
     },
     {
@@ -11370,7 +11405,7 @@
       "_origin": "ast",
       "id": "assets_section_renderer_sectionrenderer_abortpendingmorph",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#abortpendingmorph()"
     },
     {
@@ -11382,7 +11417,7 @@
       "_origin": "ast",
       "id": "assets_section_renderer_sectionrenderer_getsectionhtml",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".getsectionhtml()"
     },
     {
@@ -11394,7 +11429,7 @@
       "_origin": "ast",
       "id": "assets_section_renderer_sectionrenderer_cachepagesections",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": ".#cachepagesections()"
     },
     {
@@ -11406,7 +11441,7 @@
       "_origin": "ast",
       "id": "assets_section_renderer_buildsectionrenderingurl",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "buildsectionrenderingurl()"
     },
     {
@@ -11418,7 +11453,7 @@
       "_origin": "ast",
       "id": "assets_section_renderer_buildsectionselector",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "buildsectionselector()"
     },
     {
@@ -11430,7 +11465,7 @@
       "_origin": "ast",
       "id": "assets_section_renderer_normalizesectionid",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "normalizesectionid()"
     },
     {
@@ -11442,7 +11477,7 @@
       "_origin": "ast",
       "id": "assets_section_renderer_containsshadowroot",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "containsshadowroot()"
     },
     {
@@ -11454,7 +11489,7 @@
       "_origin": "ast",
       "id": "assets_section_renderer_morphsection",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "morphsection()"
     },
     {
@@ -11466,7 +11501,7 @@
       "_origin": "ast",
       "id": "assets_section_renderer_injectsectionstylesheet",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "injectsectionstylesheet()"
     },
     {
@@ -11609,8 +11644,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshowviewportobserver",
-      "community": 56,
-      "community_name": ".connectedCallback",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": "slideshowviewportobserver"
     },
     {
@@ -11621,8 +11656,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshowviewportobserver_getinstance",
-      "community": 56,
-      "community_name": ".connectedCallback",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".getinstance()"
     },
     {
@@ -11633,8 +11668,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshowviewportobserver_observe",
-      "community": 56,
-      "community_name": ".connectedCallback",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".observe()"
     },
     {
@@ -11645,8 +11680,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshowviewportobserver_unobserve",
-      "community": 56,
-      "community_name": ".connectedCallback",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".unobserve()"
     },
     {
@@ -11694,8 +11729,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_connectedcallback",
-      "community": 56,
-      "community_name": ".connectedCallback",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -11706,8 +11741,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_disconnectedcallback",
-      "community": 56,
-      "community_name": ".connectedCallback",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -11778,8 +11813,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_play",
-      "community": 58,
-      "community_name": ".#handleMouseDown",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".play()"
     },
     {
@@ -11790,8 +11825,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_pause",
-      "community": 58,
-      "community_name": ".#handleMouseDown",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".pause()"
     },
     {
@@ -11814,8 +11849,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_suspend",
-      "community": 58,
-      "community_name": ".#handleMouseDown",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".suspend()"
     },
     {
@@ -11826,8 +11861,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_resume",
-      "community": 58,
-      "community_name": ".#handleMouseDown",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".resume()"
     },
     {
@@ -11958,8 +11993,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_setupslideshowwithoutcontrols",
-      "community": 56,
-      "community_name": ".connectedCallback",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#setupslideshowwithoutcontrols()"
     },
     {
@@ -11970,8 +12005,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_setupslideshow",
-      "community": 59,
-      "community_name": ".#setupSlideshow",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#setupslideshow()"
     },
     {
@@ -11982,8 +12017,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_handlescroll",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#handlescroll()"
     },
     {
@@ -12006,8 +12041,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_ontransitionend",
-      "community": 59,
-      "community_name": ".#setupSlideshow",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#ontransitionend()"
     },
     {
@@ -12018,8 +12053,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_sync",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#sync()"
     },
     {
@@ -12030,8 +12065,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_handlemousedown",
-      "community": 58,
-      "community_name": ".#handleMouseDown",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#handlemousedown()"
     },
     {
@@ -12078,8 +12113,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_handlevisibilitychange",
-      "community": 58,
-      "community_name": ".#handleMouseDown",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#handlevisibilitychange()"
     },
     {
@@ -12090,8 +12125,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_updatecontrolsvisibility",
-      "community": 59,
-      "community_name": ".#setupSlideshow",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#updatecontrolsvisibility()"
     },
     {
@@ -12102,8 +12137,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_setupintersectionobserver",
-      "community": 59,
-      "community_name": ".#setupSlideshow",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#setupintersectionobserver()"
     },
     {
@@ -12126,8 +12161,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_slideshow_slideshow_updatevisibleslides",
-      "community": 59,
-      "community_name": ".#setupSlideshow",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#updatevisibleslides()"
     },
     {
@@ -13763,8 +13798,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_theme_drawer",
-      "community": 44,
-      "community_name": "theme-drawer.js",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": "theme-drawer.js"
     },
     {
@@ -13777,7 +13812,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": "themedrawer"
     },
     {
@@ -13789,7 +13824,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_isopen",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".isopen()"
     },
     {
@@ -13801,7 +13836,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_connectedcallback",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -13813,7 +13848,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_onrestore",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#onrestore()"
     },
     {
@@ -13825,7 +13860,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_disconnectedcallback",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -13837,7 +13872,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_onbackdropclick",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#onbackdropclick()"
     },
     {
@@ -13849,7 +13884,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_hasopennesteddialog",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#hasopennesteddialog()"
     },
     {
@@ -13861,7 +13896,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_getopennesteddialog",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#getopennesteddialog()"
     },
     {
@@ -13873,7 +13908,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_onmodalbreakpointchange",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#onmodalbreakpointchange()"
     },
     {
@@ -13885,7 +13920,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_onkeydown",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#onkeydown()"
     },
     {
@@ -13897,7 +13932,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_open",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".open()"
     },
     {
@@ -13909,7 +13944,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_bringtofront",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#bringtofront()"
     },
     {
@@ -13921,7 +13956,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_removeeventlisteners",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#removeeventlisteners()"
     },
     {
@@ -13933,7 +13968,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_focusinitialelement",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#focusinitialelement()"
     },
     {
@@ -13945,7 +13980,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_bringnesteddialogtofront",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#bringnesteddialogtofront()"
     },
     {
@@ -13957,7 +13992,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_closedialog",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#closedialog()"
     },
     {
@@ -13969,7 +14004,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_close",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".close()"
     },
     {
@@ -13981,7 +14016,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_toggle",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".toggle()"
     },
     {
@@ -13993,7 +14028,7 @@
       "_origin": "ast",
       "id": "assets_theme_drawer_themedrawer_istopmost",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".#istopmost()"
     },
     {
@@ -14005,8 +14040,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_theme_drawer_draweropenevent",
-      "community": 44,
-      "community_name": "theme-drawer.js",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": "draweropenevent"
     },
     {
@@ -14017,8 +14052,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_theme_drawer_draweropenevent_constructor",
-      "community": 44,
-      "community_name": "theme-drawer.js",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": ".constructor()"
     },
     {
@@ -14030,8 +14065,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_theme_drawer_drawercloseevent",
-      "community": 44,
-      "community_name": "theme-drawer.js",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": "drawercloseevent"
     },
     {
@@ -14042,8 +14077,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_theme_drawer_drawercloseevent_constructor",
-      "community": 44,
-      "community_name": "theme-drawer.js",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": ".constructor()"
     },
     {
@@ -14191,8 +14226,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "assets_utilities_requestidlecallback",
-      "community": 27,
-      "community_name": "requestIdleCallback",
+      "community": 3,
+      "community_name": "CartItemsComponent",
       "norm_label": "requestidlecallback"
     },
     {
@@ -14216,7 +14251,7 @@
       "_origin": "ast",
       "id": "assets_utilities_islowpowerdevice",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": "islowpowerdevice()"
     },
     {
@@ -14228,7 +14263,7 @@
       "_origin": "ast",
       "id": "assets_utilities_supportsviewtransitions",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": "supportsviewtransitions()"
     },
     {
@@ -14240,7 +14275,7 @@
       "_origin": "ast",
       "id": "assets_utilities_shoulddisablecrossdocumentviewtransitions",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": "shoulddisablecrossdocumentviewtransitions()"
     },
     {
@@ -14250,8 +14285,8 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "assets_utilities_viewtransition",
-      "community": 27,
-      "community_name": "requestIdleCallback",
+      "community": 51,
+      "community_name": "slideshow.js",
       "norm_label": "viewtransition"
     },
     {
@@ -14274,7 +14309,7 @@
       "_origin": "ast",
       "id": "assets_utilities_startviewtransition",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": "startviewtransition()"
     },
     {
@@ -14285,7 +14320,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_fetchconfig",
-      "community": 3,
+      "community": 28,
       "community_name": "component-cart-items.js",
       "norm_label": "fetchconfig()"
     },
@@ -14297,8 +14332,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_debounce",
-      "community": 8,
-      "community_name": "utilities.js",
+      "community": 51,
+      "community_name": "slideshow.js",
       "norm_label": "debounce()"
     },
     {
@@ -14309,8 +14344,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_throttle",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 51,
+      "community_name": "slideshow.js",
       "norm_label": "throttle()"
     },
     {
@@ -14332,8 +14367,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_prefersreducedmotion",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 51,
+      "community_name": "slideshow.js",
       "norm_label": "prefersreducedmotion()"
     },
     {
@@ -14369,7 +14404,7 @@
       "_origin": "ast",
       "id": "assets_utilities_ondocumentready",
       "community": 3,
-      "community_name": "component-cart-items.js",
+      "community_name": "CartItemsComponent",
       "norm_label": "ondocumentready()"
     },
     {
@@ -14380,8 +14415,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_removewillchangeonanimationend",
-      "community": 2,
-      "community_name": "onAnimationEnd",
+      "community": 8,
+      "community_name": "utilities.js",
       "norm_label": "removewillchangeonanimationend()"
     },
     {
@@ -14392,8 +14427,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_onanimationend",
-      "community": 2,
-      "community_name": "onAnimationEnd",
+      "community": 8,
+      "community_name": "utilities.js",
       "norm_label": "onanimationend()"
     },
     {
@@ -14416,7 +14451,7 @@
       "_origin": "ast",
       "id": "assets_utilities_prunedisconnectedscrolllockowners",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": "prunedisconnectedscrolllockowners()"
     },
     {
@@ -14428,7 +14463,7 @@
       "_origin": "ast",
       "id": "assets_utilities_syncscrolllock",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": "syncscrolllock()"
     },
     {
@@ -14440,7 +14475,7 @@
       "_origin": "ast",
       "id": "assets_utilities_lockscroll",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": "lockscroll()"
     },
     {
@@ -14452,7 +14487,7 @@
       "_origin": "ast",
       "id": "assets_utilities_unlockscroll",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": "unlockscroll()"
     },
     {
@@ -14534,8 +14569,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_clamp",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 8,
+      "community_name": "utilities.js",
       "norm_label": "clamp()"
     },
     {
@@ -14582,8 +14617,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_preventdefault",
-      "community": 20,
-      "community_name": "DragZoomWrapper",
+      "community": 8,
+      "community_name": "utilities.js",
       "norm_label": "preventdefault()"
     },
     {
@@ -14630,8 +14665,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_preloadimage",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 28,
+      "community_name": "component-cart-items.js",
       "norm_label": "preloadimage()"
     },
     {
@@ -14679,8 +14714,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_changemetathemecolor",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 8,
+      "community_name": "utilities.js",
       "norm_label": "changemetathemecolor()"
     },
     {
@@ -14716,8 +14751,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_utilities_scheduler",
-      "community": 60,
-      "community_name": "Scheduler",
+      "community": 48,
+      "community_name": "product-card.js",
       "norm_label": "scheduler"
     },
     {
@@ -14728,8 +14763,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_scheduler_schedule",
-      "community": 60,
-      "community_name": "Scheduler",
+      "community": 48,
+      "community_name": "product-card.js",
       "norm_label": ".schedule()"
     },
     {
@@ -14740,8 +14775,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_scheduler_flush",
-      "community": 60,
-      "community_name": "Scheduler",
+      "community": 48,
+      "community_name": "product-card.js",
       "norm_label": ".flush()"
     },
     {
@@ -14790,7 +14825,7 @@
       "_origin": "ast",
       "id": "assets_utilities_resizenotifier_disconnect",
       "community": 2,
-      "community_name": "onAnimationEnd",
+      "community_name": "ThemeDrawer",
       "norm_label": ".disconnect()"
     },
     {
@@ -15088,8 +15123,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_variant_resolution",
-      "community": 3,
-      "community_name": "component-cart-items.js",
+      "community": 5,
+      "community_name": "ProductFormComponent",
       "norm_label": "variant-resolution.js"
     },
     {
@@ -15100,8 +15135,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_variant_resolution_resolvevariantid",
-      "community": 3,
-      "community_name": "component-cart-items.js",
+      "community": 5,
+      "community_name": "ProductFormComponent",
       "norm_label": "resolvevariantid()"
     },
     {
@@ -15112,8 +15147,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_variant_resolution_normalizevariantid",
-      "community": 3,
-      "community_name": "component-cart-items.js",
+      "community": 5,
+      "community_name": "ProductFormComponent",
       "norm_label": "normalizevariantid()"
     },
     {
@@ -15445,8 +15480,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_zoom_dialog",
-      "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community": 51,
+      "community_name": "slideshow.js",
       "norm_label": "zoom-dialog.js"
     },
     {
@@ -15459,7 +15494,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": "zoomdialog"
     },
     {
@@ -15471,7 +15506,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_connectedcallback",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -15483,7 +15518,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_disconnectedcallback",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -15495,7 +15530,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_open",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": ".open()"
     },
     {
@@ -15507,7 +15542,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_loadhighresolutionimage",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": ".loadhighresolutionimage()"
     },
     {
@@ -15519,7 +15554,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_close",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": ".close()"
     },
     {
@@ -15531,7 +15566,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_closedialog",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": ".closedialog()"
     },
     {
@@ -15543,7 +15578,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_handlekeydown",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": ".handlekeydown()"
     },
     {
@@ -15555,7 +15590,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_handlethumbnailclick",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": ".handlethumbnailclick()"
     },
     {
@@ -15567,7 +15602,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_handlethumbnailpointerenter",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": ".handlethumbnailpointerenter()"
     },
     {
@@ -15579,7 +15614,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_selectthumbnail",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": ".selectthumbnail()"
     },
     {
@@ -15591,7 +15626,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_getmostvisibleelement",
       "community": 17,
-      "community_name": "zoom-dialog.js",
+      "community_name": "startViewTransition",
       "norm_label": "getmostvisibleelement()"
     },
     {
@@ -17367,7 +17402,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L5",
+      "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_catalog_grid",
@@ -17375,10 +17410,34 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/catalog-grid.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_catalog_grid",
+      "target": "assets_utilities",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/catalog-grid.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_catalog_grid",
+      "target": "assets_utilities_startviewtransition",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L46",
+      "source_location": "L92",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_catalog_grid_cataloggrid",
@@ -17389,7 +17448,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L34",
+      "source_location": "L43",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_catalog_grid_cataloggrid",
@@ -17400,7 +17459,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L6",
+      "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_catalog_grid_cataloggrid",
@@ -17411,7 +17470,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L30",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_catalog_grid_cataloggrid",
@@ -17422,7 +17481,18 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L39",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_catalog_grid_cataloggrid",
+      "target": "assets_catalog_grid_cataloggrid_morph",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/catalog-grid.js",
+      "source_location": "L74",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_catalog_grid_cataloggrid",
@@ -17433,7 +17503,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L53",
+      "source_location": "L109",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_catalog_grid_cataloggrid",
@@ -17444,11 +17514,11 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L65",
+      "source_location": "L48",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_catalog_grid_cataloggrid",
-      "target": "assets_catalog_grid_cataloggrid_toggledensity",
+      "target": "assets_catalog_grid_cataloggrid_syncicon",
       "confidence_score": 1.0
     },
     {
@@ -17456,7 +17526,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L15",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_catalog_grid_cataloggrid_connectedcallback",
@@ -17468,7 +17538,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L21",
+      "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_catalog_grid_cataloggrid_connectedcallback",
@@ -17480,7 +17550,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L16",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_catalog_grid_cataloggrid_connectedcallback",
@@ -17492,11 +17562,82 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/catalog-grid.js",
-      "source_location": "L18",
+      "source_location": "L27",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_catalog_grid_cataloggrid_connectedcallback",
-      "target": "assets_catalog_grid_cataloggrid_toggledensity",
+      "target": "assets_catalog_grid_cataloggrid_syncicon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/catalog-grid.js",
+      "source_location": "L101",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_catalog_grid_cataloggrid_closecolors",
+      "target": "assets_catalog_grid_cataloggrid_syncicon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/catalog-grid.js",
+      "source_location": "L82",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_catalog_grid_cataloggrid_opencolors",
+      "target": "assets_catalog_grid_cataloggrid_syncicon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/catalog-grid.js",
+      "source_location": "L95",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_catalog_grid_cataloggrid_closecolors",
+      "target": "assets_catalog_grid_cataloggrid_morph",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "assets/catalog-grid.js",
+      "source_location": "L61",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_catalog_grid_cataloggrid_morph",
+      "target": "assets_utilities_startviewtransition"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/catalog-grid.js",
+      "source_location": "L77",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_catalog_grid_cataloggrid_opencolors",
+      "target": "assets_catalog_grid_cataloggrid_morph",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/catalog-transitions.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_catalog_transitions",
+      "target": "assets_catalog_transitions_marktriggered",
       "confidence_score": 1.0
     },
     {
@@ -45025,5 +45166,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "94800ef23f5e03e895a32720c7bdeeb5444a641f"
+  "built_at_commit": "154711d19d16af7e827846e399beea1ebb9f8cad"
 }

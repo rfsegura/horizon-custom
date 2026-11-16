@@ -3,12 +3,33 @@
   a back arrow to "/" on the left and the bag on the right.
 {%- endcomment -%}
 
+<script
+  type="module"
+  src="{{ 'catalog-transitions.js' | asset_url }}"
+></script>
+
 <div class="catalog-bar">
-  <a href="{{ routes.root_url }}" class="catalog-bar__back" aria-label="{{ section.settings.back_label }}">&lsaquo;</a>
+  <a href="{{ routes.root_url }}" class="catalog-bar__back" aria-label="{{ section.settings.back_label }}">
+    {% render 'catalog-menu-icon', back: true %}
+  </a>
   {% render 'catalog-cart-button', class: 'catalog-bar__cart' %}
 </div>
 
 <style>
+  /* Always visible while scrolling (the scroll container is .page-wrapper on desktop, the page on mobile). */
+  #header-group {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+  }
+
+  /* Color picker open/close: 300ms, shared easing. */
+  ::view-transition-group(root),
+  ::view-transition-group(catalog-tile) {
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   .catalog-bar {
     display: flex;
     align-items: center;

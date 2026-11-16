@@ -735,8 +735,8 @@
     "semantic_hash": ""
   },
   "sections/header-group.json": {
-    "mtime": 1794793537.8110232,
-    "ast_hash": "8bbf76b0c97d8c0989a71b4b497558eb",
+    "mtime": 1794799437.5296998,
+    "ast_hash": "e15ae68aa040119af0cb24a48475123e",
     "semantic_hash": ""
   },
   "templates/404.json": {
@@ -985,8 +985,8 @@
     "semantic_hash": ""
   },
   "assets/catalog-grid.js": {
-    "mtime": 1794797174.0945175,
-    "ast_hash": "62d0a13b8dcef252c26cb671465763f8",
+    "mtime": 1794798406.1288626,
+    "ast_hash": "a0d58cabd2b4bcf1d76a270af59edbfe",
     "semantic_hash": ""
   }
 }

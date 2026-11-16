@@ -1,0 +1,55 @@
+{% doc %}
+  The "+" / "<" icon made of two bars. Setting the `data-back` attribute on the span (from JS, or
+  by passing `back: true`) rotates the "+" into the "<" with a CSS transition.
+
+  @param {boolean} [back] - Render in the "<" state
+{% enddoc %}
+
+<span class="catalog-icon" aria-hidden="true"{% if back %} data-back{% endif %}><i></i><i></i></span>
+
+{% stylesheet %}
+  .catalog-icon {
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+    position: relative;
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  .catalog-icon i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 1px;
+    background: currentcolor;
+    transform: translate(-50%, -50%);
+    transition:
+      transform 0.3s var(--ease),
+      top 0.3s var(--ease),
+      width 0.3s var(--ease);
+  }
+
+  .catalog-icon i:last-child {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  /* "<": two arms meeting at the left, centred a quarter above and below the middle. */
+  .catalog-icon[data-back] i {
+    top: 25%;
+    width: 11px;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .catalog-icon[data-back] i:last-child {
+    top: 75%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .catalog-icon i {
+      transition: none;
+    }
+  }
+{% endstylesheet %}

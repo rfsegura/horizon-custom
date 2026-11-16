@@ -17,11 +17,10 @@
     <button
       type="button"
       class="catalog__btn button-unstyled"
-      data-density
-      aria-pressed="false"
-      aria-label="Toggle grid size"
+      data-menu
+      aria-label="Toggle grid size / back"
     >
-      +
+      {% render 'catalog-menu-icon' %}
     </button>
 
     <div class="catalog__toggle" role="group" aria-label="Collection">
@@ -204,6 +203,11 @@
 
   .catalog__label {
     font-size: 0.75rem;
+  }
+
+  /* The tile image morphing into/out of the product page must not also fade in. */
+  .catalog__image[data-view-transition-type] {
+    animation: none;
   }
 
   @keyframes catalog-fade {
