@@ -62,6 +62,15 @@
   </script>
 {%- endif -%}
 
+{%- if request.page_type == 'product' -%}
+  {%- comment -%} Product page is a single screen, like yeezy.com: no footer. {%- endcomment -%}
+  <style>
+    .page-wrapper > footer {
+      display: none;
+    }
+  </style>
+{%- endif -%}
+
 <div class="catalog-bar">
   <a href="{{ routes.root_url }}" class="catalog-bar__back" aria-label="{{ section.settings.back_label }}">
     {% render 'catalog-menu-icon', back: true %}
@@ -286,21 +295,44 @@
         catalog-fade-in 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
     }
 
-    /* Scrolling to the next / previous product: the page slides up / down and fades. */
-    html[data-catalog-nav='next']::view-transition-old(root-custom) {
-      animation: catalog-slide-out-up 0.35s var(--catalog-zoom-ease) both;
+    /*
+      Product swap on scroll (assets/catalog-transitions.js), like yeezy.com: 300ms, linear. The old
+      product slides out vertically while the new one slides in from the opposite side, inside a
+      clipped window; then the new content fades in.
+    */
+    html[data-catalog-swap] .product-information {
+      view-transition-name: catalog-product;
     }
 
-    html[data-catalog-nav='next']::view-transition-new(root-custom) {
-      animation: catalog-slide-in-up 0.35s var(--catalog-zoom-ease) both;
+    html[data-catalog-swap]::view-transition-group(catalog-product) {
+      overflow: clip;
+      animation-duration: 0.3s;
+      animation-timing-function: linear;
     }
 
-    html[data-catalog-nav='prev']::view-transition-old(root-custom) {
-      animation: catalog-slide-out-down 0.35s var(--catalog-zoom-ease) both;
+    html[data-catalog-swap]::view-transition-old(catalog-product),
+    html[data-catalog-swap]::view-transition-new(catalog-product) {
+      mix-blend-mode: normal;
     }
 
-    html[data-catalog-nav='prev']::view-transition-new(root-custom) {
-      animation: catalog-slide-in-down 0.35s var(--catalog-zoom-ease) both;
+    html[data-catalog-swap='next']::view-transition-old(catalog-product) {
+      animation: catalog-fly-out-up 0.3s linear both;
+    }
+
+    html[data-catalog-swap='next']::view-transition-new(catalog-product) {
+      animation:
+        catalog-fly-in-up 0.3s linear both,
+        catalog-fade-in 0.45s ease-out both;
+    }
+
+    html[data-catalog-swap='prev']::view-transition-old(catalog-product) {
+      animation: catalog-fly-out-down 0.3s linear both;
+    }
+
+    html[data-catalog-swap='prev']::view-transition-new(catalog-product) {
+      animation:
+        catalog-fly-in-down 0.3s linear both,
+        catalog-fade-in 0.45s ease-out both;
     }
   }
 
@@ -316,31 +348,27 @@
     }
   }
 
-  @keyframes catalog-slide-out-up {
+  @keyframes catalog-fly-out-up {
     to {
-      translate: 0 -30%;
-      opacity: 0;
+      translate: 0 -100%;
     }
   }
 
-  @keyframes catalog-slide-in-up {
+  @keyframes catalog-fly-in-up {
     from {
-      translate: 0 30%;
-      opacity: 0;
+      translate: 0 100%;
     }
   }
 
-  @keyframes catalog-slide-out-down {
+  @keyframes catalog-fly-out-down {
     to {
-      translate: 0 30%;
-      opacity: 0;
+      translate: 0 100%;
     }
   }
 
-  @keyframes catalog-slide-in-down {
+  @keyframes catalog-fly-in-down {
     from {
-      translate: 0 -30%;
-      opacity: 0;
+      translate: 0 -100%;
     }
   }
 
