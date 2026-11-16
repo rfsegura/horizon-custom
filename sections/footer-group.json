@@ -39,7 +39,6 @@
       "block_order": [
         "menu_VDrpqt"
       ],
-      "disabled": true,
       "custom_css": [
         ".menu__heading {display: none !important;}"
       ],
