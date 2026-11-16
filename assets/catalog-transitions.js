@@ -56,6 +56,23 @@ window.addEventListener('pagereveal', (event) => {
 
   const root = document.documentElement;
   const path = new URL(from).pathname;
+
+  // Arriving from scrolling to the next / previous product: slide in the matching direction.
+  let direction = null;
+  try {
+    direction = sessionStorage.getItem("catalog-dir");
+    sessionStorage.removeItem("catalog-dir");
+  } catch {
+    // Ignored, see above.
+  }
+
+  if (direction === "next" || direction === "prev") {
+    root.dataset.catalogNav = direction;
+    transition.finished.finally(() => {
+      delete root.dataset.catalogNav;
+    });
+    return;
+  }
   const link = [...document.querySelectorAll('[data-main-grid] .catalog__link')].find(
     (a) => new URL(/** @type {HTMLAnchorElement} */ (a).href).pathname === path
   );
@@ -88,3 +105,106 @@ window.addEventListener('pagereveal', (event) => {
     root.style.removeProperty('--catalog-origin');
   });
 });
+
+/*
+ * Product page: scroll / swipe moves to the previous / next product in the homepage list (urls come
+ * from [data-catalog-prev] / [data-catalog-next], rendered by sections/catalog-bar.liquid).
+ * Only while the product fits on screen: then the page doesn't scroll anyway (html.catalog-product-lock).
+ * If the content is taller than the screen (e.g. a phone in landscape) normal scrolling is left alone.
+ */
+const DIR_KEY = 'catalog-dir';
+const WHEEL_THRESHOLD = 60;
+const SWIPE_THRESHOLD = 60;
+
+const neighbours = document.querySelector('[data-catalog-prev]');
+
+if (neighbours instanceof HTMLElement) {
+  const urls = { prev: neighbours.dataset.catalogPrev, next: neighbours.dataset.catalogNext };
+  const root = document.documentElement;
+  let navigating = false;
+  let wheelTotal = 0;
+  /** @type {ReturnType<typeof setTimeout> | undefined} */
+  let wheelReset;
+
+  const fits = () => {
+    const section = document.querySelector('.product-information');
+    const bar = document.querySelector('#header-group');
+    if (!section) return false;
+    // The section is min-height: 100dvh - 4rem, so allow a little slack.
+    return section.scrollHeight + (bar?.clientHeight ?? 0) <= window.innerHeight + 8;
+  };
+
+  const syncLock = () => root.classList.toggle('catalog-product-lock', fits());
+  syncLock();
+  window.addEventListener('resize', syncLock);
+  window.addEventListener('load', syncLock);
+
+  /** Anything that should keep its own scrolling or gestures. */
+  const isBusy = (/** @type {EventTarget | null} */ target) => {
+    if (document.querySelector('dialog[open]')) return true;
+    if (!(target instanceof Element)) return false;
+    if (target.closest('cart-drawer-component, [role="dialog"], input, textarea, select')) return true;
+
+    const info = target.closest('.buy-panel__pane--info');
+    return info instanceof HTMLElement && info.scrollHeight > info.clientHeight;
+  };
+
+  /** @param {'prev' | 'next'} direction */
+  const go = (direction) => {
+    const url = urls[direction];
+    if (!url || navigating) return;
+
+    navigating = true;
+    try {
+      sessionStorage.setItem(DIR_KEY, direction);
+    } catch {
+      // Storage blocked: it just navigates without the slide direction.
+    }
+    window.location.assign(url);
+  };
+
+  window.addEventListener(
+    'wheel',
+    (event) => {
+      if (event.ctrlKey || !fits() || isBusy(event.target)) return;
+
+      // Stop the (locked) page from rubber-banding, then act once per deliberate scroll.
+      event.preventDefault();
+      wheelTotal += event.deltaY;
+      clearTimeout(wheelReset);
+      wheelReset = setTimeout(() => (wheelTotal = 0), 200);
+
+      if (Math.abs(wheelTotal) >= WHEEL_THRESHOLD) go(wheelTotal > 0 ? 'next' : 'prev');
+    },
+    { passive: false }
+  );
+
+  let touchX = 0;
+  let touchY = 0;
+
+  window.addEventListener(
+    'touchstart',
+    (event) => {
+      touchX = event.touches[0]?.clientX ?? 0;
+      touchY = event.touches[0]?.clientY ?? 0;
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    'touchend',
+    (event) => {
+      if (!fits() || isBusy(event.target)) return;
+
+      const touch = event.changedTouches[0];
+      if (!touch) return;
+
+      const dx = touchX - touch.clientX;
+      const dy = touchY - touch.clientY;
+
+      // Mostly vertical only; horizontal swipes belong to the image carousel.
+      if (Math.abs(dy) >= SWIPE_THRESHOLD && Math.abs(dy) > Math.abs(dx) * 1.5) go(dy > 0 ? 'next' : 'prev');
+    },
+    { passive: true }
+  );
+}

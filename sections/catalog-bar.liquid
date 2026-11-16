@@ -40,6 +40,55 @@
   }
 </script>
 
+{%- comment -%}
+  Previous / next product for scroll and swipe on product pages: the neighbours in the homepage
+  list the current product belongs to (same collection and gender tag as the catalog section), in
+  the same order, wrapping around at the ends.
+{%- endcomment -%}
+{%- if template.name == 'product' and section.settings.collection != blank -%}
+  {%- liquid
+    assign male_key = '|' | append: section.settings.male_tag | downcase | append: '|'
+    assign female_key = '|' | append: section.settings.female_tag | downcase | append: '|'
+    assign current_tags = product.tags | join: '|' | downcase | prepend: '|' | append: '|'
+    assign list_key = nil
+    if current_tags contains male_key
+      assign list_key = male_key
+    elsif current_tags contains female_key
+      assign list_key = female_key
+    endif
+  -%}
+
+  {%- if list_key != nil -%}
+    {%- capture list_urls -%}
+      {%- for list_product in section.settings.collection.products limit: 50 -%}
+        {%- assign list_tags = list_product.tags | join: '|' | downcase | prepend: '|' | append: '|' -%}
+        {%- if list_tags contains list_key -%}{{ list_product.url }},{%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- assign url_list = list_urls | strip | split: ',' -%}
+
+    {%- assign current_index = -1 -%}
+    {%- for list_url in url_list -%}
+      {%- if list_url == product.url -%}{%- assign current_index = forloop.index0 -%}{%- endif -%}
+    {%- endfor -%}
+
+    {%- if current_index >= 0 and url_list.size > 1 -%}
+      {%- assign last_index = url_list.size | minus: 1 -%}
+      {%- assign prev_index = current_index | minus: 1 -%}
+      {%- assign next_index = current_index | plus: 1 -%}
+      {%- if prev_index < 0 -%}{%- assign prev_index = last_index -%}{%- endif -%}
+      {%- if next_index > last_index -%}{%- assign next_index = 0 -%}{%- endif -%}
+      {%- assign prev_url = url_list[prev_index] -%}
+      {%- assign next_url = url_list[next_index] -%}
+
+      <span hidden data-catalog-prev="{{ prev_url }}" data-catalog-next="{{ next_url }}"></span>
+      <script type="speculationrules">
+        { "prerender": [{ "urls": [{{ prev_url | json }}, {{ next_url | json }}], "eagerness": "immediate" }] }
+      </script>
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
 <div class="catalog-bar">
   <a href="{{ routes.root_url }}" class="catalog-bar__back" aria-label="{{ section.settings.back_label }}">
     {% render 'catalog-menu-icon', back: true %}
@@ -191,6 +240,14 @@
     content: '>';
   }
 
+  /* Product page whose content fits the screen: scroll/swipe changes product instead of scrolling. */
+  html.catalog-product-lock,
+  html.catalog-product-lock body,
+  html.catalog-product-lock .page-wrapper {
+    overflow: hidden !important;
+    touch-action: pan-x pinch-zoom;
+  }
+
   /* Color picker open/close: 300ms, shared easing. */
   ::view-transition-group(root),
   ::view-transition-group(catalog-tile) {
@@ -255,6 +312,23 @@
         catalog-zoom-out 0.35s var(--catalog-zoom-ease) both,
         catalog-fade-in 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
     }
+
+    /* Scrolling to the next / previous product: the page slides up / down and fades. */
+    html[data-catalog-nav='next']::view-transition-old(root-custom) {
+      animation: catalog-slide-out-up 0.35s var(--catalog-zoom-ease) both;
+    }
+
+    html[data-catalog-nav='next']::view-transition-new(root-custom) {
+      animation: catalog-slide-in-up 0.35s var(--catalog-zoom-ease) both;
+    }
+
+    html[data-catalog-nav='prev']::view-transition-old(root-custom) {
+      animation: catalog-slide-out-down 0.35s var(--catalog-zoom-ease) both;
+    }
+
+    html[data-catalog-nav='prev']::view-transition-new(root-custom) {
+      animation: catalog-slide-in-down 0.35s var(--catalog-zoom-ease) both;
+    }
   }
 
   @keyframes catalog-fade-in {
@@ -265,6 +339,34 @@
 
   @keyframes catalog-fade-out {
     to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes catalog-slide-out-up {
+    to {
+      translate: 0 -30%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes catalog-slide-in-up {
+    from {
+      translate: 0 30%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes catalog-slide-out-down {
+    to {
+      translate: 0 30%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes catalog-slide-in-down {
+    from {
+      translate: 0 -30%;
       opacity: 0;
     }
   }
@@ -318,6 +420,23 @@
       "id": "back_label",
       "label": "Back arrow accessibility label",
       "default": "Back to catalog"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Product list for scrolling between products (same collection as the homepage)"
+    },
+    {
+      "type": "text",
+      "id": "male_tag",
+      "label": "First list product tag",
+      "default": "male"
+    },
+    {
+      "type": "text",
+      "id": "female_tag",
+      "label": "Second list product tag",
+      "default": "female"
     }
   ]
 }
