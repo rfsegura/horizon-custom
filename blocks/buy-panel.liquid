@@ -242,12 +242,15 @@
     transform: var(--roll-in);
   }
 
-  .buy-panel:has(.buy-panel__help:is(:hover, :focus-visible)) .buy-panel__label {
+  /* Hovering "?" swaps every size to its numeral; hovering one size swaps only that size. */
+  .buy-panel:has(.buy-panel__help:is(:hover, :focus-visible)) .buy-panel__label,
+  .buy-panel__size:is(:hover, :focus-visible) .buy-panel__label {
     opacity: 0;
     transform: var(--roll-out);
   }
 
-  .buy-panel:has(.buy-panel__help:is(:hover, :focus-visible)) .buy-panel__numeral {
+  .buy-panel:has(.buy-panel__help:is(:hover, :focus-visible)) .buy-panel__numeral,
+  .buy-panel__size:is(:hover, :focus-visible) .buy-panel__numeral {
     opacity: 1;
     transform: none;
   }
