@@ -195,13 +195,15 @@
   .catalog__link {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 8px;
     color: inherit;
     text-decoration: none;
   }
 
+  /* Images are 20% smaller than their tile, centred, with the name centred underneath. */
   .catalog__image {
-    width: 100%;
+    width: 80%;
     aspect-ratio: 1;
     object-fit: contain;
     animation: catalog-fade 0.4s ease both;
@@ -224,6 +226,7 @@
 
   .catalog__label {
     font-size: 1.125rem;
+    text-align: center;
   }
 
   /* The tile image morphing into/out of the product page must not also fade in. */
