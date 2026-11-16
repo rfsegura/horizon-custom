@@ -48,17 +48,22 @@
         if variant.available
           assign any_available = true
         endif
+
+        # Shown instead of the size while "?" is hovered (cosmetic). Falls back to the size itself.
+        assign numeral = variant.metafields.custom.variant_size.value | default: label
       -%}
       <button
         type="button"
         class="buy-panel__size button-unstyled"
         data-action="size"
         data-variant-id="{{ variant.id }}"
+        aria-label="{{ label | upcase }}"
         {% unless variant.available %}
           disabled
         {% endunless %}
       >
-        {{- label | upcase -}}
+        <span class="buy-panel__label" aria-hidden="true">{{ label | upcase }}</span>
+        <span class="buy-panel__numeral" aria-hidden="true">{{ numeral }}</span>
       </button>
     {%- endif -%}
   {%- endfor -%}
@@ -100,6 +105,14 @@
     </product-form-component>
 
     <div class="buy-panel__head" data-fade>
+      <button
+        type="button"
+        class="buy-panel__help button-unstyled"
+        data-show="size info adding"
+        aria-label="Show numeric sizes"
+      >
+        ?
+      </button>
       <span class="buy-panel__title" data-show="default">{{ product.title | upcase }}</span>
       <span class="buy-panel__title" data-show="size info adding">{{ 'Select size' | upcase }}</span>
       <button
@@ -177,14 +190,61 @@
     width: 100%;
   }
 
-  .buy-panel__close {
+  .buy-panel__close,
+  .buy-panel__help {
     position: absolute;
     top: 50%;
-    right: 0;
     translate: 0 -50%;
     font-size: 1.5rem;
     line-height: 1;
     cursor: pointer;
+  }
+
+  .buy-panel__close {
+    right: 0;
+  }
+
+  .buy-panel__help {
+    left: 0;
+  }
+
+  /*
+    "Radial slide up": content rolls like a drum. Incoming content starts tipped back and below and
+    rolls up to flat; outgoing content rolls up and away. Shared by the information text, the size
+    row and the "?" size swap.
+  */
+  .buy-panel {
+    --roll-in: perspective(300px) rotateX(-70deg) translateY(0.8em);
+    --roll-out: perspective(300px) rotateX(70deg) translateY(-0.8em);
+  }
+
+  /* Each size holds its label and its numeral in one grid cell; "?" rolls one out and the other in. */
+  .buy-panel__size {
+    display: inline-grid;
+    transform-origin: 50% 50%;
+  }
+
+  .buy-panel__label,
+  .buy-panel__numeral {
+    grid-area: 1 / 1;
+    transition:
+      transform 0.3s var(--ease),
+      opacity 0.3s var(--ease);
+  }
+
+  .buy-panel__numeral {
+    opacity: 0;
+    transform: var(--roll-in);
+  }
+
+  .buy-panel:has(.buy-panel__help:is(:hover, :focus-visible)) .buy-panel__label {
+    opacity: 0;
+    transform: var(--roll-out);
+  }
+
+  .buy-panel:has(.buy-panel__help:is(:hover, :focus-visible)) .buy-panel__numeral {
+    opacity: 1;
+    transform: none;
   }
 
   .buy-panel__price,
@@ -247,26 +307,28 @@
 
   /* Information text fades in from faint grey to full colour as the size row fades out. */
   .buy-panel__info {
-    animation: buy-panel-in 0.2s var(--ease) both;
+    animation: buy-panel-in 0.35s var(--ease) both;
   }
 
   @keyframes buy-panel-in {
     from {
       opacity: 0;
       color: gray;
+      transform: var(--roll-in);
     }
   }
 
   @keyframes buy-panel-out {
     to {
       opacity: 0;
+      transform: var(--roll-out);
     }
   }
 
   /* While the info text fades in, keep the size pane on screen just long enough to fade out. */
   .buy-panel[data-leaving] .buy-panel__pane--size {
     display: block;
-    animation: buy-panel-out 0.2s var(--ease) both;
+    animation: buy-panel-out 0.35s var(--ease) both;
   }
 
   .buy-panel[data-leaving] .buy-panel__sizes,

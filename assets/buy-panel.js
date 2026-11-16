@@ -1,7 +1,7 @@
 import { StandardEvents } from '@shopify/events';
 
 const FADE_MS = 150;
-const CROSSFADE_MS = 200;
+const CROSSFADE_MS = 350;
 const ADDING_TIMEOUT_MS = 8000;
 
 /**

@@ -45,22 +45,42 @@
       order: 0 !important;
     }
 
-    /* Product page content: 64% of the column (80% twice), centered. The image is a further 20%
-       smaller: 51.2%. */
+    /* Content is 64% of the column, centered. The image is 25.6% of it (half of the previous
+       51.2%), and also capped by the viewport height so image + panel always fit on screen. */
     .product-information__media,
     .product-details {
-      width: 64% !important;
       min-width: 0 !important;
       justify-self: center;
     }
 
+    .product-details {
+      width: 64% !important;
+      position: static !important;
+      order: 1 !important;
+    }
+
     .product-information__media {
-      width: 51.2% !important;
+      width: min(25.6%, calc((100dvh - 20rem) / 1.25)) !important;
+    }
+  }
+
+  /* Full-height product page: the first screen is exactly the viewport (minus the bar), with image
+     and buy panel centered vertically. Taller content simply scrolls. */
+  .product-information {
+    min-height: calc(100dvh - 4rem);
+    align-content: center;
+  }
+
+  @media screen and (max-width: 749px) {
+    .product-information__media {
+      width: min(70%, calc((100dvh - 20rem) / 1.25)) !important;
+      min-width: 0 !important;
+      justify-self: center;
     }
 
     .product-details {
-      position: static !important;
-      order: 1 !important;
+      width: 90% !important;
+      justify-self: center;
     }
   }
 

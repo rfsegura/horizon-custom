@@ -113,9 +113,10 @@
     assign sorted_media = selected_product.media | where: 'id', selected_variant_media.id
   endif
 
-  if variant_extra_media.size > 0
-    assign sorted_media = sorted_media | concat: variant_extra_media | uniq
-  endif
+  # `compact` normalises the metafield to an array: a single file becomes a one-item list, a list
+  # stays a list, and a missing metafield becomes an empty list, so all three work with `concat`.
+  assign variant_extra_list = variant_extra_media | compact
+  assign sorted_media = sorted_media | concat: variant_extra_list | uniq
 
   if sorted_media.size == 0
     assign sorted_media = selected_product.media
