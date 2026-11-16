@@ -168,8 +168,13 @@
     justify-self: end;
   }
 
+  /* MALE / FEMALE: the active label is solid, the other at 20%, cross-fading over 0.3s. */
+  .catalog__btn[data-gender-btn] {
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   .catalog__btn[aria-pressed='false'][data-gender-btn] {
-    opacity: 0.35;
+    opacity: 0.2;
   }
 
   .catalog__grid {
@@ -199,6 +204,21 @@
     aspect-ratio: 1;
     object-fit: contain;
     animation: catalog-fade 0.4s ease both;
+  }
+
+  /* Hover: the image grows to 1.02x over 300ms; its tile has a 200ms transform transition. */
+  @media (prefers-reduced-motion: no-preference) {
+    .catalog__tile {
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .catalog__image {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .catalog__link:hover .catalog__image {
+      transform: scale(1.02);
+    }
   }
 
   .catalog__label {

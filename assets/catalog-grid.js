@@ -111,10 +111,36 @@ class CatalogGrid extends HTMLElement {
 
   /** @param {string} gender */
   #showGender(gender) {
+    // FLIP: remember where every visible tile is, switch the view, then glide the tiles that are in
+    // both views from their old place to their new one. Skipped while the grid itself is hidden
+    // (colour picker open: nothing to measure) and for people who prefer reduced motion.
+    const animate = !this.#mainGrid.hidden && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    /** @type {Map<HTMLElement, DOMRect>} */
+    const before = new Map();
+
+    if (animate) {
+      for (const tile of this.querySelectorAll('[data-gender]')) {
+        if (!(/** @type {HTMLElement} */ (tile).hidden)) before.set(/** @type {HTMLElement} */ (tile), tile.getBoundingClientRect());
+      }
+    }
 
     for (const tile of this.querySelectorAll('[data-gender]')) {
       const genders = /** @type {HTMLElement} */ (tile).dataset.gender?.split(' ') ?? [];
       /** @type {HTMLElement} */ (tile).hidden = !genders.includes(gender);
+    }
+
+    for (const [tile, from] of before) {
+      if (tile.hidden) continue;
+
+      const to = tile.getBoundingClientRect();
+      const dx = from.left - to.left;
+      const dy = from.top - to.top;
+      if (!dx && !dy) continue;
+
+      tile.animate(
+        [{ transform: `translate(${dx}px, ${dy}px)` }, { transform: 'none' }],
+        { duration: 300, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+      );
     }
 
     for (const button of this.querySelectorAll('[data-gender-btn]')) {
