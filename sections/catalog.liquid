@@ -7,12 +7,6 @@
   type="module"
   src="{{ 'catalog-grid.js' | asset_url }}"
 ></script>
-<script
-  type="module"
-  src="{{ 'cart-icon.js' | asset_url }}"
-  fetchpriority="low"
-></script>
-
 {%- liquid
   assign male_key = '|' | append: section.settings.male_tag | downcase | append: '|'
   assign female_key = '|' | append: section.settings.female_tag | downcase | append: '|'
@@ -39,39 +33,7 @@
       </button>
     </div>
 
-    {%- capture cart_icon -%}
-      <cart-icon
-        class="header-actions__cart-icon{% unless cart == empty %} header-actions__cart-icon--has-cart{% endunless %}"
-        data-testid="cart-icon"
-      >
-        <span class="svg-wrapper" aria-hidden="true">{{ 'icon-cart.svg' | inline_asset_content }}</span>
-        {% render 'cart-bubble', limit: 100 %}
-      </cart-icon>
-    {%- endcapture -%}
-
-    {%- if settings.cart_type == 'drawer' -%}
-      <button
-        type="button"
-        class="catalog__btn catalog__cart button-unstyled"
-        on:click="#cart-drawer/toggle"
-        aria-haspopup="dialog"
-        aria-expanded="false"
-        aria-controls="cart-drawer"
-        aria-label="{{ 'accessibility.cart' | t }}"
-        aria-describedby="cart-bubble-text"
-      >
-        {{ cart_icon }}
-      </button>
-    {%- else -%}
-      <a
-        href="{{ routes.cart_url }}"
-        class="catalog__btn catalog__cart"
-        aria-label="{{ 'accessibility.cart' | t }}"
-        aria-describedby="cart-bubble-text"
-      >
-        {{ cart_icon }}
-      </a>
-    {%- endif -%}
+    {% render 'catalog-cart-button', class: 'catalog__btn catalog__cart' %}
   </header>
 
   {%- comment -%} ponytail: a for-loop outside a paginate block returns at most 50 products. Raise via paginate if the catalog grows. {%- endcomment -%}

@@ -1,0 +1,46 @@
+{%- comment -%}
+  Minimal top bar for every page except the homepage (the catalog section hides the header group there):
+  a back arrow to "/" on the left and the bag on the right.
+{%- endcomment -%}
+
+<div class="catalog-bar">
+  <a href="{{ routes.root_url }}" class="catalog-bar__back" aria-label="{{ section.settings.back_label }}">&lsaquo;</a>
+  {% render 'catalog-cart-button', class: 'catalog-bar__cart' %}
+</div>
+
+<style>
+  .catalog-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px var(--padding-lg, 16px);
+    font-family: var(--font-body--family);
+    background: var(--color-background);
+  }
+
+  .catalog-bar__back {
+    font-size: 1.5rem;
+    line-height: 1;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .catalog-bar__cart {
+    color: inherit;
+    cursor: pointer;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Back and bag bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "back_label",
+      "label": "Back arrow accessibility label",
+      "default": "Back to catalog"
+    }
+  ]
+}
+{% endschema %}

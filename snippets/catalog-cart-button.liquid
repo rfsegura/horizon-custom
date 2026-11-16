@@ -1,0 +1,45 @@
+{% doc %}
+  Bag icon that opens the cart drawer (or links to the cart page when the theme cart type is "page").
+
+  @param {string} class - CSS classes for the button/link
+{% enddoc %}
+
+<script
+  type="module"
+  src="{{ 'cart-icon.js' | asset_url }}"
+  fetchpriority="low"
+></script>
+
+{%- capture cart_icon -%}
+  <cart-icon
+    class="header-actions__cart-icon{% unless cart == empty %} header-actions__cart-icon--has-cart{% endunless %}"
+    data-testid="cart-icon"
+  >
+    <span class="svg-wrapper" aria-hidden="true">{{ 'icon-cart.svg' | inline_asset_content }}</span>
+    {% render 'cart-bubble', limit: 100 %}
+  </cart-icon>
+{%- endcapture -%}
+
+{%- if settings.cart_type == 'drawer' and template.name != 'cart' -%}
+  <button
+    type="button"
+    class="{{ class }} button-unstyled"
+    on:click="#cart-drawer/toggle"
+    aria-haspopup="dialog"
+    aria-expanded="false"
+    aria-controls="cart-drawer"
+    aria-label="{{ 'accessibility.cart' | t }}"
+    aria-describedby="cart-bubble-text"
+  >
+    {{ cart_icon }}
+  </button>
+{%- else -%}
+  <a
+    href="{{ routes.cart_url }}"
+    class="{{ class }}"
+    aria-label="{{ 'accessibility.cart' | t }}"
+    aria-describedby="cart-bubble-text"
+  >
+    {{ cart_icon }}
+  </a>
+{%- endif -%}

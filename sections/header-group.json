@@ -11,6 +11,12 @@
   "type": "header",
   "name": "t:names.header",
   "sections": {
+    "catalog_bar": {
+      "type": "catalog-bar",
+      "settings": {
+        "back_label": "Back to catalog"
+      }
+    },
     "header_announcements_9jGBFp": {
       "type": "header-announcements",
       "blocks": {
@@ -131,6 +137,7 @@
     }
   },
   "order": [
+    "catalog_bar",
     "header_announcements_9jGBFp",
     "header_section"
   ]
