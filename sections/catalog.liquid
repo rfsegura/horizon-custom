@@ -1,0 +1,267 @@
+{%- comment -%}
+  Minimal catalog homepage: header bar (density "+", MALE/FEMALE toggle, bag) + product grid.
+  The toggle shows/hides tiles client-side, so the URL stays "/". Tiles are filtered by product tag.
+{%- endcomment -%}
+
+<script
+  type="module"
+  src="{{ 'catalog-grid.js' | asset_url }}"
+></script>
+<script
+  type="module"
+  src="{{ 'cart-icon.js' | asset_url }}"
+  fetchpriority="low"
+></script>
+
+{%- liquid
+  assign male_key = '|' | append: section.settings.male_tag | downcase | append: '|'
+  assign female_key = '|' | append: section.settings.female_tag | downcase | append: '|'
+-%}
+
+<catalog-grid class="catalog" data-testid="catalog-{{ section.id }}">
+  <header class="catalog__bar">
+    <button
+      type="button"
+      class="catalog__btn button-unstyled"
+      data-density
+      aria-pressed="false"
+      aria-label="Toggle grid size"
+    >
+      +
+    </button>
+
+    <div class="catalog__toggle" role="group" aria-label="Collection">
+      <button type="button" class="catalog__btn button-unstyled" data-gender-btn="male" aria-pressed="true">
+        {{- section.settings.male_label -}}
+      </button>
+      <button type="button" class="catalog__btn button-unstyled" data-gender-btn="female" aria-pressed="false">
+        {{- section.settings.female_label -}}
+      </button>
+    </div>
+
+    {%- capture cart_icon -%}
+      <cart-icon
+        class="header-actions__cart-icon{% unless cart == empty %} header-actions__cart-icon--has-cart{% endunless %}"
+        data-testid="cart-icon"
+      >
+        <span class="svg-wrapper" aria-hidden="true">{{ 'icon-cart.svg' | inline_asset_content }}</span>
+        {% render 'cart-bubble', limit: 100 %}
+      </cart-icon>
+    {%- endcapture -%}
+
+    {%- if settings.cart_type == 'drawer' -%}
+      <button
+        type="button"
+        class="catalog__btn catalog__cart button-unstyled"
+        on:click="#cart-drawer/toggle"
+        aria-haspopup="dialog"
+        aria-expanded="false"
+        aria-controls="cart-drawer"
+        aria-label="{{ 'accessibility.cart' | t }}"
+        aria-describedby="cart-bubble-text"
+      >
+        {{ cart_icon }}
+      </button>
+    {%- else -%}
+      <a
+        href="{{ routes.cart_url }}"
+        class="catalog__btn catalog__cart"
+        aria-label="{{ 'accessibility.cart' | t }}"
+        aria-describedby="cart-bubble-text"
+      >
+        {{ cart_icon }}
+      </a>
+    {%- endif -%}
+  </header>
+
+  {%- comment -%} ponytail: a for-loop outside a paginate block returns at most 50 products. Raise via paginate if the catalog grows. {%- endcomment -%}
+  <ul class="catalog__grid" role="list">
+    {%- for product in section.settings.collection.products limit: 50 -%}
+      {%- assign tags = product.tags | join: '|' | downcase | prepend: '|' | append: '|' -%}
+      {%- assign is_male = false -%}
+      {%- assign is_female = false -%}
+      {%- if tags contains male_key -%}{%- assign is_male = true -%}{%- endif -%}
+      {%- if tags contains female_key -%}{%- assign is_female = true -%}{%- endif -%}
+
+      {%- if is_male or is_female -%}
+        <li
+          class="catalog__tile"
+          data-gender="{% if is_male %}male{% endif %} {% if is_female %}female{% endif %}"
+          {% unless is_male %}hidden{% endunless %}
+        >
+          <a href="{{ product.url }}" class="catalog__link">
+            {%- if product.featured_image -%}
+              {{
+                product.featured_image
+                | image_url: width: 600
+                | image_tag: widths: '200, 400, 600', sizes: '(min-width: 750px) 17vw, 34vw', loading: 'lazy', alt: product.title, class: 'catalog__image'
+              }}
+            {%- endif -%}
+            <span class="catalog__label">{{ product.title | upcase }}</span>
+          </a>
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+</catalog-grid>
+
+<style>
+  /* Catalog homepage replaces the theme header and announcement bar. */
+  #header-group {
+    display: none;
+  }
+
+  .catalog {
+    --cols: 6;
+    display: block;
+    min-height: 100vh;
+    padding: 0 var(--padding-lg, 16px) 48px;
+    font-family: var(--font-body--family);
+    text-transform: uppercase;
+  }
+
+  .catalog[dense] {
+    --cols: 3;
+  }
+
+  @media screen and (max-width: 749px) {
+    .catalog {
+      --cols: 3;
+    }
+
+    .catalog[dense] {
+      --cols: 2;
+    }
+  }
+
+  /* Faint peach glow around the screen edge. */
+  .catalog::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    box-shadow: inset 0 0 90px 10px rgb(255 190 160 / 0.35);
+  }
+
+  .catalog__bar {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 16px 0;
+    background: var(--color-background);
+  }
+
+  .catalog__toggle {
+    display: flex;
+    gap: 24px;
+  }
+
+  .catalog__btn {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .catalog__bar > .catalog__btn:first-child {
+    justify-self: start;
+  }
+
+  .catalog__cart {
+    justify-self: end;
+  }
+
+  .catalog__btn[aria-pressed='false'][data-gender-btn] {
+    opacity: 0.35;
+  }
+
+  .catalog__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+    gap: 24px 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .catalog__tile[hidden] {
+    display: none;
+  }
+
+  .catalog__link {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .catalog__image {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+    animation: catalog-fade 0.4s ease both;
+  }
+
+  .catalog__label {
+    font-size: 0.75rem;
+  }
+
+  @keyframes catalog-fade {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .catalog__image {
+      animation: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Catalog",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "male_label",
+      "label": "First toggle label",
+      "default": "MALE"
+    },
+    {
+      "type": "text",
+      "id": "male_tag",
+      "label": "First toggle product tag",
+      "default": "male"
+    },
+    {
+      "type": "text",
+      "id": "female_label",
+      "label": "Second toggle label",
+      "default": "FEMALE"
+    },
+    {
+      "type": "text",
+      "id": "female_tag",
+      "label": "Second toggle product tag",
+      "default": "female"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Catalog"
+    }
+  ]
+}
+{% endschema %}
