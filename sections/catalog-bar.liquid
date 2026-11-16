@@ -405,6 +405,49 @@
   .catalog__cart {
     --icon-stroke-width: 2.5px;
   }
+
+  /*
+    Bag with items: stays light. No dark count circle and no notch cut out of the icon; the count is
+    plain text to the LEFT of the bag (row-reverse puts the bubble, which comes after the icon in the
+    markup, on its left). Empty cart: nothing extra is shown.
+  */
+  .catalog-bar__cart cart-icon,
+  .catalog__cart cart-icon {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .catalog-bar__cart cart-icon .cart-bubble,
+  .catalog__cart cart-icon .cart-bubble {
+    position: static;
+    width: auto;
+    aspect-ratio: auto;
+    padding: 0;
+    color: inherit;
+  }
+
+  .catalog-bar__cart cart-icon .cart-bubble.visually-hidden,
+  .catalog__cart cart-icon .cart-bubble.visually-hidden {
+    display: none;
+  }
+
+  .catalog-bar__cart cart-icon .cart-bubble__background,
+  .catalog__cart cart-icon .cart-bubble__background {
+    display: none;
+  }
+
+  .catalog-bar__cart cart-icon .cart-bubble__text,
+  .catalog__cart cart-icon .cart-bubble__text {
+    font-size: 1rem;
+    color: inherit;
+  }
+
+  .catalog-bar__cart cart-icon.header-actions__cart-icon--has-cart svg,
+  .catalog__cart cart-icon.header-actions__cart-icon--has-cart svg {
+    mask: none;
+  }
 </style>
 
 {% schema %}
