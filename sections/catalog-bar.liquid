@@ -65,15 +65,6 @@
   </script>
 {%- endif -%}
 
-{%- if request.page_type == 'product' -%}
-  {%- comment -%} Product page is a single screen, like yeezy.com: no footer. {%- endcomment -%}
-  <style>
-    .page-wrapper > footer {
-      display: none;
-    }
-  </style>
-{%- endif -%}
-
 <div class="catalog-bar">
   <a href="{{ routes.root_url }}" class="catalog-bar__back" aria-label="{{ section.settings.back_label }}">
     {% render 'catalog-menu-icon', back: true %}
@@ -313,6 +304,13 @@
     .catalog-settle slideshow-controls {
       animation: none;
     }
+  }
+
+  /* Product pages are a single screen, like yeezy.com: no footer. Keyed off the product template's
+     <main> so it doesn't depend on any Liquid check. */
+  .page-wrapper:has(> main[data-template^='product']) > footer,
+  .page-wrapper:has(> main[data-template^='product']) .shopify-section-group-footer-group {
+    display: none !important;
   }
 
   /* Color picker open/close: 300ms, shared easing. */
