@@ -107,37 +107,88 @@ window.addEventListener('pagereveal', (event) => {
 });
 
 /*
- * Product page: scroll / swipe moves to the previous / next product in the homepage list (urls come
- * from [data-catalog-prev] / [data-catalog-next], rendered by sections/catalog-bar.liquid).
- * Only while the product fits on screen: then the page doesn't scroll anyway (html.catalog-product-lock).
- * If the content is taller than the screen (e.g. a phone in landscape) normal scrolling is left alone.
+ * Product page: scroll / swipe moves to the previous / next product of the homepage list, in the
+ * Male / Female view the visitor came from (remembered by the homepage in sessionStorage; Male by
+ * default). The list is printed by sections/catalog-bar.liquid as #catalog-list.
+ * The page doesn't scroll while the product (almost) fits on screen (html.catalog-product-lock). If
+ * the content is clearly taller than the screen (e.g. a phone in landscape) scrolling is left alone.
  */
 const DIR_KEY = 'catalog-dir';
+const GENDER_KEY = 'catalog-gender';
 const WHEEL_THRESHOLD = 60;
 const SWIPE_THRESHOLD = 60;
+const OVERFLOW_TOLERANCE = 200;
 
-const neighbours = document.querySelector('[data-catalog-prev]');
+/** @returns {{ prev: string, next: string } | null} */
+function findNeighbours() {
+  const data = document.getElementById('catalog-list');
+  if (!data) return null;
 
-if (neighbours instanceof HTMLElement) {
-  const urls = { prev: neighbours.dataset.catalogPrev, next: neighbours.dataset.catalogNext };
+  /** @type {{ u: string, m: boolean, f: boolean }[]} */
+  let list;
+  try {
+    list = JSON.parse(data.textContent ?? '[]');
+  } catch {
+    return null;
+  }
+
+  /** @param {string} url */
+  const handleOf = (url) => url.split('/products/')[1]?.split(/[?#]/)[0];
+  const current = handleOf(window.location.pathname);
+  const me = list.find((item) => handleOf(item.u) === current);
+  if (!me) return null;
+
+  let preferred = 'male';
+  try {
+    preferred = sessionStorage.getItem(GENDER_KEY) ?? 'male';
+  } catch {
+    // Storage blocked: default list.
+  }
+
+  // The view the visitor came from, if this product is in it; otherwise whichever view it is in.
+  const gender = (preferred === 'female' ? me.f : me.m) ? preferred : me.m ? 'male' : 'female';
+  const key = gender === 'female' ? 'f' : 'm';
+  const items = list.filter((item) => item[key]);
+  const index = items.findIndex((item) => handleOf(item.u) === current);
+  if (items.length < 2 || index < 0) return null;
+
+  return {
+    prev: /** @type {string} */ (items[(index - 1 + items.length) % items.length]?.u),
+    next: /** @type {string} */ (items[(index + 1) % items.length]?.u),
+  };
+}
+
+const urls = findNeighbours();
+
+if (urls) {
   const root = document.documentElement;
   let navigating = false;
   let wheelTotal = 0;
   /** @type {ReturnType<typeof setTimeout> | undefined} */
   let wheelReset;
 
+  // Have both neighbours ready before the scroll happens.
+  const rules = document.createElement('script');
+  rules.type = 'speculationrules';
+  rules.textContent = JSON.stringify({ prerender: [{ urls: [urls.prev, urls.next], eagerness: 'immediate' }] });
+  document.head.append(rules);
+
   const fits = () => {
     const section = document.querySelector('.product-information');
     const bar = document.querySelector('#header-group');
     if (!section) return false;
-    // The section is min-height: 100dvh - 4rem, so allow a little slack.
-    return section.scrollHeight + (bar?.clientHeight ?? 0) <= window.innerHeight + 8;
+    const overflow = section.scrollHeight + (bar?.clientHeight ?? 0) - window.innerHeight;
+    return overflow <= OVERFLOW_TOLERANCE;
   };
 
   const syncLock = () => root.classList.toggle('catalog-product-lock', fits());
   syncLock();
   window.addEventListener('resize', syncLock);
   window.addEventListener('load', syncLock);
+  window.addEventListener('pageshow', () => {
+    navigating = false;
+    syncLock();
+  });
 
   /** Anything that should keep its own scrolling or gestures. */
   const isBusy = (/** @type {EventTarget | null} */ target) => {
@@ -151,8 +202,7 @@ if (neighbours instanceof HTMLElement) {
 
   /** @param {'prev' | 'next'} direction */
   const go = (direction) => {
-    const url = urls[direction];
-    if (!url || navigating) return;
+    if (navigating) return;
 
     navigating = true;
     try {
@@ -160,7 +210,7 @@ if (neighbours instanceof HTMLElement) {
     } catch {
       // Storage blocked: it just navigates without the slide direction.
     }
-    window.location.assign(url);
+    window.location.assign(urls[direction]);
   };
 
   window.addEventListener(

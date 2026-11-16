@@ -41,52 +41,25 @@
 </script>
 
 {%- comment -%}
-  Previous / next product for scroll and swipe on product pages: the neighbours in the homepage
-  list the current product belongs to (same collection and gender tag as the catalog section), in
-  the same order, wrapping around at the ends.
+  Scrolling / swiping on a product page moves to the previous / next product of the homepage list
+  (assets/catalog-transitions.js). This prints that list once, in homepage order, with the gender
+  views (male / female) each product appears in, so the script can follow whichever view the visitor
+  came from. Same collection and tags as the catalog section.
 {%- endcomment -%}
-{%- if template.name == 'product' and section.settings.collection != blank -%}
+{%- if request.page_type == 'product' and section.settings.collection != blank -%}
   {%- liquid
     assign male_key = '|' | append: section.settings.male_tag | downcase | append: '|'
     assign female_key = '|' | append: section.settings.female_tag | downcase | append: '|'
-    assign current_tags = product.tags | join: '|' | downcase | prepend: '|' | append: '|'
-    assign list_key = nil
-    if current_tags contains male_key
-      assign list_key = male_key
-    elsif current_tags contains female_key
-      assign list_key = female_key
-    endif
   -%}
-
-  {%- if list_key != nil -%}
-    {%- capture list_urls -%}
-      {%- for list_product in section.settings.collection.products limit: 50 -%}
-        {%- assign list_tags = list_product.tags | join: '|' | downcase | prepend: '|' | append: '|' -%}
-        {%- if list_tags contains list_key -%}{{ list_product.url }},{%- endif -%}
-      {%- endfor -%}
-    {%- endcapture -%}
-    {%- assign url_list = list_urls | strip | split: ',' -%}
-
-    {%- assign current_index = -1 -%}
-    {%- for list_url in url_list -%}
-      {%- if list_url == product.url -%}{%- assign current_index = forloop.index0 -%}{%- endif -%}
+  <script type="application/json" id="catalog-list">
+    [
+    {%- for list_product in section.settings.collection.products limit: 50 -%}
+      {%- assign list_tags = list_product.tags | join: '|' | downcase | prepend: '|' | append: '|' -%}
+      {%- unless forloop.first -%},{%- endunless -%}
+      {"u":{{ list_product.url | json }},"m":{% if list_tags contains male_key %}true{% else %}false{% endif %},"f":{% if list_tags contains female_key %}true{% else %}false{% endif %}}
     {%- endfor -%}
-
-    {%- if current_index >= 0 and url_list.size > 1 -%}
-      {%- assign last_index = url_list.size | minus: 1 -%}
-      {%- assign prev_index = current_index | minus: 1 -%}
-      {%- assign next_index = current_index | plus: 1 -%}
-      {%- if prev_index < 0 -%}{%- assign prev_index = last_index -%}{%- endif -%}
-      {%- if next_index > last_index -%}{%- assign next_index = 0 -%}{%- endif -%}
-      {%- assign prev_url = url_list[prev_index] -%}
-      {%- assign next_url = url_list[next_index] -%}
-
-      <span hidden data-catalog-prev="{{ prev_url }}" data-catalog-next="{{ next_url }}"></span>
-      <script type="speculationrules">
-        { "prerender": [{ "urls": [{{ prev_url | json }}, {{ next_url | json }}], "eagerness": "immediate" }] }
-      </script>
-    {%- endif -%}
-  {%- endif -%}
+    ]
+  </script>
 {%- endif -%}
 
 <div class="catalog-bar">
