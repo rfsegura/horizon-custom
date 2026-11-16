@@ -8,6 +8,38 @@
   src="{{ 'catalog-transitions.js' | asset_url }}"
 ></script>
 
+{%- comment -%}
+  Preload so the zoom never waits on the network: every product link (and the back arrow) is
+  prefetched as soon as it is on screen, and fully prerendered when hovered or pressed. Browsers
+  without Speculation Rules (Safari, Firefox) ignore this and just navigate normally.
+{%- endcomment -%}
+<script type="speculationrules">
+  {
+    "prefetch": [
+      {
+        "where": {
+          "or": [
+            { "href_matches": { "pathname": "/products/*" } },
+            { "selector_matches": ".catalog-bar__back" }
+          ]
+        },
+        "eagerness": "eager"
+      }
+    ],
+    "prerender": [
+      {
+        "where": {
+          "or": [
+            { "href_matches": { "pathname": "/products/*" } },
+            { "selector_matches": ".catalog-bar__back" }
+          ]
+        },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+</script>
+
 <div class="catalog-bar">
   <a href="{{ routes.root_url }}" class="catalog-bar__back" aria-label="{{ section.settings.back_label }}">
     {% render 'catalog-menu-icon', back: true %}
@@ -179,17 +211,23 @@
     }
 
     /*
-      Colorway -> product page: the grid (the old page) zooms 1x -> 3.24x toward the clicked tile and
-      fades to 0.8 over 350ms while the product page shows over it. Back reverses it: the homepage
-      zooms 3.24x -> 1x and 0.8 -> 1 in about 330ms, with the product page fading away.
+      Magnifying glass. Going to a product page, the grid (the old page) zooms in toward the clicked
+      tile (1x -> 3.24x) and fades away while the clicked image itself (its own transition group)
+      grows into the product image. Going back, it all reverses: the homepage zooms out from 3.24x
+      to 1x and fades in while the image shrinks back into its tile.
     */
     html[data-catalog-nav] {
-      --catalog-ease: linear;
+      --catalog-zoom-ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     html[data-catalog-nav]::view-transition-group(root-custom) {
       animation-duration: 0.35s;
       overflow: clip;
+    }
+
+    html[data-catalog-nav]::view-transition-group(product-image-transition) {
+      animation-duration: 0.35s;
+      animation-timing-function: var(--catalog-zoom-ease);
     }
 
     html[data-catalog-nav]::view-transition-old(root-custom),
@@ -199,7 +237,9 @@
     }
 
     html[data-catalog-nav='forward']::view-transition-old(root-custom) {
-      animation: catalog-zoom-in 0.35s var(--catalog-ease) both;
+      animation:
+        catalog-zoom-in 0.35s var(--catalog-zoom-ease) both,
+        catalog-fade-out 0.3s linear both;
     }
 
     html[data-catalog-nav='forward']::view-transition-new(root-custom) {
@@ -207,11 +247,13 @@
     }
 
     html[data-catalog-nav='back']::view-transition-old(root-custom) {
-      animation: catalog-fade-out 0.33s cubic-bezier(0.4, 0, 0.2, 1) both;
+      animation: catalog-fade-out 0.25s linear both;
     }
 
     html[data-catalog-nav='back']::view-transition-new(root-custom) {
-      animation: catalog-zoom-out 0.33s var(--catalog-ease) both;
+      animation:
+        catalog-zoom-out 0.35s var(--catalog-zoom-ease) both,
+        catalog-fade-in 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
     }
   }
 
@@ -230,14 +272,12 @@
   @keyframes catalog-zoom-in {
     to {
       scale: 3.24;
-      opacity: 0.8;
     }
   }
 
   @keyframes catalog-zoom-out {
     from {
       scale: 3.24;
-      opacity: 0.8;
     }
   }
 
