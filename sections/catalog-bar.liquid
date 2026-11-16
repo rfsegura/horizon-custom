@@ -166,6 +166,81 @@
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  @media (prefers-reduced-motion: no-preference) {
+    /* Tile <-> colorways: the other tiles vanish within 50ms, the colorways animate in over 0.3s. */
+    html[data-catalog-picker]::view-transition-old(root) {
+      animation: catalog-fade-out 50ms linear both;
+      mix-blend-mode: normal;
+    }
+
+    html[data-catalog-picker]::view-transition-new(root) {
+      animation: catalog-fade-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+      mix-blend-mode: normal;
+    }
+
+    /*
+      Colorway -> product page: the grid (the old page) zooms 1x -> 3.24x toward the clicked tile and
+      fades to 0.8 over 350ms while the product page shows over it. Back reverses it: the homepage
+      zooms 3.24x -> 1x and 0.8 -> 1 in about 330ms, with the product page fading away.
+    */
+    html[data-catalog-nav] {
+      --catalog-ease: linear;
+    }
+
+    html[data-catalog-nav]::view-transition-group(root-custom) {
+      animation-duration: 0.35s;
+      overflow: clip;
+    }
+
+    html[data-catalog-nav]::view-transition-old(root-custom),
+    html[data-catalog-nav]::view-transition-new(root-custom) {
+      mix-blend-mode: normal;
+      transform-origin: var(--catalog-origin, 50% 50%);
+    }
+
+    html[data-catalog-nav='forward']::view-transition-old(root-custom) {
+      animation: catalog-zoom-in 0.35s var(--catalog-ease) both;
+    }
+
+    html[data-catalog-nav='forward']::view-transition-new(root-custom) {
+      animation: catalog-fade-in 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    html[data-catalog-nav='back']::view-transition-old(root-custom) {
+      animation: catalog-fade-out 0.33s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    html[data-catalog-nav='back']::view-transition-new(root-custom) {
+      animation: catalog-zoom-out 0.33s var(--catalog-ease) both;
+    }
+  }
+
+  @keyframes catalog-fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes catalog-fade-out {
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes catalog-zoom-in {
+    to {
+      scale: 3.24;
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes catalog-zoom-out {
+    from {
+      scale: 3.24;
+      opacity: 0.8;
+    }
+  }
+
   .catalog-bar {
     display: flex;
     align-items: center;
@@ -185,11 +260,6 @@
   .catalog-bar__cart {
     color: inherit;
     cursor: pointer;
-  }
-
-  /* The back arrow keeps the original thin 1px lines (the homepage "+" stays bold). */
-  .catalog-bar__back .catalog-icon i {
-    height: 1px;
   }
 
   /* Bold bag icon in the navigation bar (here and on the homepage bar). */

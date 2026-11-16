@@ -57,6 +57,8 @@ class CatalogGrid extends HTMLElement {
    */
   async #morph(update, from, to) {
     /** @type {HTMLElement | null} */ (from)?.style.setProperty('view-transition-name', TILE_NAME);
+    // Scopes the picker-specific root animation in catalog-bar.liquid to this transition only.
+    document.documentElement.dataset.catalogPicker = '';
 
     await startViewTransition(() => {
       /** @type {HTMLElement | null} */ (from)?.style.removeProperty('view-transition-name');
@@ -65,6 +67,7 @@ class CatalogGrid extends HTMLElement {
     });
 
     /** @type {HTMLElement | null} */ (to())?.style.removeProperty('view-transition-name');
+    delete document.documentElement.dataset.catalogPicker;
   }
 
   /**
