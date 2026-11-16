@@ -435,8 +435,8 @@
     "semantic_hash": ""
   },
   "config/settings_data.json": {
-    "mtime": 1794793537.8025353,
-    "ast_hash": "5c359be925dcc1eb9e7774336def2533",
+    "mtime": 1794800301.4391403,
+    "ast_hash": "50250d1d11dbe98a7a4296d0971abf50",
     "semantic_hash": ""
   },
   "config/settings_schema.json": {
@@ -985,8 +985,13 @@
     "semantic_hash": ""
   },
   "assets/catalog-grid.js": {
-    "mtime": 1794798406.1288626,
-    "ast_hash": "a0d58cabd2b4bcf1d76a270af59edbfe",
+    "mtime": 1794800286.4448645,
+    "ast_hash": "20bd79606c4aece139c471d60c7f6d22",
+    "semantic_hash": ""
+  },
+  "assets/catalog-transitions.js": {
+    "mtime": 1794800285.5883837,
+    "ast_hash": "4b2888a678bec9e3d97df1c502f52858",
     "semantic_hash": ""
   }
 }

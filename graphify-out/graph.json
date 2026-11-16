@@ -538,7 +538,7 @@
       "_origin": "ast",
       "id": "assets_blog_posts_list",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": "blog-posts-list.js"
     },
     {
@@ -551,8 +551,68 @@
       "_origin": "ast",
       "id": "assets_blog_posts_list_blogpostslist",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": "blogpostslist"
+    },
+    {
+      "label": "buy-panel.js",
+      "file_type": "code",
+      "source_file": "assets/buy-panel.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "assets_buy_panel",
+      "community": 57,
+      "community_name": "BuyPanel",
+      "norm_label": "buy-panel.js"
+    },
+    {
+      "label": "BuyPanel",
+      "file_type": "code",
+      "source_file": "assets/buy-panel.js",
+      "source_location": "L7",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "assets_buy_panel_buypanel",
+      "community": 57,
+      "community_name": "BuyPanel",
+      "norm_label": "buypanel"
+    },
+    {
+      "label": ".connectedCallback()",
+      "file_type": "code",
+      "source_file": "assets/buy-panel.js",
+      "source_location": "L8",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "assets_buy_panel_buypanel_connectedcallback",
+      "community": 57,
+      "community_name": "BuyPanel",
+      "norm_label": ".connectedcallback()"
+    },
+    {
+      "label": ".#goTo()",
+      "file_type": "code",
+      "source_file": "assets/buy-panel.js",
+      "source_location": "L27",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "assets_buy_panel_buypanel_goto",
+      "community": 57,
+      "community_name": "BuyPanel",
+      "norm_label": ".#goto()"
+    },
+    {
+      "label": ".#addToCart()",
+      "file_type": "code",
+      "source_file": "assets/buy-panel.js",
+      "source_location": "L37",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "assets_buy_panel_buypanel_addtocart",
+      "community": 57,
+      "community_name": "BuyPanel",
+      "norm_label": ".#addtocart()"
     },
     {
       "label": "cart-discount.js",
@@ -645,8 +705,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_cart_drawer",
-      "community": 2,
-      "community_name": "ThemeDrawer",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "cart-drawer.js"
     },
     {
@@ -898,7 +958,7 @@
       "_origin": "ast",
       "id": "assets_catalog_grid",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": "catalog-grid.js"
     },
     {
@@ -911,7 +971,7 @@
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": "cataloggrid"
     },
     {
@@ -923,7 +983,7 @@
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid_connectedcallback",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -935,7 +995,7 @@
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid_maingrid",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#maingrid()"
     },
     {
@@ -947,7 +1007,7 @@
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid_colorgrid",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#colorgrid()"
     },
     {
@@ -959,7 +1019,7 @@
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid_syncicon",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#syncicon()"
     },
     {
@@ -971,7 +1031,7 @@
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid_morph",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#morph()"
     },
     {
@@ -983,7 +1043,7 @@
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid_opencolors",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#opencolors()"
     },
     {
@@ -995,7 +1055,7 @@
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid_closecolors",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#closecolors()"
     },
     {
@@ -1007,7 +1067,7 @@
       "_origin": "ast",
       "id": "assets_catalog_grid_cataloggrid_showgender",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#showgender()"
     },
     {
@@ -1040,8 +1100,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_collection_links",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": "collection-links.js"
     },
     {
@@ -1053,8 +1113,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_collection_links_collectionlinks",
-      "community": 40,
-      "community_name": "CollectionLinks",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": "collectionlinks"
     },
     {
@@ -1065,8 +1125,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_collection_links_collectionlinks_connectedcallback",
-      "community": 40,
-      "community_name": "CollectionLinks",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -1077,8 +1137,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_collection_links_collectionlinks_disconnectedcallback",
-      "community": 40,
-      "community_name": "CollectionLinks",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -1089,8 +1149,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_collection_links_collectionlinks_links",
-      "community": 40,
-      "community_name": "CollectionLinks",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".links()"
     },
     {
@@ -1101,8 +1161,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_collection_links_collectionlinks_currentindex",
-      "community": 40,
-      "community_name": "CollectionLinks",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".currentindex()"
     },
     {
@@ -1113,8 +1173,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_collection_links_collectionlinks_select",
-      "community": 40,
-      "community_name": "CollectionLinks",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".select()"
     },
     {
@@ -1125,8 +1185,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_collection_links_collectionlinks_updateselectedlink",
-      "community": 40,
-      "community_name": "CollectionLinks",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#updateselectedlink()"
     },
     {
@@ -1137,8 +1197,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_collection_links_collectionlinks_handleslideshowselect",
-      "community": 40,
-      "community_name": "CollectionLinks",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#handleslideshowselect()"
     },
     {
@@ -1149,8 +1209,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_collection_links_collectionlinks_handlekeydown",
-      "community": 40,
-      "community_name": "CollectionLinks",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#handlekeydown()"
     },
     {
@@ -1161,8 +1221,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_collection_links_collectionlinks_handlescroll",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#handlescroll()"
     },
     {
@@ -1173,8 +1233,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_collection_links_collectionlinks_clearselections",
-      "community": 40,
-      "community_name": "CollectionLinks",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".clearselections()"
     },
     {
@@ -1185,8 +1245,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_collection_links_collectionlinks_revealimage",
-      "community": 40,
-      "community_name": "CollectionLinks",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": ".#revealimage()"
     },
     {
@@ -1196,8 +1256,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_comparison_slider",
-      "community": 1,
-      "community_name": "component.js",
+      "community": 8,
+      "community_name": "utilities.js",
       "norm_label": "comparison-slider.js"
     },
     {
@@ -2776,8 +2836,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_events_slideshowselectevent",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 48,
+      "community_name": "product-card.js",
       "norm_label": "slideshowselectevent"
     },
     {
@@ -2788,8 +2848,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_events_slideshowselectevent_constructor",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 48,
+      "community_name": "product-card.js",
       "norm_label": ".constructor()"
     },
     {
@@ -3575,8 +3635,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_floating_panel",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 1,
+      "community_name": "component.js",
       "norm_label": "floating-panel.js"
     },
     {
@@ -3588,8 +3648,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_floating_panel_floatingpanelcomponent",
-      "community": 3,
-      "community_name": "CartItemsComponent",
+      "community": 58,
+      "community_name": "FloatingPanelComponent",
       "norm_label": "floatingpanelcomponent"
     },
     {
@@ -3600,8 +3660,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_floating_panel_floatingpanelcomponent_updateposition",
-      "community": 3,
-      "community_name": "CartItemsComponent",
+      "community": 58,
+      "community_name": "FloatingPanelComponent",
       "norm_label": ".#updateposition()"
     },
     {
@@ -3612,8 +3672,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_floating_panel_floatingpanelcomponent_connectedcallback",
-      "community": 3,
-      "community_name": "CartItemsComponent",
+      "community": 58,
+      "community_name": "FloatingPanelComponent",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -3624,8 +3684,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_floating_panel_floatingpanelcomponent_disconnectedcallback",
-      "community": 3,
-      "community_name": "CartItemsComponent",
+      "community": 58,
+      "community_name": "FloatingPanelComponent",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -3635,8 +3695,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_fly_to_cart",
-      "community": 48,
-      "community_name": "product-card.js",
+      "community": 44,
+      "community_name": "yieldToMainThread",
       "norm_label": "fly-to-cart.js"
     },
     {
@@ -3648,8 +3708,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_fly_to_cart_flytocart",
-      "community": 48,
-      "community_name": "product-card.js",
+      "community": 44,
+      "community_name": "yieldToMainThread",
       "norm_label": "flytocart"
     },
     {
@@ -3660,8 +3720,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_fly_to_cart_flytocart_connectedcallback",
-      "community": 48,
-      "community_name": "product-card.js",
+      "community": 44,
+      "community_name": "yieldToMainThread",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -3672,8 +3732,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_fly_to_cart_flytocart_animate",
-      "community": 48,
-      "community_name": "product-card.js",
+      "community": 44,
+      "community_name": "yieldToMainThread",
       "norm_label": ".#animate()"
     },
     {
@@ -3742,8 +3802,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_focus_cyclefocus",
-      "community": 40,
-      "community_name": "CollectionLinks",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": "cyclefocus()"
     },
     {
@@ -4267,8 +4327,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_header_actions",
-      "community": 2,
-      "community_name": "ThemeDrawer",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "header-actions.js"
     },
     {
@@ -4280,8 +4340,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_header_actions_headeractions",
-      "community": 2,
-      "community_name": "ThemeDrawer",
+      "community": 51,
+      "community_name": "HeaderActions",
       "norm_label": "headeractions"
     },
     {
@@ -4292,8 +4352,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_actions_headeractions_connectedcallback",
-      "community": 2,
-      "community_name": "ThemeDrawer",
+      "community": 51,
+      "community_name": "HeaderActions",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -4304,8 +4364,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_actions_headeractions_disconnectedcallback",
-      "community": 2,
-      "community_name": "ThemeDrawer",
+      "community": 51,
+      "community_name": "HeaderActions",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -4316,8 +4376,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_actions_headeractions_synccarttriggerariaexpanded",
-      "community": 2,
-      "community_name": "ThemeDrawer",
+      "community": 51,
+      "community_name": "HeaderActions",
       "norm_label": ".#synccarttriggerariaexpanded()"
     },
     {
@@ -4328,8 +4388,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_actions_headeractions_ondrawerstatechange",
-      "community": 2,
-      "community_name": "ThemeDrawer",
+      "community": 51,
+      "community_name": "HeaderActions",
       "norm_label": ".#ondrawerstatechange()"
     },
     {
@@ -4340,8 +4400,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_actions_headeractions_oncartupdate",
-      "community": 2,
-      "community_name": "ThemeDrawer",
+      "community": 51,
+      "community_name": "HeaderActions",
       "norm_label": ".#oncartupdate()"
     },
     {
@@ -4351,8 +4411,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_header_drawer",
-      "community": 8,
-      "community_name": "utilities.js",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": "header-drawer.js"
     },
     {
@@ -4519,8 +4579,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_header_menu",
-      "community": 8,
-      "community_name": "utilities.js",
+      "community": 25,
+      "community_name": "events.js",
       "norm_label": "header-menu.js"
     },
     {
@@ -4831,8 +4891,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_header",
-      "community": 8,
-      "community_name": "utilities.js",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "header.js"
     },
     {
@@ -4844,8 +4904,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_header_headercomponent",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 40,
+      "community_name": "HeaderComponent",
       "norm_label": "headercomponent"
     },
     {
@@ -4856,8 +4916,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_headercomponent_observestickyposition",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 40,
+      "community_name": "HeaderComponent",
       "norm_label": ".#observestickyposition()"
     },
     {
@@ -4868,8 +4928,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_headercomponent_handleoverflowminimum",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 40,
+      "community_name": "HeaderComponent",
       "norm_label": ".#handleoverflowminimum()"
     },
     {
@@ -4880,8 +4940,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_headercomponent_updatemenuvisibility",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 40,
+      "community_name": "HeaderComponent",
       "norm_label": ".#updatemenuvisibility()"
     },
     {
@@ -4892,8 +4952,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_headercomponent_handlebreakpointchange",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 40,
+      "community_name": "HeaderComponent",
       "norm_label": ".#handlebreakpointchange()"
     },
     {
@@ -4904,8 +4964,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_headercomponent_handlewindowscroll",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 40,
+      "community_name": "HeaderComponent",
       "norm_label": ".#handlewindowscroll()"
     },
     {
@@ -4916,8 +4976,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_headercomponent_updatescrollstate",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 40,
+      "community_name": "HeaderComponent",
       "norm_label": ".#updatescrollstate()"
     },
     {
@@ -4928,8 +4988,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_headercomponent_connectedcallback",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 40,
+      "community_name": "HeaderComponent",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -4940,8 +5000,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_header_headercomponent_disconnectedcallback",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 40,
+      "community_name": "HeaderComponent",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -5127,8 +5187,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_jumbo_text",
-      "community": 48,
-      "community_name": "product-card.js",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "jumbo-text.js"
     },
     {
@@ -5140,8 +5200,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 42,
+      "community_name": "JumboText",
       "norm_label": "jumbotext"
     },
     {
@@ -5152,8 +5212,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_connectedcallback",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 42,
+      "community_name": "JumboText",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -5164,8 +5224,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_disconnectedcallback",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 42,
+      "community_name": "JumboText",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -5176,8 +5236,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_setintersectionobserver",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 42,
+      "community_name": "JumboText",
       "norm_label": ".#setintersectionobserver()"
     },
     {
@@ -5188,8 +5248,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_calculateoptimalfontsize",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 42,
+      "community_name": "JumboText",
       "norm_label": ".#calculateoptimalfontsize()"
     },
     {
@@ -5200,8 +5260,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_findwidestchild",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 42,
+      "community_name": "JumboText",
       "norm_label": ".#findwidestchild()"
     },
     {
@@ -5212,8 +5272,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_clampfontsize",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 42,
+      "community_name": "JumboText",
       "norm_label": ".#clampfontsize()"
     },
     {
@@ -5224,8 +5284,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_handleresize",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 42,
+      "community_name": "JumboText",
       "norm_label": ".#handleresize()"
     },
     {
@@ -5236,8 +5296,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_jumbo_text_jumbotext_windowresizelistener",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 42,
+      "community_name": "JumboText",
       "norm_label": ".#windowresizelistener()"
     },
     {
@@ -5595,8 +5655,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_local_pickup",
-      "community": 1,
-      "community_name": "component.js",
+      "community": 22,
+      "community_name": "morph.js",
       "norm_label": "local-pickup.js"
     },
     {
@@ -6004,8 +6064,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_marquee",
-      "community": 1,
-      "community_name": "component.js",
+      "community": 28,
+      "community_name": "component-cart-items.js",
       "norm_label": "marquee.js"
     },
     {
@@ -6015,8 +6075,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "assets_marquee_animation_options",
-      "community": 1,
-      "community_name": "component.js",
+      "community": 28,
+      "community_name": "component-cart-items.js",
       "norm_label": "animation_options"
     },
     {
@@ -7172,8 +7232,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 34,
+      "community_name": "PaginatedListAspectRatioHelper",
       "norm_label": "paginated-list-aspect-ratio.js"
     },
     {
@@ -7185,8 +7245,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 34,
+      "community_name": "PaginatedListAspectRatioHelper",
       "norm_label": "paginatedlistaspectratiohelper"
     },
     {
@@ -7197,8 +7257,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_constructor",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 34,
+      "community_name": "PaginatedListAspectRatioHelper",
       "norm_label": ".constructor()"
     },
     {
@@ -7209,8 +7269,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_processnewelements",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 34,
+      "community_name": "PaginatedListAspectRatioHelper",
       "norm_label": ".processnewelements()"
     },
     {
@@ -7221,8 +7281,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_storeimageratiosettings",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 34,
+      "community_name": "PaginatedListAspectRatioHelper",
       "norm_label": ".#storeimageratiosettings()"
     },
     {
@@ -7233,8 +7293,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_fixadaptiveaspectratios",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 34,
+      "community_name": "PaginatedListAspectRatioHelper",
       "norm_label": ".#fixadaptiveaspectratios()"
     },
     {
@@ -7245,8 +7305,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_applyfixedaspectratio",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 34,
+      "community_name": "PaginatedListAspectRatioHelper",
       "norm_label": ".#applyfixedaspectratio()"
     },
     {
@@ -7257,8 +7317,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_getsafeimageaspectratio",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 34,
+      "community_name": "PaginatedListAspectRatioHelper",
       "norm_label": ".#getsafeimageaspectratio()"
     },
     {
@@ -7269,8 +7329,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_getaspectratiovalue",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 34,
+      "community_name": "PaginatedListAspectRatioHelper",
       "norm_label": ".#getaspectratiovalue()"
     },
     {
@@ -7281,8 +7341,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_applyaspectratiotogallery",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 34,
+      "community_name": "PaginatedListAspectRatioHelper",
       "norm_label": ".#applyaspectratiotogallery()"
     },
     {
@@ -7293,8 +7353,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_getunprocessedgalleries",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 34,
+      "community_name": "PaginatedListAspectRatioHelper",
       "norm_label": ".#getunprocessedgalleries()"
     },
     {
@@ -7305,8 +7365,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_paginated_list_aspect_ratio_paginatedlistaspectratiohelper_markasprocessed",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 34,
+      "community_name": "PaginatedListAspectRatioHelper",
       "norm_label": ".#markasprocessed()"
     },
     {
@@ -7316,8 +7376,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_paginated_list",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "paginated-list.js"
     },
     {
@@ -7330,7 +7390,7 @@
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": "paginatedlist"
     },
     {
@@ -7342,7 +7402,7 @@
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_connectedcallback",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -7354,7 +7414,7 @@
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_disconnectedcallback",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -7366,7 +7426,7 @@
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_observeviewmore",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": ".#observeviewmore()"
     },
     {
@@ -7378,7 +7438,7 @@
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_shouldusepage",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": ".#shouldusepage()"
     },
     {
@@ -7390,7 +7450,7 @@
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_fetchpage",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": ".#fetchpage()"
     },
     {
@@ -7402,7 +7462,7 @@
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_fetchspecificpage",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": ".#fetchspecificpage()"
     },
     {
@@ -7414,7 +7474,7 @@
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_rendernextpage",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": ".#rendernextpage()"
     },
     {
@@ -7426,7 +7486,7 @@
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_renderpreviouspage",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": ".#renderpreviouspage()"
     },
     {
@@ -7438,7 +7498,7 @@
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_getpage",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": ".#getpage()"
     },
     {
@@ -7450,7 +7510,7 @@
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_getgridforpage",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": ".#getgridforpage()"
     },
     {
@@ -7462,7 +7522,7 @@
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_sectionid",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": ".sectionid()"
     },
     {
@@ -7474,7 +7534,7 @@
       "_origin": "ast",
       "id": "assets_paginated_list_paginatedlist_handlefilterupdate",
       "community": 6,
-      "community_name": "paginated-list.js",
+      "community_name": "PaginatedList",
       "norm_label": ".#handlefilterupdate()"
     },
     {
@@ -8769,8 +8829,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_product_card_swatchesvariantpickercomponent",
-      "community": 42,
-      "community_name": "SwatchesVariantPickerComponent",
+      "community": 48,
+      "community_name": "product-card.js",
       "norm_label": "swatchesvariantpickercomponent"
     },
     {
@@ -8781,8 +8841,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_product_card_swatchesvariantpickercomponent_variantchanged",
-      "community": 42,
-      "community_name": "SwatchesVariantPickerComponent",
+      "community": 48,
+      "community_name": "product-card.js",
       "norm_label": ".variantchanged()"
     },
     {
@@ -8793,8 +8853,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_product_card_swatchesvariantpickercomponent_showallswatches",
-      "community": 42,
-      "community_name": "SwatchesVariantPickerComponent",
+      "community": 48,
+      "community_name": "product-card.js",
       "norm_label": ".showallswatches()"
     },
     {
@@ -8937,8 +8997,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_product_form_addtocartcomponent_preloadimage",
-      "community": 5,
-      "community_name": "ProductFormComponent",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#preloadimage()"
     },
     {
@@ -9465,8 +9525,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_product_inventory",
-      "community": 25,
-      "community_name": "events.js",
+      "community": 22,
+      "community_name": "morph.js",
       "norm_label": "product-inventory.js"
     },
     {
@@ -9538,8 +9598,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_product_price_productprice",
-      "community": 67,
-      "community_name": "ProductPrice",
+      "community": 49,
+      "community_name": "MediaGallery",
       "norm_label": "productprice"
     },
     {
@@ -9550,8 +9610,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_product_price_productprice_connectedcallback",
-      "community": 67,
-      "community_name": "ProductPrice",
+      "community": 49,
+      "community_name": "MediaGallery",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -9562,8 +9622,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_product_price_productprice_disconnectedcallback",
-      "community": 67,
-      "community_name": "ProductPrice",
+      "community": 49,
+      "community_name": "MediaGallery",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -9574,8 +9634,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_product_price_productprice_handleproductselect",
-      "community": 67,
-      "community_name": "ProductPrice",
+      "community": 49,
+      "community_name": "MediaGallery",
       "norm_label": ".#handleproductselect()"
     },
     {
@@ -9682,8 +9742,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_product_sku_productskucomponent",
-      "community": 68,
-      "community_name": "ProductSkuComponent",
+      "community": 49,
+      "community_name": "MediaGallery",
       "norm_label": "productskucomponent"
     },
     {
@@ -9694,8 +9754,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_product_sku_productskucomponent_connectedcallback",
-      "community": 68,
-      "community_name": "ProductSkuComponent",
+      "community": 49,
+      "community_name": "MediaGallery",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -9706,8 +9766,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_product_sku_productskucomponent_disconnectedcallback",
-      "community": 68,
-      "community_name": "ProductSkuComponent",
+      "community": 49,
+      "community_name": "MediaGallery",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -9718,8 +9778,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_product_sku_productskucomponent_handleproductselect",
-      "community": 68,
-      "community_name": "ProductSkuComponent",
+      "community": 49,
+      "community_name": "MediaGallery",
       "norm_label": ".#handleproductselect()"
     },
     {
@@ -10326,8 +10386,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_quick_order_list",
-      "community": 25,
-      "community_name": "events.js",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "quick-order-list.js"
     },
     {
@@ -10639,8 +10699,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_quick_order_list_quickorderlistcomponent_scrolltotopofsection",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 11,
+      "community_name": "QuickOrderListComponent",
       "norm_label": ".#scrolltotopofsection()"
     },
     {
@@ -10746,8 +10806,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_results_list",
-      "community": 3,
-      "community_name": "CartItemsComponent",
+      "community": 8,
+      "community_name": "utilities.js",
       "norm_label": "results-list.js"
     },
     {
@@ -10759,8 +10819,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_results_list_resultslist",
-      "community": 3,
-      "community_name": "CartItemsComponent",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": "resultslist"
     },
     {
@@ -10771,8 +10831,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_results_list_resultslist_connectedcallback",
-      "community": 3,
-      "community_name": "CartItemsComponent",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -10783,8 +10843,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_results_list_resultslist_disconnectedcallback",
-      "community": 3,
-      "community_name": "CartItemsComponent",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -10795,8 +10855,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_results_list_resultslist_updatelayout",
-      "community": 3,
-      "community_name": "CartItemsComponent",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".updatelayout()"
     },
     {
@@ -10807,8 +10867,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_results_list_resultslist_animatelayoutchange",
-      "community": 3,
-      "community_name": "CartItemsComponent",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#animatelayoutchange()"
     },
     {
@@ -10819,8 +10879,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_results_list_resultslist_setlayout",
-      "community": 3,
-      "community_name": "CartItemsComponent",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#setlayout()"
     },
     {
@@ -10831,8 +10891,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_results_list_resultslist_handlemediaquerychange",
-      "community": 3,
-      "community_name": "CartItemsComponent",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#handlemediaquerychange()"
     },
     {
@@ -10855,8 +10915,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_rte_formatter_rteformatter",
-      "community": 44,
-      "community_name": "RTEFormatter",
+      "community": 1,
+      "community_name": "component.js",
       "norm_label": "rteformatter"
     },
     {
@@ -10867,8 +10927,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_rte_formatter_rteformatter_connectedcallback",
-      "community": 44,
-      "community_name": "RTEFormatter",
+      "community": 1,
+      "community_name": "component.js",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -10879,8 +10939,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_rte_formatter_rteformatter_formattable",
-      "community": 44,
-      "community_name": "RTEFormatter",
+      "community": 1,
+      "community_name": "component.js",
       "norm_label": ".#formattable()"
     },
     {
@@ -10890,8 +10950,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_scroll_container",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "scroll-container.js"
     },
     {
@@ -10901,8 +10961,8 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "assets_scroll_container_squeeze_query",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "squeeze_query"
     },
     {
@@ -10913,8 +10973,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scroll_container_getscrollcontainer",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "getscrollcontainer()"
     },
     {
@@ -10925,8 +10985,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scroll_container_getscrolltop",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "getscrolltop()"
     },
     {
@@ -10937,8 +10997,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scroll_container_scrollto",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "scrollto()"
     },
     {
@@ -10949,8 +11009,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scroll_container_savescrollposition",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "savescrollposition()"
     },
     {
@@ -10961,8 +11021,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scroll_container_restoresavedscrolltop",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "restoresavedscrolltop()"
     },
     {
@@ -10972,8 +11032,8 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "assets_scroll_container_originalpushstate",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "originalpushstate"
     },
     {
@@ -10984,8 +11044,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scroll_container_getscrolleventtarget",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 40,
+      "community_name": "HeaderComponent",
       "norm_label": "getscrolleventtarget()"
     },
     {
@@ -10996,8 +11056,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scroll_container_getintersectionroot",
-      "community": 6,
-      "community_name": "paginated-list.js",
+      "community": 40,
+      "community_name": "HeaderComponent",
       "norm_label": "getintersectionroot()"
     },
     {
@@ -11007,8 +11067,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_scrolling",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": "scrolling.js"
     },
     {
@@ -11020,8 +11080,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": "scroller"
     },
     {
@@ -11032,8 +11092,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_constructor",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".constructor()"
     },
     {
@@ -11044,8 +11104,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_to",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".to()"
     },
     {
@@ -11056,8 +11116,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_by",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".by()"
     },
     {
@@ -11068,8 +11128,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_scroll",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#scroll()"
     },
     {
@@ -11080,8 +11140,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_axis",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".axis()"
     },
     {
@@ -11092,8 +11152,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_finished",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".finished()"
     },
     {
@@ -11104,8 +11164,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_edge",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#edge()"
     },
     {
@@ -11116,8 +11176,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_setup",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#setup()"
     },
     {
@@ -11128,8 +11188,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_reset",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#reset()"
     },
     {
@@ -11140,8 +11200,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_handlescroll",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#handlescroll()"
     },
     {
@@ -11152,8 +11212,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_snap",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".snap()"
     },
     {
@@ -11164,8 +11224,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scroller_destroy",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".destroy()"
     },
     {
@@ -11176,8 +11236,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_getscrollaxis",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": "getscrollaxis()"
     },
     {
@@ -11188,8 +11248,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_calculatepaddingstart",
-      "community": 27,
-      "community_name": "Scroller",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": "calculatepaddingstart()"
     },
     {
@@ -11200,8 +11260,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scrollintoview",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": "scrollintoview()"
     },
     {
@@ -11213,8 +11273,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_scrolling_scrollhint",
-      "community": 34,
-      "community_name": "ScrollHint",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": "scrollhint"
     },
     {
@@ -11225,8 +11285,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scrollhint_connectedcallback",
-      "community": 34,
-      "community_name": "ScrollHint",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -11237,8 +11297,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scrollhint_disconnectedcallback",
-      "community": 34,
-      "community_name": "ScrollHint",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -11249,8 +11309,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scrollhint_handlescroll",
-      "community": 34,
-      "community_name": "ScrollHint",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#handlescroll()"
     },
     {
@@ -11261,8 +11321,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_scrolling_scrollhint_update",
-      "community": 34,
-      "community_name": "ScrollHint",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": ".#update()"
     },
     {
@@ -11272,8 +11332,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_search_page_input",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 28,
+      "community_name": "component-cart-items.js",
       "norm_label": "search-page-input.js"
     },
     {
@@ -11631,8 +11691,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_slideshow",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 8,
+      "community_name": "utilities.js",
       "norm_label": "slideshow.js"
     },
     {
@@ -13380,8 +13440,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_standard_events_d_cartlinesupdateevent",
-      "community": 11,
-      "community_name": "QuickOrderListComponent",
+      "community": 5,
+      "community_name": "ProductFormComponent",
       "norm_label": "cartlinesupdateevent"
     },
     {
@@ -13798,8 +13858,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_theme_drawer",
-      "community": 2,
-      "community_name": "ThemeDrawer",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "theme-drawer.js"
     },
     {
@@ -14040,8 +14100,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_theme_drawer_draweropenevent",
-      "community": 2,
-      "community_name": "ThemeDrawer",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "draweropenevent"
     },
     {
@@ -14052,8 +14112,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_theme_drawer_draweropenevent_constructor",
-      "community": 2,
-      "community_name": "ThemeDrawer",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": ".constructor()"
     },
     {
@@ -14065,8 +14125,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_theme_drawer_drawercloseevent",
-      "community": 2,
-      "community_name": "ThemeDrawer",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "drawercloseevent"
     },
     {
@@ -14077,8 +14137,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_theme_drawer_drawercloseevent_constructor",
-      "community": 2,
-      "community_name": "ThemeDrawer",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": ".constructor()"
     },
     {
@@ -14226,8 +14286,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "assets_utilities_requestidlecallback",
-      "community": 3,
-      "community_name": "CartItemsComponent",
+      "community": 1,
+      "community_name": "component.js",
       "norm_label": "requestidlecallback"
     },
     {
@@ -14238,8 +14298,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_yieldtomainthread",
-      "community": 48,
-      "community_name": "product-card.js",
+      "community": 44,
+      "community_name": "yieldToMainThread",
       "norm_label": "yieldtomainthread()"
     },
     {
@@ -14251,7 +14311,7 @@
       "_origin": "ast",
       "id": "assets_utilities_islowpowerdevice",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": "islowpowerdevice()"
     },
     {
@@ -14263,7 +14323,7 @@
       "_origin": "ast",
       "id": "assets_utilities_supportsviewtransitions",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": "supportsviewtransitions()"
     },
     {
@@ -14275,7 +14335,7 @@
       "_origin": "ast",
       "id": "assets_utilities_shoulddisablecrossdocumentviewtransitions",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": "shoulddisablecrossdocumentviewtransitions()"
     },
     {
@@ -14285,8 +14345,8 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "assets_utilities_viewtransition",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 1,
+      "community_name": "component.js",
       "norm_label": "viewtransition"
     },
     {
@@ -14309,7 +14369,7 @@
       "_origin": "ast",
       "id": "assets_utilities_startviewtransition",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": "startviewtransition()"
     },
     {
@@ -14332,8 +14392,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_debounce",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 28,
+      "community_name": "component-cart-items.js",
       "norm_label": "debounce()"
     },
     {
@@ -14344,8 +14404,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_throttle",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": "throttle()"
     },
     {
@@ -14367,8 +14427,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_prefersreducedmotion",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": "prefersreducedmotion()"
     },
     {
@@ -14391,8 +14451,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_ondocumentloaded",
-      "community": 8,
-      "community_name": "utilities.js",
+      "community": 25,
+      "community_name": "events.js",
       "norm_label": "ondocumentloaded()"
     },
     {
@@ -14415,8 +14475,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_removewillchangeonanimationend",
-      "community": 8,
-      "community_name": "utilities.js",
+      "community": 2,
+      "community_name": "ThemeDrawer",
       "norm_label": "removewillchangeonanimationend()"
     },
     {
@@ -14581,8 +14641,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_center",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": "center()"
     },
     {
@@ -14605,8 +14665,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_closest",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": "closest()"
     },
     {
@@ -14629,8 +14689,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_getvisibleelements",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 19,
+      "community_name": "Slideshow",
       "norm_label": "getvisibleelements()"
     },
     {
@@ -14665,8 +14725,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_preloadimage",
-      "community": 28,
-      "community_name": "component-cart-items.js",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": "preloadimage()"
     },
     {
@@ -14714,8 +14774,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_changemetathemecolor",
-      "community": 8,
-      "community_name": "utilities.js",
+      "community": 27,
+      "community_name": "theme-drawer.js",
       "norm_label": "changemetathemecolor()"
     },
     {
@@ -14751,8 +14811,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "assets_utilities_scheduler",
-      "community": 48,
-      "community_name": "product-card.js",
+      "community": 44,
+      "community_name": "yieldToMainThread",
       "norm_label": "scheduler"
     },
     {
@@ -14763,8 +14823,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_scheduler_schedule",
-      "community": 48,
-      "community_name": "product-card.js",
+      "community": 44,
+      "community_name": "yieldToMainThread",
       "norm_label": ".schedule()"
     },
     {
@@ -14775,8 +14835,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_scheduler_flush",
-      "community": 48,
-      "community_name": "product-card.js",
+      "community": 44,
+      "community_name": "yieldToMainThread",
       "norm_label": ".flush()"
     },
     {
@@ -14787,8 +14847,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "assets_utilities_oncepereditorsession",
-      "community": 1,
-      "community_name": "component.js",
+      "community": 8,
+      "community_name": "utilities.js",
       "norm_label": "oncepereditorsession()"
     },
     {
@@ -15480,8 +15540,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_zoom_dialog",
-      "community": 51,
-      "community_name": "slideshow.js",
+      "community": 17,
+      "community_name": "zoom-dialog.js",
       "norm_label": "zoom-dialog.js"
     },
     {
@@ -15494,7 +15554,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": "zoomdialog"
     },
     {
@@ -15506,7 +15566,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_connectedcallback",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".connectedcallback()"
     },
     {
@@ -15518,7 +15578,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_disconnectedcallback",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".disconnectedcallback()"
     },
     {
@@ -15530,7 +15590,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_open",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".open()"
     },
     {
@@ -15542,7 +15602,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_loadhighresolutionimage",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".loadhighresolutionimage()"
     },
     {
@@ -15554,7 +15614,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_close",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".close()"
     },
     {
@@ -15566,7 +15626,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_closedialog",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".closedialog()"
     },
     {
@@ -15578,7 +15638,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_handlekeydown",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".handlekeydown()"
     },
     {
@@ -15590,7 +15650,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_handlethumbnailclick",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".handlethumbnailclick()"
     },
     {
@@ -15602,7 +15662,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_handlethumbnailpointerenter",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".handlethumbnailpointerenter()"
     },
     {
@@ -15614,7 +15674,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_zoomdialog_selectthumbnail",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": ".selectthumbnail()"
     },
     {
@@ -15626,7 +15686,7 @@
       "_origin": "ast",
       "id": "assets_zoom_dialog_getmostvisibleelement",
       "community": 17,
-      "community_name": "startViewTransition",
+      "community_name": "zoom-dialog.js",
       "norm_label": "getmostvisibleelement()"
     },
     {
@@ -16592,6 +16652,86 @@
       "_origin": "ast",
       "source": "assets_blog_posts_list",
       "target": "assets_paginated_list_paginatedlist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/buy-panel.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_buy_panel",
+      "target": "assets_buy_panel_buypanel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/buy-panel.js",
+      "source_location": "L37",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_buy_panel_buypanel",
+      "target": "assets_buy_panel_buypanel_addtocart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/buy-panel.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_buy_panel_buypanel",
+      "target": "assets_buy_panel_buypanel_connectedcallback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/buy-panel.js",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_buy_panel_buypanel",
+      "target": "assets_buy_panel_buypanel_goto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/buy-panel.js",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_buy_panel_buypanel_connectedcallback",
+      "target": "assets_buy_panel_buypanel_addtocart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/buy-panel.js",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_buy_panel_buypanel_connectedcallback",
+      "target": "assets_buy_panel_buypanel_goto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/buy-panel.js",
+      "source_location": "L45",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_buy_panel_buypanel_addtocart",
+      "target": "assets_buy_panel_buypanel_goto",
       "confidence_score": 1.0
     },
     {
@@ -45166,5 +45306,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "154711d19d16af7e827846e399beea1ebb9f8cad"
+  "built_at_commit": "21f3abb4bf02d9b06a040ffb838f1523ceda1975"
 }

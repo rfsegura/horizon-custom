@@ -1,0 +1,268 @@
+{%- doc -%}
+  Yeezy-style buy panel for the product page: name, price and "+". The "+" opens a size picker in
+  place ("SELECT SIZE"); clicking a size adds that variant to the cart; "INFORMATION" shows the
+  description; "X" closes. Replaces the title, price, variant picker, buy buttons and description blocks.
+  Sizes shown are the variants sharing the selected variant's Color option.
+{%- enddoc -%}
+
+{%- liquid
+  assign product = closest.product
+  if request.visual_preview_mode and product == blank
+    assign product = collections.all.products.first
+  endif
+
+  assign selected = product.selected_or_first_available_variant
+
+  assign size_index = nil
+  assign color_index = nil
+  for option in product.options_with_values
+    assign option_name = option.name | downcase
+    if option_name == 'size' or option_name == 'sizes'
+      assign size_index = forloop.index0
+    elsif option_name == 'color' or option_name == 'colour'
+      assign color_index = forloop.index0
+    endif
+  endfor
+
+  assign any_available = false
+-%}
+
+{%- capture size_buttons -%}
+  {%- for variant in product.variants -%}
+    {%- liquid
+      assign same_color = true
+      if color_index != nil and variant.options[color_index] != selected.options[color_index]
+        assign same_color = false
+      endif
+    -%}
+    {%- if same_color -%}
+      {%- liquid
+        if size_index != nil
+          assign label = variant.options[size_index]
+        else
+          assign label = variant.title
+        endif
+        if label == 'Default Title'
+          assign label = 'One size'
+        endif
+        if variant.available
+          assign any_available = true
+        endif
+      -%}
+      <button
+        type="button"
+        class="buy-panel__size button-unstyled"
+        data-action="size"
+        data-variant-id="{{ variant.id }}"
+        {% unless variant.available %}
+          disabled
+        {% endunless %}
+      >
+        {{- label | upcase -}}
+      </button>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if product != blank -%}
+  <script
+    type="module"
+    src="{{ 'buy-panel.js' | asset_url }}"
+  ></script>
+
+  <buy-panel
+    class="buy-panel"
+    data-state="default"
+    {{ block.shopify_attributes }}
+  >
+    <product-form-component
+      data-section-id="{{ section.id }}"
+      data-product-id="{{ product.id }}"
+      data-product-url="{{ product.url }}"
+      on:submit="/handleSubmit"
+      data-quantity-default="1"
+    >
+      <div
+        class="visually-hidden"
+        aria-live="assertive"
+        role="status"
+        aria-atomic="true"
+        ref="liveRegion"
+      ></div>
+      {%- form 'product', product, id: 'BuyPanel-ProductForm', data-type: 'add-to-cart-form' -%}
+        <input
+          type="hidden"
+          name="id"
+          ref="variantId"
+          value="{{ selected.id }}"
+        >
+      {%- endform -%}
+    </product-form-component>
+
+    <div class="buy-panel__head" data-fade>
+      <span class="buy-panel__title" data-show="default">{{ product.title | upcase }}</span>
+      <span class="buy-panel__title" data-show="size info">{{ 'Select size' | upcase }}</span>
+      <button
+        type="button"
+        class="buy-panel__close button-unstyled"
+        data-action="close"
+        data-show="size info"
+        aria-label="Close"
+      >
+        &times;
+      </button>
+    </div>
+
+    <p class="buy-panel__price">{% render 'format-price', price: selected.price %}</p>
+
+    <div class="buy-panel__action" data-fade>
+      {%- if any_available -%}
+        <button
+          type="button"
+          class="buy-panel__plus button-unstyled"
+          data-action="open"
+          data-show="default"
+          aria-label="Select size"
+        >
+          +
+        </button>
+      {%- else -%}
+        <span class="buy-panel__sold-out" data-show="default">{{ 'products.product.sold_out' | t | upcase }}</span>
+      {%- endif -%}
+
+      <div class="buy-panel__sizes" role="group" aria-label="Select size" data-show="size">
+        {{ size_buttons }}
+      </div>
+      <button
+        type="button"
+        class="buy-panel__info-link button-unstyled"
+        data-action="info"
+        data-show="size"
+      >
+        {{ 'Information' | upcase }}
+      </button>
+
+      <div class="buy-panel__info" data-show="info">{{ product.description }}</div>
+    </div>
+  </buy-panel>
+{%- endif -%}
+
+{% stylesheet %}
+  .buy-panel {
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .buy-panel__head {
+    position: relative;
+    width: 100%;
+  }
+
+  .buy-panel__close {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    translate: 0 -50%;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .buy-panel__price,
+  .buy-panel__info {
+    margin: 0;
+  }
+
+  .buy-panel__plus {
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .buy-panel__sizes {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .buy-panel__size,
+  .buy-panel__info-link {
+    cursor: pointer;
+  }
+
+  .buy-panel__size:disabled {
+    opacity: 0.3;
+    text-decoration: line-through;
+    cursor: not-allowed;
+  }
+
+  .buy-panel__info-link {
+    display: block;
+    margin: 12px auto 0;
+    text-decoration: underline;
+  }
+
+  /* Information text settles from light grey to full colour. */
+  .buy-panel__info {
+    animation: buy-panel-settle 1s var(--ease) both;
+  }
+
+  @keyframes buy-panel-settle {
+    from {
+      color: color-mix(in srgb, currentcolor 35%, transparent);
+    }
+  }
+
+  /* Only the elements for the current state are shown. */
+  .buy-panel [data-show] {
+    display: none;
+  }
+
+  .buy-panel[data-state='default'] [data-show~='default'],
+  .buy-panel[data-state='size'] [data-show~='size'],
+  .buy-panel[data-state='info'] [data-show~='info'] {
+    display: revert;
+  }
+
+  .buy-panel[data-state='size'] .buy-panel__sizes {
+    display: flex;
+  }
+
+  /* State changes fade out then in: the JS swaps data-state while .is-fading is set. */
+  .buy-panel [data-fade] {
+    transition: opacity 0.15s var(--ease);
+  }
+
+  .buy-panel.is-fading [data-fade] {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .buy-panel [data-fade] {
+      transition: none;
+    }
+
+    .buy-panel__info {
+      animation: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Buy panel",
+  "tag": null,
+  "settings": [],
+  "presets": [
+    {
+      "name": "Buy panel"
+    }
+  ]
+}
+{% endschema %}
