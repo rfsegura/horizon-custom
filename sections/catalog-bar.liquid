@@ -45,10 +45,37 @@
       order: 0 !important;
     }
 
+    /* Product page is 20% narrower, centered. */
+    .product-information__media,
+    .product-details {
+      width: 80% !important;
+      min-width: 0 !important;
+      justify-self: center;
+    }
+
     .product-details {
       position: static !important;
       order: 1 !important;
     }
+  }
+
+  /* Product image arrows: plain "<" and ">" characters instead of the icon. */
+  media-gallery .slideshow-control {
+    transform: none;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  media-gallery .slideshow-control .svg-wrapper {
+    display: none;
+  }
+
+  media-gallery .slideshow-control--previous::before {
+    content: '<';
+  }
+
+  media-gallery .slideshow-control--next::before {
+    content: '>';
   }
 
   /* Color picker open/close: 300ms, shared easing. */

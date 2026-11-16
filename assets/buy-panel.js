@@ -12,19 +12,28 @@ class BuyPanel extends HTMLElement {
 
       switch (button.dataset.action) {
         case 'open':
-          return this.#goTo('size');
+          return this.#goTo('size', false);
         case 'info':
-          return this.#goTo('info');
+          return this.#goTo('info', false);
         case 'close':
-          return this.#goTo('default');
+          return this.#goTo('default', true);
         case 'size':
           return this.#addToCart(button.dataset.variantId);
       }
     });
   }
 
-  /** @param {string} state */
-  #goTo(state) {
+  /**
+   * Opening swaps instantly (CSS animates the sizes in); closing fades out and back in.
+   * @param {string} state
+   * @param {boolean} fade
+   */
+  #goTo(state, fade) {
+    if (!fade) {
+      this.dataset.state = state;
+      return;
+    }
+
     this.classList.add('is-fading');
 
     setTimeout(() => {
@@ -42,7 +51,7 @@ class BuyPanel extends HTMLElement {
     // Horizon's <product-form-component> submits whatever variant id the form holds.
     idInput.value = variantId;
     form.requestSubmit();
-    this.#goTo('default');
+    this.#goTo('default', true);
   }
 }
 

@@ -785,8 +785,8 @@
     "semantic_hash": ""
   },
   "templates/product.json": {
-    "mtime": 1794793537.8312602,
-    "ast_hash": "52618ffa3d419cc07155b14189f2c63c",
+    "mtime": 1794806862.6864994,
+    "ast_hash": "b097dda62ab27ffdf680b2a11da234c4",
     "semantic_hash": ""
   },
   "templates/search.json": {
@@ -992,6 +992,11 @@
   "assets/catalog-transitions.js": {
     "mtime": 1794800285.5883837,
     "ast_hash": "4b2888a678bec9e3d97df1c502f52858",
+    "semantic_hash": ""
+  },
+  "assets/buy-panel.js": {
+    "mtime": 1794806860.3305023,
+    "ast_hash": "d354e024afbb3cc4f345aecac924dd68",
     "semantic_hash": ""
   }
 }

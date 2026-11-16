@@ -186,9 +186,27 @@
   }
 
   .buy-panel__sizes {
+    --size-gap: clamp(2rem, 12vw, 5rem);
+
     display: flex;
     justify-content: center;
-    gap: 24px;
+    gap: var(--size-gap);
+    animation: buy-panel-spread 0.3s var(--ease) both;
+  }
+
+  /* Sizes start bunched in the middle, faint, and slide out to their final spots. */
+  @keyframes buy-panel-spread {
+    from {
+      gap: 0;
+      opacity: 0.3;
+    }
+  }
+
+  /* "INFORMATION" starts a few pixels higher and drops into place as the sizes settle. */
+  @keyframes buy-panel-drop {
+    from {
+      translate: 0 -4px;
+    }
   }
 
   .buy-panel__size,
@@ -206,6 +224,7 @@
     display: block;
     margin: 12px auto 0;
     text-decoration: underline;
+    animation: buy-panel-drop 0.3s var(--ease) both;
   }
 
   /* Information text settles from light grey to full colour. */
@@ -234,7 +253,7 @@
     display: flex;
   }
 
-  /* State changes fade out then in: the JS swaps data-state while .is-fading is set. */
+  /* Only closing fades out then in: the JS swaps data-state while .is-fading is set. Opening is instant. */
   .buy-panel [data-fade] {
     transition: opacity 0.15s var(--ease);
   }
@@ -248,7 +267,9 @@
       transition: none;
     }
 
-    .buy-panel__info {
+    .buy-panel__info,
+    .buy-panel__sizes,
+    .buy-panel__info-link {
       animation: none;
     }
   }
