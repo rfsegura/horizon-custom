@@ -46,14 +46,17 @@
   views (male / female) each product appears in, so the script can follow whichever view the visitor
   came from. Same collection and tags as the catalog section.
 {%- endcomment -%}
-{%- if request.page_type == 'product' and section.settings.collection != blank -%}
+{%- if request.page_type == 'product' -%}
   {%- liquid
-    assign male_key = '|' | append: section.settings.male_tag | downcase | append: '|'
-    assign female_key = '|' | append: section.settings.female_tag | downcase | append: '|'
+    assign list_collection = section.settings.collection | default: collections['all']
+    assign male_tag = section.settings.male_tag | default: 'male'
+    assign female_tag = section.settings.female_tag | default: 'female'
+    assign male_key = '|' | append: male_tag | downcase | append: '|'
+    assign female_key = '|' | append: female_tag | downcase | append: '|'
   -%}
-  <script type="application/json" id="catalog-list">
+  <script type="application/json" id="catalog-list" data-wrap="{{ section.settings.wrap }}">
     [
-    {%- for list_product in section.settings.collection.products limit: 50 -%}
+    {%- for list_product in list_collection.products limit: 50 -%}
       {%- assign list_tags = list_product.tags | join: '|' | downcase | prepend: '|' | append: '|' -%}
       {%- unless forloop.first -%},{%- endunless -%}
       {"u":{{ list_product.url | json }},"m":{% if list_tags contains male_key %}true{% else %}false{% endif %},"f":{% if list_tags contains female_key %}true{% else %}false{% endif %}}
@@ -230,6 +233,88 @@
     touch-action: pan-x pinch-zoom;
   }
 
+  /*
+    Product swap on scroll (assets/catalog-transitions.js). On a product page <main> is a one-cell
+    grid with overflow clipped (the "window"). During a swap the old and the new product section sit
+    stacked in that cell and slide at the same time, 300ms linear; then the old one is removed.
+    Only transform and opacity are animated.
+  */
+  main[data-template^='product'] {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    overflow: clip;
+  }
+
+  main[data-template^='product'] > .shopify-section {
+    grid-area: 1 / 1;
+  }
+
+  .catalog-exit-up {
+    animation: catalog-exit-up 0.3s linear both;
+  }
+
+  .catalog-enter-from-below {
+    animation: catalog-enter-from-below 0.3s linear both;
+  }
+
+  .catalog-exit-down {
+    animation: catalog-exit-down 0.3s linear both;
+  }
+
+  .catalog-enter-from-above {
+    animation: catalog-enter-from-above 0.3s linear both;
+  }
+
+  /* After the slide ends the name, price and dots fade in (300 to 500ms). */
+  .catalog-settle .buy-panel__head,
+  .catalog-settle .buy-panel__price,
+  .catalog-settle slideshow-controls {
+    animation: catalog-fade-in 0.4s ease-out 0.3s both;
+  }
+
+  @keyframes catalog-exit-up {
+    to {
+      transform: translateY(calc(-50% - 9rem - 50vh));
+    }
+  }
+
+  @keyframes catalog-enter-from-below {
+    from {
+      transform: translateY(calc(50% + 9rem + 50vh));
+    }
+  }
+
+  @keyframes catalog-exit-down {
+    to {
+      transform: translateY(calc(50% + 9rem + 50vh));
+    }
+  }
+
+  @keyframes catalog-enter-from-above {
+    from {
+      transform: translateY(calc(-50% - 9rem - 50vh));
+    }
+  }
+
+  /* Reduced motion: a simple crossfade instead of sliding. */
+  @media (prefers-reduced-motion: reduce) {
+    .catalog-exit-up,
+    .catalog-exit-down {
+      animation: catalog-fade-out 0.3s linear both;
+    }
+
+    .catalog-enter-from-below,
+    .catalog-enter-from-above {
+      animation: catalog-fade-in 0.3s linear both;
+    }
+
+    .catalog-settle .buy-panel__head,
+    .catalog-settle .buy-panel__price,
+    .catalog-settle slideshow-controls {
+      animation: none;
+    }
+  }
+
   /* Color picker open/close: 300ms, shared easing. */
   ::view-transition-group(root),
   ::view-transition-group(catalog-tile) {
@@ -295,45 +380,6 @@
         catalog-fade-in 0.35s cubic-bezier(0.4, 0, 0.2, 1) both;
     }
 
-    /*
-      Product swap on scroll (assets/catalog-transitions.js), like yeezy.com: 300ms, linear. The old
-      product slides out vertically while the new one slides in from the opposite side, inside a
-      clipped window; then the new content fades in.
-    */
-    html[data-catalog-swap] .product-information {
-      view-transition-name: catalog-product;
-    }
-
-    html[data-catalog-swap]::view-transition-group(catalog-product) {
-      overflow: clip;
-      animation-duration: 0.3s;
-      animation-timing-function: linear;
-    }
-
-    html[data-catalog-swap]::view-transition-old(catalog-product),
-    html[data-catalog-swap]::view-transition-new(catalog-product) {
-      mix-blend-mode: normal;
-    }
-
-    html[data-catalog-swap='next']::view-transition-old(catalog-product) {
-      animation: catalog-fly-out-up 0.3s linear both;
-    }
-
-    html[data-catalog-swap='next']::view-transition-new(catalog-product) {
-      animation:
-        catalog-fly-in-up 0.3s linear both,
-        catalog-fade-in 0.45s ease-out both;
-    }
-
-    html[data-catalog-swap='prev']::view-transition-old(catalog-product) {
-      animation: catalog-fly-out-down 0.3s linear both;
-    }
-
-    html[data-catalog-swap='prev']::view-transition-new(catalog-product) {
-      animation:
-        catalog-fly-in-down 0.3s linear both,
-        catalog-fade-in 0.45s ease-out both;
-    }
   }
 
   @keyframes catalog-fade-in {
@@ -345,30 +391,6 @@
   @keyframes catalog-fade-out {
     to {
       opacity: 0;
-    }
-  }
-
-  @keyframes catalog-fly-out-up {
-    to {
-      translate: 0 -100%;
-    }
-  }
-
-  @keyframes catalog-fly-in-up {
-    from {
-      translate: 0 100%;
-    }
-  }
-
-  @keyframes catalog-fly-out-down {
-    to {
-      translate: 0 100%;
-    }
-  }
-
-  @keyframes catalog-fly-in-down {
-    from {
-      translate: 0 -100%;
     }
   }
 
@@ -438,6 +460,12 @@
       "id": "female_tag",
       "label": "Second list product tag",
       "default": "female"
+    },
+    {
+      "type": "checkbox",
+      "id": "wrap",
+      "label": "Scrolling past the last / first product wraps around",
+      "default": false
     }
   ]
 }

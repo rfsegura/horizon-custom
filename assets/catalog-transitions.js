@@ -1,5 +1,3 @@
-import { startViewTransition } from '@theme/utilities';
-
 /**
  * Catalog page transitions.
  *
@@ -7,10 +5,8 @@ import { startViewTransition } from '@theme/utilities';
  *    (assets/view-transitions.js, base.css) and tells the zoom animation in sections/catalog-bar.liquid
  *    which direction it is going and where to zoom from (`html[data-catalog-nav]`, `--catalog-origin`).
  *    Needs the `transition_to_main_product` theme setting on.
- * 2. Product page: the mouse wheel / swipe swaps in the previous / next product of the homepage list
- *    in place, like yeezy.com (see "Product swap" below).
- *
- * Browsers without view transitions simply navigate / swap without animation.
+ * 2. Product page: wheel / swipe / ArrowUp / ArrowDown swap in the previous / next product of the
+ *    homepage list in place (see "Product swap" below).
  */
 const TYPE = 'product-image-transition';
 const ORIGIN_KEY = 'catalog-zoom-origin';
@@ -99,24 +95,48 @@ window.addEventListener('pagereveal', (event) => {
 /*
  * Product swap
  *
- * Like yeezy.com's product viewer: on a product page the wheel (or a vertical swipe) moves to the
- * next / previous product of the homepage list WITHOUT a page load. The next product's page is
- * fetched in the background, its <main> content replaces the current one inside a 300ms vertical
- * slide (a same-document view transition, CSS in sections/catalog-bar.liquid), and the address bar
- * is updated with replaceState about 300ms in, so the back button isn't filled with every product
- * you scrolled past. Anything that fails falls back to a normal page navigation.
+ * On a product page the wheel, a vertical swipe or ArrowUp / ArrowDown moves to the next / previous
+ * product of the homepage list WITHOUT a page load:
+ *   - the target product page is fetched (same origin only, handle validated) and parsed with
+ *     DOMParser; only its product section node is imported, nothing is injected as a string;
+ *   - the new section is stacked on the old one inside <main> (a one-cell grid with clipped
+ *     overflow, CSS in sections/catalog-bar.liquid) and both slide for 300ms, then the old one is removed;
+ *   - the address is replaced (replaceState, never pushState) about 300ms in.
+ * The neighbours' pages and main images are preloaded after the page settles. Anything that fails
+ * falls back to a normal navigation to the target product.
+ *
+ * Event handlers need no re-initialisation: Horizon's `on:` handlers are delegated from document,
+ * and the product components (buy panel, gallery, product form) start themselves when inserted.
  *
  * The list is printed by sections/catalog-bar.liquid as #catalog-list. Which Male / Female view it
  * follows is remembered by the homepage in sessionStorage (Male by default).
  */
 const SWAP_MS = 300;
+const COOLDOWN_MS = 250;
 const WHEEL_THRESHOLD = 40;
 const WHEEL_GESTURE_GAP_MS = 120;
 const SWIPE_THRESHOLD = 50;
 const MIN_LOCK_HEIGHT = 480;
-const OWN_SCROLL = 'cart-drawer-component, [role="dialog"], input, textarea, select';
+const OWN_SCROLL = 'cart-drawer-component, [role="dialog"], input, textarea, select, [contenteditable]';
+const PRODUCT_PATH = /^(?:\/[A-Za-z]{2}(?:-[A-Za-z0-9]{2,4})?)?\/products\/[a-z0-9][a-z0-9_-]*\/?$/i;
 
-/** @returns {{ prev: string, next: string } | null} */
+/**
+ * A same-origin product URL, or null. Only plain /products/<handle> paths are ever fetched.
+ * @param {string | undefined} url
+ */
+function safeProductUrl(url) {
+  if (!url) return null;
+
+  try {
+    const parsed = new URL(url, window.location.origin);
+    if (parsed.origin !== window.location.origin || !PRODUCT_PATH.test(parsed.pathname)) return null;
+    return new URL(parsed.pathname, window.location.origin);
+  } catch {
+    return null;
+  }
+}
+
+/** @returns {{ prev: string | null, next: string | null } | null} */
 function findNeighbours() {
   const data = document.getElementById('catalog-list');
   if (!data) return null;
@@ -128,6 +148,8 @@ function findNeighbours() {
   } catch {
     return null;
   }
+
+  const wrap = data.dataset.wrap === 'true';
 
   /** @param {string} url */
   const handleOf = (url) => url.split('/products/')[1]?.split(/[?#]/)[0];
@@ -149,17 +171,15 @@ function findNeighbours() {
   const index = items.findIndex((item) => handleOf(item.u) === current);
   if (items.length < 2 || index < 0) return null;
 
-  return {
-    prev: /** @type {string} */ (items[(index - 1 + items.length) % items.length]?.u),
-    next: /** @type {string} */ (items[(index + 1) % items.length]?.u),
-  };
+  const at = (/** @type {number} */ i) => items[wrap ? (i + items.length) % items.length : i]?.u ?? null;
+  return { prev: at(index - 1), next: at(index + 1) };
 }
 
 function initProductSwap() {
   const main = document.getElementById('MainContent');
   const root = document.documentElement;
 
-  if (!main || main.dataset.template !== 'product') return;
+  if (!main || !main.dataset.template?.startsWith('product')) return;
 
   let neighbours = findNeighbours();
   if (!neighbours) {
@@ -167,38 +187,70 @@ function initProductSwap() {
     return;
   }
 
-  /** @type {Map<string, Promise<string>>} */
+  // Everything is removed together if the page goes away.
+  const lifetime = new AbortController();
+  const { signal } = lifetime;
+  window.addEventListener('pagehide', () => lifetime.abort(), { once: true });
+
+  /** @type {Map<string, Promise<Document>>} */
   const pages = new Map();
 
-  /** @param {string} url */
+  /**
+   * Fetch and parse a product page (cached). The text only ever goes through DOMParser.
+   * @param {URL} url
+   */
   const load = (url) => {
-    let page = pages.get(url);
+    let page = pages.get(url.pathname);
     if (!page) {
-      page = fetch(url, { credentials: 'same-origin' }).then((response) => {
+      page = fetch(url.pathname, { credentials: 'same-origin', signal }).then(async (response) => {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return response.text();
+        return new DOMParser().parseFromString(await response.text(), 'text/html');
       });
-      page.catch(() => pages.delete(url));
-      pages.set(url, page);
+      page.catch(() => pages.delete(url.pathname));
+      pages.set(url.pathname, page);
     }
     return page;
   };
 
-  // Keep the neighbours warm so a scroll never waits on the network.
+  /** The product section node in a parsed page: the one section inside <main> that holds the viewer. */
+  const viewerOf = (/** @type {Document} */ doc) =>
+    [...(doc.getElementById('MainContent')?.querySelectorAll(':scope > .shopify-section') ?? [])].find((section) =>
+      section.querySelector('.product-information')
+    ) ?? null;
+
+  // After the page settles, preload the neighbours' HTML and their main image.
   const warm = () => {
-    if (!neighbours) return;
-    for (const url of [neighbours.prev, neighbours.next]) load(url).catch(() => {});
+    const idle = window.requestIdleCallback ?? ((/** @type {() => void} */ fn) => setTimeout(fn, 300));
+    idle(() => {
+      for (const target of [neighbours?.prev, neighbours?.next]) {
+        const url = safeProductUrl(target ?? undefined);
+        if (!url) continue;
+
+        load(url)
+          .then((doc) => {
+            const image = viewerOf(doc)?.querySelector('.product-information__media img');
+            if (!(image instanceof HTMLImageElement)) return;
+
+            const preload = new Image();
+            preload.sizes = image.sizes;
+            preload.srcset = image.srcset;
+            preload.src = image.src;
+          })
+          .catch(() => {});
+      }
+    });
   };
   warm();
 
   // Like yeezy.com the page is one screen tall and doesn't scroll (unless the screen is very short).
   const syncLock = () => root.classList.toggle('catalog-product-lock', window.innerHeight >= MIN_LOCK_HEIGHT);
   syncLock();
-  window.addEventListener('resize', syncLock);
+  window.addEventListener('resize', syncLock, { signal });
+  signal.addEventListener('abort', () => root.classList.remove('catalog-product-lock'));
 
   let busy = false;
 
-  /** True while the page is locked and the event is not inside something with its own scrolling. */
+  /** True while the page is locked and the event isn't inside something that scrolls on its own. */
   const locked = (/** @type {EventTarget | null} */ target) => {
     if (!root.classList.contains('catalog-product-lock') || document.querySelector('dialog[open]')) return false;
     if (!(target instanceof Element)) return true;
@@ -210,51 +262,57 @@ function initProductSwap() {
 
   /** @param {'prev' | 'next'} direction */
   async function swap(direction) {
-    const url = neighbours?.[direction];
+    const url = safeProductUrl(neighbours?.[direction] ?? undefined);
     if (!url || busy) return;
     busy = true;
 
     try {
-      const html = await load(url);
-      const incoming = new DOMParser().parseFromString(html, 'text/html');
-      const content = incoming.getElementById('MainContent');
-      if (!content) throw new Error('No main content in the fetched page');
+      const incoming = await load(url);
+      const section = viewerOf(incoming);
+      const outgoing = [...main.querySelectorAll(':scope > .shopify-section')].find((el) =>
+        el.querySelector('.product-information')
+      );
+      if (!section || !outgoing) throw new Error('Product section not found');
 
-      root.dataset.catalogSwap = direction;
+      const down = direction === 'next';
+      const entering = /** @type {HTMLElement} */ (document.importNode(section, true));
 
-      await startViewTransition(() => {
-        main.replaceChildren(...document.importNode(content, true).childNodes);
-        document.title = incoming.title;
-        window.scrollTo({ top: 0, behavior: 'instant' });
-        document.querySelector('.page-wrapper')?.scrollTo({ top: 0, behavior: 'instant' });
+      outgoing.classList.add(down ? 'catalog-exit-up' : 'catalog-exit-down');
+      entering.classList.add(down ? 'catalog-enter-from-below' : 'catalog-enter-from-above', 'catalog-settle');
+      main.append(entering);
 
-        // About 300ms in, like yeezy.com: replace (not push) the address so Back isn't filled
-        // with every product that was scrolled past.
-        setTimeout(() => {
-          history.replaceState(history.state, '', url);
-          neighbours = findNeighbours();
-          warm();
-        }, SWAP_MS);
-      });
+      document.title = incoming.title;
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      document.querySelector('.page-wrapper')?.scrollTo({ top: 0, behavior: 'instant' });
+
+      // About 300ms in: the slide has finished. replaceState, never pushState, so Back isn't flooded.
+      await new Promise((resolve) => setTimeout(resolve, SWAP_MS));
+
+      history.replaceState(history.state, '', url.pathname);
+      outgoing.remove();
+      entering.classList.remove('catalog-enter-from-below', 'catalog-enter-from-above');
+
+      neighbours = findNeighbours();
+      warm();
     } catch (error) {
-      console.warn('[catalog] in-page product swap failed, navigating instead.', error);
-      window.location.assign(url);
+      if (!signal.aborted) {
+        console.warn('[catalog] in-page product swap failed, navigating instead.', error);
+        window.location.assign(url.pathname);
+      }
       return;
-    } finally {
-      delete root.dataset.catalogSwap;
     }
 
-    // Settle: ignore further scrolling until the new product has finished fading in.
-    setTimeout(() => (busy = false), SWAP_MS);
+    // Cooldown so one gesture (and its inertia) never changes more than one product.
+    setTimeout(() => (busy = false), COOLDOWN_MS);
   }
 
-  // Wheel: one swap per scroll gesture. A gesture is a run of wheel events with gaps under
-  // WHEEL_GESTURE_GAP_MS, so trackpad inertia after a swap doesn't trigger another one.
+  // Wheel: non-passive, on the viewer only. One swap per scroll gesture; a gesture is a run of wheel
+  // events with gaps under WHEEL_GESTURE_GAP_MS, so trackpad inertia can't trigger a second swap.
   let wheelTotal = 0;
   let lastWheel = 0;
   let gestureUsed = false;
 
-  window.addEventListener(
+  main.addEventListener(
     'wheel',
     (event) => {
       if (event.ctrlKey || !locked(event.target)) return;
@@ -271,28 +329,29 @@ function initProductSwap() {
 
       if (busy || gestureUsed) return;
 
-      wheelTotal += event.deltaY;
+      wheelTotal += event.deltaMode === 1 ? event.deltaY * 16 : event.deltaY;
       if (Math.abs(wheelTotal) >= WHEEL_THRESHOLD) {
         gestureUsed = true;
         swap(wheelTotal > 0 ? 'next' : 'prev');
       }
     },
-    { passive: false }
+    { passive: false, signal }
   );
 
+  // Touch: a mostly vertical swipe. Swipe up = next, swipe down = previous.
   let touchX = 0;
   let touchY = 0;
 
-  window.addEventListener(
+  main.addEventListener(
     'touchstart',
     (event) => {
       touchX = event.touches[0]?.clientX ?? 0;
       touchY = event.touches[0]?.clientY ?? 0;
     },
-    { passive: true }
+    { passive: true, signal }
   );
 
-  window.addEventListener(
+  main.addEventListener(
     'touchend',
     (event) => {
       if (busy || !locked(event.target)) return;
@@ -303,10 +362,24 @@ function initProductSwap() {
       const dx = touchX - touch.clientX;
       const dy = touchY - touch.clientY;
 
-      // Mostly vertical only; horizontal swipes belong to the image carousel.
+      // Horizontal swipes belong to the image carousel.
       if (Math.abs(dy) >= SWIPE_THRESHOLD && Math.abs(dy) > Math.abs(dx) * 1.5) swap(dy > 0 ? 'next' : 'prev');
     },
-    { passive: true }
+    { passive: true, signal }
+  );
+
+  // Keyboard: ArrowDown = next, ArrowUp = previous. Left / Right stay with the image gallery.
+  document.addEventListener(
+    'keydown',
+    (event) => {
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+      if (busy || !locked(event.target)) return;
+
+      event.preventDefault();
+      swap(event.key === 'ArrowDown' ? 'next' : 'prev');
+    },
+    { signal }
   );
 
   console.info('[catalog] scroll navigation ready:', neighbours);
