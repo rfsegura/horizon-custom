@@ -190,7 +190,7 @@ function initProductSwap() {
   // Everything is removed together if the page goes away.
   const lifetime = new AbortController();
   const { signal } = lifetime;
-  window.addEventListener('pagehide', () => lifetime.abort(), { once: true });
+  window.addEventListener('pagehide', (event) => !event.persisted && lifetime.abort());
 
   /** @type {Map<string, Promise<Document>>} */
   const pages = new Map();
@@ -240,25 +240,58 @@ function initProductSwap() {
       }
     });
   };
-  warm();
 
   // Like yeezy.com the page is one screen tall and doesn't scroll (unless the screen is very short).
-  const syncLock = () => root.classList.toggle('catalog-product-lock', window.innerHeight >= MIN_LOCK_HEIGHT);
+  // Checked again whenever it matters: a prerendered page can report a 0px window while it loads.
+  const tallEnough = () => window.innerHeight >= MIN_LOCK_HEIGHT;
+  const syncLock = () => root.classList.toggle('catalog-product-lock', tallEnough());
   syncLock();
   window.addEventListener('resize', syncLock, { signal });
+  window.addEventListener('pageshow', syncLock, { signal });
   signal.addEventListener('abort', () => root.classList.remove('catalog-product-lock'));
+
+  // Don't fetch the neighbours while this page is only being prerendered.
+  if (document.prerendering) {
+    document.addEventListener(
+      'prerenderingchange',
+      () => {
+        syncLock();
+        warm();
+      },
+      { once: true }
+    );
+  } else {
+    warm();
+  }
 
   let busy = false;
 
-  /** True while the page is locked and the event isn't inside something that scrolls on its own. */
-  const locked = (/** @type {EventTarget | null} */ target) => {
-    if (!root.classList.contains('catalog-product-lock') || document.querySelector('dialog[open]')) return false;
-    if (!(target instanceof Element)) return true;
-    if (target.closest(OWN_SCROLL)) return false;
+  let notes = 0;
 
-    const info = target.closest('.buy-panel__pane--info');
-    return !(info instanceof HTMLElement && info.scrollHeight > info.clientHeight);
+  /**
+   * Why a scroll / swipe / key press must be left alone, or null when it should change product.
+   * @param {EventTarget | null} target
+   */
+  const blockedBy = (target) => {
+    let reason = null;
+
+    if (!tallEnough()) {
+      reason = `the window is shorter than ${MIN_LOCK_HEIGHT}px (${window.innerHeight}px)`;
+    } else if (document.querySelector('dialog[open]')) {
+      reason = 'a dialog is open';
+    } else if (target instanceof Element && target.closest(OWN_SCROLL)) {
+      reason = `the event is inside ${target.closest(OWN_SCROLL)?.tagName.toLowerCase()}`;
+    } else if (target instanceof Element) {
+      const info = target.closest('.buy-panel__pane--info');
+      if (info instanceof HTMLElement && info.scrollHeight > info.clientHeight) reason = 'the description is scrolling';
+    }
+
+    if (reason && notes++ < 3) console.info(`[catalog] scroll navigation skipped: ${reason}.`);
+    if (!reason) syncLock();
+    return reason;
   };
+
+  const locked = (/** @type {EventTarget | null} */ target) => blockedBy(target) === null;
 
   /** @param {'prev' | 'next'} direction */
   async function swap(direction) {
