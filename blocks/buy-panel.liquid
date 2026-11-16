@@ -225,7 +225,6 @@
   /* Each size holds its label and its numeral in one grid cell; "?" rolls one out and the other in. */
   .buy-panel__size {
     display: inline-grid;
-    justify-self: center;
     transform-origin: 50% 50%;
     animation: buy-panel-spread 0.3s var(--ease) both;
   }
@@ -265,20 +264,25 @@
   }
 
   /*
-    Sizes fill the full width of the panel in equal columns, each centred in its column, so the gaps
-    between them are always even. --n is the number of sizes, --i this size's position.
+    Sizes span the full width of the panel: the first sits under the "?", the last under the "X", and
+    the ones between are spaced evenly. --n is the number of sizes, --i this size's position.
   */
   .buy-panel__sizes {
     container-type: inline-size;
-    display: grid;
-    grid-template-columns: repeat(var(--n, 1), minmax(0, 1fr));
+    display: flex;
+    justify-content: space-between;
     width: 100%;
   }
 
-  /* Sizes start bunched in the middle (offset by their distance from the centre), faint, and slide out. */
+  .buy-panel__size:only-child {
+    margin-inline: auto;
+    animation: none;
+  }
+
+  /* Sizes start bunched in the middle (offset by their distance from it), faint, and slide out. */
   @keyframes buy-panel-spread {
     from {
-      translate: calc(((var(--n) - 1) / 2 - var(--i)) * 100cqw / var(--n)) 0;
+      translate: calc((0.5 - var(--i) / max(var(--n) - 1, 1)) * (100cqw - 1.5em)) 0;
       opacity: 0.3;
     }
   }

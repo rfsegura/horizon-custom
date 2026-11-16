@@ -76,7 +76,7 @@
   */
   @media screen and (min-width: 990px) {
     .product-information__media {
-      --arrow-gutter: 6rem;
+      --arrow-gutter: 7.2rem;
 
       width: calc(min(25.6%, (100dvh - 20rem) / 1.25) + 2 * var(--arrow-gutter)) !important;
     }
@@ -104,6 +104,21 @@
   @media screen and (max-width: 989px) and (orientation: landscape) {
     .product-information__media {
       --arrow-gutter: 25%;
+    }
+  }
+
+  /* Tablet in portrait: the image is 30% smaller than the phone size (80% x 0.7 = 56%). */
+  @media screen and (min-width: 750px) and (max-width: 989px) and (orientation: portrait) {
+    .product-information__media {
+      --arrow-gutter: 22%;
+    }
+  }
+
+  /* Horizon hides the product arrows on phones (it expects swipe + dots); with the dots gone the
+     arrows are the only way to change image, so show them. */
+  @media screen and (max-width: 749px) {
+    media-gallery slideshow-arrows.mobile\:hidden {
+      display: flex !important;
     }
   }
 
