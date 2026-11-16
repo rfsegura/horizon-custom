@@ -25,7 +25,7 @@
 
   /*
     Product page: image on top, content underneath, at every width. This applies Horizon's mobile
-    layout on desktop too. !important beats the left/right/equal-columns desktop rules in
+    layout on tablet and desktop too. !important beats the left/right/equal-columns desktop rules in
     snippets/product-information-content.liquid without editing that upstream file.
   */
   @media screen and (min-width: 750px) {
@@ -38,29 +38,17 @@
     .product-details {
       grid-column: 2 / 3 !important;
       padding-inline: 0 !important;
-      order: unset !important;
+      min-width: 0 !important;
+      justify-self: center;
     }
 
     .product-information__media {
       order: 0 !important;
     }
 
-    /* Desktop: the buy panel is 35.84% of the column, the image 25.6% (plus the arrow gutters), both
-       centered. The image is also capped by the viewport height so image + panel always fit. */
-    .product-information__media,
     .product-details {
-      min-width: 0 !important;
-      justify-self: center;
-    }
-
-    .product-details {
-      width: 35.84% !important;
       position: static !important;
       order: 1 !important;
-    }
-
-    .product-information__media {
-      width: calc(min(25.6%, (100dvh - 20rem) / 1.25) + 2 * var(--arrow-gutter)) !important;
     }
   }
 
@@ -72,10 +60,6 @@
   }
 
   /* Space reserved either side of the image for the arrows, so they never overlap it. */
-  .product-information__media {
-    --arrow-gutter: 4.5rem;
-  }
-
   media-gallery slideshow-container {
     padding-inline: var(--arrow-gutter);
   }
@@ -85,16 +69,57 @@
     display: none;
   }
 
-  @media screen and (max-width: 749px) {
+  /*
+    Desktop / laptop (990px and up): buy panel is 28.67% of the column, the image 25.6% plus its
+    arrow gutters, both centered. The image is also capped by the viewport height so image + panel
+    always fit on one screen.
+  */
+  @media screen and (min-width: 990px) {
     .product-information__media {
-      width: calc(min(70%, (100dvh - 20rem) / 1.25) + 2 * var(--arrow-gutter)) !important;
-      min-width: 0 !important;
-      justify-self: center;
+      --arrow-gutter: 6rem;
+
+      width: calc(min(25.6%, (100dvh - 20rem) / 1.25) + 2 * var(--arrow-gutter)) !important;
     }
 
     .product-details {
-      width: 72% !important;
-      justify-self: center;
+      width: 28.67% !important;
+    }
+  }
+
+  /*
+    Phones and tablets (under 990px): the image area spans the screen and the image inside it is 80%
+    of the screen width in portrait, 50% in landscape (the rest is the arrow gutters, in %).
+  */
+  @media screen and (max-width: 989px) {
+    .product-information__media {
+      --arrow-gutter: 10%;
+
+      grid-column: 1 / -1 !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      justify-self: stretch;
+    }
+  }
+
+  @media screen and (max-width: 989px) and (orientation: landscape) {
+    .product-information__media {
+      --arrow-gutter: 25%;
+    }
+  }
+
+  /* Phones (under 750px): the buy panel uses the full width with 2rem either side. */
+  @media screen and (max-width: 749px) {
+    .product-details {
+      grid-column: 1 / -1 !important;
+      width: 100% !important;
+      padding-inline: 2rem !important;
+    }
+  }
+
+  /* Tablets (750px to 989px): the buy panel is 60% of the column. */
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .product-details {
+      width: 60% !important;
     }
   }
 
@@ -103,7 +128,7 @@
   media-gallery .slideshow-control {
     scale: none;
     transform: none;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     line-height: 1;
   }
 

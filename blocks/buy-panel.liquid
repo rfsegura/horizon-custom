@@ -25,6 +25,7 @@
   endfor
 
   assign any_available = false
+  assign size_count = 0
 -%}
 
 {%- capture size_buttons -%}
@@ -49,6 +50,8 @@
           assign any_available = true
         endif
 
+        assign size_count = size_count | plus: 1
+
         # Shown instead of the size while "?" is hovered (cosmetic). Falls back to the size itself.
         assign numeral = variant.metafields.custom.variant_size.value | default: label
       -%}
@@ -57,6 +60,7 @@
         class="buy-panel__size button-unstyled"
         data-action="size"
         data-variant-id="{{ variant.id }}"
+        style="--i: {{ size_count | minus: 1 }}"
         aria-label="{{ label | upcase }}"
         {% unless variant.available %}
           disabled
@@ -149,7 +153,7 @@
       {%- endcomment -%}
       <div class="buy-panel__stack" data-show="size info adding">
         <div class="buy-panel__pane buy-panel__pane--size" data-show="size">
-          <div class="buy-panel__sizes" role="group" aria-label="Select size">
+          <div class="buy-panel__sizes" role="group" aria-label="Select size" style="--n: {{ size_count }}">
             {{ size_buttons }}
           </div>
           <button
@@ -181,6 +185,7 @@
     flex-direction: column;
     align-items: center;
     gap: 12px;
+    font-size: 1.125rem;
     text-align: center;
     text-transform: uppercase;
   }
@@ -195,7 +200,7 @@
     position: absolute;
     top: 50%;
     translate: 0 -50%;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     line-height: 1;
     cursor: pointer;
   }
@@ -220,7 +225,9 @@
   /* Each size holds its label and its numeral in one grid cell; "?" rolls one out and the other in. */
   .buy-panel__size {
     display: inline-grid;
+    justify-self: center;
     transform-origin: 50% 50%;
+    animation: buy-panel-spread 0.3s var(--ease) both;
   }
 
   .buy-panel__label,
@@ -252,24 +259,26 @@
   }
 
   .buy-panel__plus {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     line-height: 1;
     cursor: pointer;
   }
 
+  /*
+    Sizes fill the full width of the panel in equal columns, each centred in its column, so the gaps
+    between them are always even. --n is the number of sizes, --i this size's position.
+  */
   .buy-panel__sizes {
-    --size-gap: clamp(2rem, 12vw, 5rem);
-
-    display: flex;
-    justify-content: center;
-    gap: var(--size-gap);
-    animation: buy-panel-spread 0.3s var(--ease) both;
+    container-type: inline-size;
+    display: grid;
+    grid-template-columns: repeat(var(--n, 1), minmax(0, 1fr));
+    width: 100%;
   }
 
-  /* Sizes start bunched in the middle, faint, and slide out to their final spots. */
+  /* Sizes start bunched in the middle (offset by their distance from the centre), faint, and slide out. */
   @keyframes buy-panel-spread {
     from {
-      gap: 0;
+      translate: calc(((var(--n) - 1) / 2 - var(--i)) * 100cqw / var(--n)) 0;
       opacity: 0.3;
     }
   }
@@ -355,7 +364,7 @@
     animation: buy-panel-out 0.35s var(--ease) both;
   }
 
-  .buy-panel[data-leaving] .buy-panel__sizes,
+  .buy-panel[data-leaving] .buy-panel__size,
   .buy-panel[data-leaving] .buy-panel__info-link {
     animation: none;
   }
@@ -395,7 +404,7 @@
     }
 
     .buy-panel__info,
-    .buy-panel__sizes,
+    .buy-panel__size,
     .buy-panel__info-link,
     .buy-panel[data-leaving] .buy-panel__pane--size {
       animation: none;
