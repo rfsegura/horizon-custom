@@ -14,10 +14,7 @@
     "catalog_bar": {
       "type": "catalog-bar",
       "settings": {
-        "back_label": "Back to catalog",
-        "collection": "all",
-        "male_tag": "male",
-        "female_tag": "female"
+        "back_label": "Back to catalog"
       }
     },
     "header_announcements_9jGBFp": {

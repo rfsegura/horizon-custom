@@ -73,11 +73,46 @@
   {%- endfor -%}
 {%- endcapture -%}
 
+{%- comment -%}
+  Colors of this product in option order, one link per color (its first variant), for scrolling
+  between colors on the product page (assets/catalog-transitions.js). Printed inside the section so
+  every swapped-in page brings its own list.
+{%- endcomment -%}
+{%- assign color_count = 0 -%}
+{%- assign current_color = 0 -%}
+{%- assign seen_colors = '|' -%}
+{%- capture colors_json -%}
+  {%- if color_index != nil -%}
+    {%- for variant in product.variants -%}
+      {%- assign color = variant.options[color_index] -%}
+      {%- assign color_key = color | downcase | prepend: '|' | append: '|' -%}
+      {%- unless seen_colors contains color_key -%}
+        {%- assign seen_colors = seen_colors | append: color_key -%}
+        {%- if color == selected.options[color_index] -%}{%- assign current_color = color_count -%}{%- endif -%}
+        {%- if color_count > 0 -%},{%- endif -%}
+        {"n":{{ color | json }},"u":{{ variant.url | json }}}
+        {%- assign color_count = color_count | plus: 1 -%}
+      {%- endunless -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+
 {%- if product != blank -%}
   <script
     type="module"
     src="{{ 'buy-panel.js' | asset_url }}"
   ></script>
+
+  {%- if color_count > 1 -%}
+    <script
+      type="application/json"
+      data-catalog-colors
+      data-current="{{ current_color }}"
+      data-wrap="{{ block.settings.wrap }}"
+    >
+      [{{ colors_json }}]
+    </script>
+  {%- endif -%}
 
   <buy-panel
     class="buy-panel"
@@ -423,7 +458,14 @@
 {
   "name": "Buy panel",
   "tag": null,
-  "settings": [],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "wrap",
+      "label": "Scrolling past the last / first color wraps around",
+      "default": false
+    }
+  ],
   "presets": [
     {
       "name": "Buy panel"

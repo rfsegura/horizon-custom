@@ -40,31 +40,6 @@
   }
 </script>
 
-{%- comment -%}
-  Scrolling / swiping on a product page moves to the previous / next product of the homepage list
-  (assets/catalog-transitions.js). This prints that list once, in homepage order, with the gender
-  views (male / female) each product appears in, so the script can follow whichever view the visitor
-  came from. Same collection and tags as the catalog section.
-{%- endcomment -%}
-{%- if request.page_type == 'product' -%}
-  {%- liquid
-    assign list_collection = section.settings.collection | default: collections['all']
-    assign male_tag = section.settings.male_tag | default: 'male'
-    assign female_tag = section.settings.female_tag | default: 'female'
-    assign male_key = '|' | append: male_tag | downcase | append: '|'
-    assign female_key = '|' | append: female_tag | downcase | append: '|'
-  -%}
-  <script type="application/json" id="catalog-list" data-wrap="{{ section.settings.wrap }}">
-    [
-    {%- for list_product in list_collection.products limit: 50 -%}
-      {%- assign list_tags = list_product.tags | join: '|' | downcase | prepend: '|' | append: '|' -%}
-      {%- unless forloop.first -%},{%- endunless -%}
-      {"u":{{ list_product.url | json }},"m":{% if list_tags contains male_key %}true{% else %}false{% endif %},"f":{% if list_tags contains female_key %}true{% else %}false{% endif %}}
-    {%- endfor -%}
-    ]
-  </script>
-{%- endif -%}
-
 <div class="catalog-bar">
   <a href="{{ routes.root_url }}" class="catalog-bar__back" aria-label="{{ section.settings.back_label }}">
     {% render 'catalog-menu-icon', back: true %}
@@ -441,29 +416,6 @@
       "id": "back_label",
       "label": "Back arrow accessibility label",
       "default": "Back to catalog"
-    },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Product list for scrolling between products (same collection as the homepage)"
-    },
-    {
-      "type": "text",
-      "id": "male_tag",
-      "label": "First list product tag",
-      "default": "male"
-    },
-    {
-      "type": "text",
-      "id": "female_tag",
-      "label": "Second list product tag",
-      "default": "female"
-    },
-    {
-      "type": "checkbox",
-      "id": "wrap",
-      "label": "Scrolling past the last / first product wraps around",
-      "default": false
     }
   ]
 }

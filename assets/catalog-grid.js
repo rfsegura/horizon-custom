@@ -10,18 +10,7 @@ class CatalogGrid extends HTMLElement {
   /** @type {Element | null} The grid tile whose colors are currently shown */
   #openedTile = null;
 
-  /** The product page scrolls through the list of the view the visitor came from. */
-  #rememberGender(/** @type {string} */ gender) {
-    try {
-      sessionStorage.setItem('catalog-gender', gender);
-    } catch {
-      // Storage blocked: the product page falls back to the default list.
-    }
-  }
-
   connectedCallback() {
-    // The page always loads on its first view (male by default).
-    this.#rememberGender(this.querySelector('[data-gender-btn]')?.getAttribute('data-gender-btn') ?? 'male');
 
     this.addEventListener('click', (event) => {
       const target = /** @type {Element} */ (event.target);
@@ -122,7 +111,6 @@ class CatalogGrid extends HTMLElement {
 
   /** @param {string} gender */
   #showGender(gender) {
-    this.#rememberGender(gender);
 
     for (const tile of this.querySelectorAll('[data-gender]')) {
       const genders = /** @type {HTMLElement} */ (tile).dataset.gender?.split(' ') ?? [];

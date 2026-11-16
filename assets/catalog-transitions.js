@@ -5,12 +5,11 @@
  *    (assets/view-transitions.js, base.css) and tells the zoom animation in sections/catalog-bar.liquid
  *    which direction it is going and where to zoom from (`html[data-catalog-nav]`, `--catalog-origin`).
  *    Needs the `transition_to_main_product` theme setting on.
- * 2. Product page: wheel / swipe / ArrowUp / ArrowDown swap in the previous / next product of the
- *    homepage list in place (see "Product swap" below).
+ * 2. Product page: wheel / swipe / ArrowUp / ArrowDown swap in the previous / next color of the same
+ *    product in place (see "Product swap" below).
  */
 const TYPE = 'product-image-transition';
 const ORIGIN_KEY = 'catalog-zoom-origin';
-const GENDER_KEY = 'catalog-gender';
 
 /** @param {Element | null | undefined} element */
 function markTriggered(element) {
@@ -93,23 +92,22 @@ window.addEventListener('pagereveal', (event) => {
 });
 
 /*
- * Product swap
+ * Product swap: scroll between the colors of this product
  *
  * On a product page the wheel, a vertical swipe or ArrowUp / ArrowDown moves to the next / previous
- * product of the homepage list WITHOUT a page load:
- *   - the target product page is fetched (same origin only, handle validated) and parsed with
- *     DOMParser; only its product section node is imported, nothing is injected as a string;
+ * COLOR of the same product WITHOUT a page load:
+ *   - each color is a variant link printed by blocks/buy-panel.liquid (script[data-catalog-colors]);
+ *   - the target page (same product, ?variant=<first variant of that color>) is fetched (same origin
+ *     only, path and variant id validated) and parsed with DOMParser; only its product section node
+ *     is imported, nothing is injected as a string;
  *   - the new section is stacked on the old one inside <main> (a one-cell grid with clipped
  *     overflow, CSS in sections/catalog-bar.liquid) and both slide for 300ms, then the old one is removed;
  *   - the address is replaced (replaceState, never pushState) about 300ms in.
- * The neighbours' pages and main images are preloaded after the page settles. Anything that fails
- * falls back to a normal navigation to the target product.
+ * The neighbouring colors' pages and main images are preloaded after the page settles. Anything that
+ * fails falls back to a normal navigation to that color.
  *
  * Event handlers need no re-initialisation: Horizon's `on:` handlers are delegated from document,
  * and the product components (buy panel, gallery, product form) start themselves when inserted.
- *
- * The list is printed by sections/catalog-bar.liquid as #catalog-list. Which Male / Female view it
- * follows is remembered by the homepage in sessionStorage (Male by default).
  */
 const SWAP_MS = 300;
 const COOLDOWN_MS = 250;
@@ -121,58 +119,51 @@ const OWN_SCROLL = 'cart-drawer-component, [role="dialog"], input, textarea, sel
 const PRODUCT_PATH = /^(?:\/[A-Za-z]{2}(?:-[A-Za-z0-9]{2,4})?)?\/products\/[a-z0-9][a-z0-9_-]*\/?$/i;
 
 /**
- * A same-origin product URL, or null. Only plain /products/<handle> paths are ever fetched.
- * @param {string | undefined} url
+ * A same-origin /products/<handle>[?variant=<digits>] URL, or null. Nothing else is ever fetched.
+ * @param {string | null | undefined} url
  */
-function safeProductUrl(url) {
+function safeVariantUrl(url) {
   if (!url) return null;
 
   try {
     const parsed = new URL(url, window.location.origin);
     if (parsed.origin !== window.location.origin || !PRODUCT_PATH.test(parsed.pathname)) return null;
-    return new URL(parsed.pathname, window.location.origin);
+
+    const variant = parsed.searchParams.get('variant');
+    if (variant !== null && !/^\d+$/.test(variant)) return null;
+
+    const safe = new URL(parsed.pathname, window.location.origin);
+    if (variant) safe.searchParams.set('variant', variant);
+    return safe;
   } catch {
     return null;
   }
 }
 
-/** @returns {{ prev: string | null, next: string | null } | null} */
-function findNeighbours() {
-  const data = document.getElementById('catalog-list');
+/**
+ * The previous / next color's URL, read from the colors list inside the given product section.
+ * @param {ParentNode} scope
+ * @returns {{ prev: string | null, next: string | null } | null}
+ */
+function readColors(scope) {
+  const data = scope.querySelector('script[data-catalog-colors]');
   if (!data) return null;
 
-  /** @type {{ u: string, m: boolean, f: boolean }[]} */
-  let list;
+  /** @type {{ n: string, u: string }[]} */
+  let colors;
   try {
-    list = JSON.parse(data.textContent ?? '[]');
+    colors = JSON.parse(data.textContent ?? '[]');
   } catch {
     return null;
   }
 
-  const wrap = data.dataset.wrap === 'true';
+  const current = Number(data.getAttribute('data-current'));
+  if (!Array.isArray(colors) || colors.length < 2 || !colors[current]) return null;
 
-  /** @param {string} url */
-  const handleOf = (url) => url.split('/products/')[1]?.split(/[?#]/)[0];
-  const current = handleOf(window.location.pathname);
-  const me = list.find((item) => handleOf(item.u) === current);
-  if (!me) return null;
+  const wrap = data.getAttribute('data-wrap') === 'true';
+  const at = (/** @type {number} */ i) => colors[wrap ? (i + colors.length) % colors.length : i]?.u ?? null;
 
-  let preferred = 'male';
-  try {
-    preferred = sessionStorage.getItem(GENDER_KEY) ?? 'male';
-  } catch {
-    // Storage blocked: default list.
-  }
-
-  // The view the visitor came from, if this product is in it; otherwise whichever view it is in.
-  const gender = (preferred === 'female' ? me.f : me.m) ? preferred : me.m ? 'male' : 'female';
-  const key = gender === 'female' ? 'f' : 'm';
-  const items = list.filter((item) => item[key]);
-  const index = items.findIndex((item) => handleOf(item.u) === current);
-  if (items.length < 2 || index < 0) return null;
-
-  const at = (/** @type {number} */ i) => items[wrap ? (i + items.length) % items.length : i]?.u ?? null;
-  return { prev: at(index - 1), next: at(index + 1) };
+  return { prev: at(current - 1), next: at(current + 1) };
 }
 
 function initProductSwap() {
@@ -181,13 +172,13 @@ function initProductSwap() {
 
   if (!main || !main.dataset.template?.startsWith('product')) return;
 
-  let neighbours = findNeighbours();
+  let neighbours = readColors(main);
   if (!neighbours) {
-    console.info('[catalog] scroll navigation is off: this product is not in the homepage list (#catalog-list).');
+    console.info('[catalog] scroll navigation is off: this product has fewer than two colors.');
     return;
   }
 
-  // Everything is removed together if the page goes away.
+  // Everything is removed together if the page goes away (but not when it only enters the back/forward cache).
   const lifetime = new AbortController();
   const { signal } = lifetime;
   window.addEventListener('pagehide', (event) => !event.persisted && lifetime.abort());
@@ -196,39 +187,41 @@ function initProductSwap() {
   const pages = new Map();
 
   /**
-   * Fetch and parse a product page (cached). The text only ever goes through DOMParser.
+   * Fetch and parse a color's page (cached). The text only ever goes through DOMParser.
    * @param {URL} url
    */
   const load = (url) => {
-    let page = pages.get(url.pathname);
+    const key = url.pathname + url.search;
+    let page = pages.get(key);
     if (!page) {
-      page = fetch(url.pathname, { credentials: 'same-origin', signal }).then(async (response) => {
+      page = fetch(key, { credentials: 'same-origin', signal }).then(async (response) => {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         return new DOMParser().parseFromString(await response.text(), 'text/html');
       });
-      page.catch(() => pages.delete(url.pathname));
-      pages.set(url.pathname, page);
+      page.catch(() => pages.delete(key));
+      pages.set(key, page);
     }
     return page;
   };
 
-  /** The product section node in a parsed page: the one section inside <main> that holds the viewer. */
-  const viewerOf = (/** @type {Document} */ doc) =>
-    [...(doc.getElementById('MainContent')?.querySelectorAll(':scope > .shopify-section') ?? [])].find((section) =>
+  /** The product section node of a page: the section inside <main> that holds the viewer. */
+  const viewerOf = (/** @type {ParentNode} */ scope) =>
+    [...scope.querySelectorAll(':scope > .shopify-section')].find((section) =>
       section.querySelector('.product-information')
     ) ?? null;
 
-  // After the page settles, preload the neighbours' HTML and their main image.
+  // After the page settles, preload the neighbouring colors' HTML and their main image.
   const warm = () => {
     const idle = window.requestIdleCallback ?? ((/** @type {() => void} */ fn) => setTimeout(fn, 300));
     idle(() => {
       for (const target of [neighbours?.prev, neighbours?.next]) {
-        const url = safeProductUrl(target ?? undefined);
+        const url = safeVariantUrl(target);
         if (!url) continue;
 
         load(url)
           .then((doc) => {
-            const image = viewerOf(doc)?.querySelector('.product-information__media img');
+            const section = viewerOf(doc.getElementById('MainContent') ?? doc);
+            const image = section?.querySelector('.product-information__media img');
             if (!(image instanceof HTMLImageElement)) return;
 
             const preload = new Image();
@@ -265,11 +258,10 @@ function initProductSwap() {
   }
 
   let busy = false;
-
   let notes = 0;
 
   /**
-   * Why a scroll / swipe / key press must be left alone, or null when it should change product.
+   * Why a scroll / swipe / key press must be left alone, or null when it should change color.
    * @param {EventTarget | null} target
    */
   const blockedBy = (target) => {
@@ -295,16 +287,16 @@ function initProductSwap() {
 
   /** @param {'prev' | 'next'} direction */
   async function swap(direction) {
-    const url = safeProductUrl(neighbours?.[direction] ?? undefined);
+    const url = safeVariantUrl(neighbours?.[direction]);
     if (!url || busy) return;
     busy = true;
 
+    const address = url.pathname + url.search;
+
     try {
       const incoming = await load(url);
-      const section = viewerOf(incoming);
-      const outgoing = [...main.querySelectorAll(':scope > .shopify-section')].find((el) =>
-        el.querySelector('.product-information')
-      );
+      const section = viewerOf(incoming.getElementById('MainContent') ?? incoming);
+      const outgoing = viewerOf(main);
       if (!section || !outgoing) throw new Error('Product section not found');
 
       const down = direction === 'next';
@@ -321,21 +313,21 @@ function initProductSwap() {
       // About 300ms in: the slide has finished. replaceState, never pushState, so Back isn't flooded.
       await new Promise((resolve) => setTimeout(resolve, SWAP_MS));
 
-      history.replaceState(history.state, '', url.pathname);
+      history.replaceState(history.state, '', address);
       outgoing.remove();
       entering.classList.remove('catalog-enter-from-below', 'catalog-enter-from-above');
 
-      neighbours = findNeighbours();
+      neighbours = readColors(main);
       warm();
     } catch (error) {
       if (!signal.aborted) {
-        console.warn('[catalog] in-page product swap failed, navigating instead.', error);
-        window.location.assign(url.pathname);
+        console.warn('[catalog] in-page color swap failed, navigating instead.', error);
+        window.location.assign(address);
       }
       return;
     }
 
-    // Cooldown so one gesture (and its inertia) never changes more than one product.
+    // Cooldown so one gesture (and its inertia) never changes more than one color.
     setTimeout(() => (busy = false), COOLDOWN_MS);
   }
 

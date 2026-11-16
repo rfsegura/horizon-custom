@@ -735,8 +735,8 @@
     "semantic_hash": ""
   },
   "sections/header-group.json": {
-    "mtime": 1794817538.356539,
-    "ast_hash": "410f1a999c0055fd5fa31e70c286bad7",
+    "mtime": 1794822505.478349,
+    "ast_hash": "e15ae68aa040119af0cb24a48475123e",
     "semantic_hash": ""
   },
   "templates/404.json": {
@@ -985,13 +985,13 @@
     "semantic_hash": ""
   },
   "assets/catalog-grid.js": {
-    "mtime": 1794818081.340726,
-    "ast_hash": "11b209417fdeb9924d2868611e54689d",
+    "mtime": 1794822507.111558,
+    "ast_hash": "89909e9e754c59141d57c7dc34c965c2",
     "semantic_hash": ""
   },
   "assets/catalog-transitions.js": {
-    "mtime": 1794821891.1705525,
-    "ast_hash": "09776d8f5ab5122deb1d87f152f1f6f4",
+    "mtime": 1794822507.111558,
+    "ast_hash": "0c78cea54991a70629b6c2c42ea50bb3",
     "semantic_hash": ""
   },
   "assets/buy-panel.js": {
