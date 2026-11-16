@@ -45,12 +45,17 @@
       order: 0 !important;
     }
 
-    /* Product page is 20% narrower, centered. */
+    /* Product page content: 64% of the column (80% twice), centered. The image is a further 20%
+       smaller: 51.2%. */
     .product-information__media,
     .product-details {
-      width: 80% !important;
+      width: 64% !important;
       min-width: 0 !important;
       justify-self: center;
+    }
+
+    .product-information__media {
+      width: 51.2% !important;
     }
 
     .product-details {
@@ -60,7 +65,9 @@
   }
 
   /* Product image arrows: plain "<" and ">" characters instead of the icon. */
+  /* Horizon mirrors the "previous" arrow with `scale: -1 1` (.flip-x); undo it so "<" isn't flipped into ">". */
   media-gallery .slideshow-control {
+    scale: none;
     transform: none;
     font-size: 1.5rem;
     line-height: 1;

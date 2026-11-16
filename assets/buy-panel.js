@@ -1,8 +1,13 @@
+import { StandardEvents } from '@shopify/events';
+
 const FADE_MS = 150;
+const CROSSFADE_MS = 200;
+const ADDING_TIMEOUT_MS = 8000;
 
 /**
  * Product page buy panel: "+" opens the size picker, a size adds that variant to the cart through
  * Horizon's product form, "INFORMATION" shows the description, "X" closes.
+ * States (data-state): default | size | info | adding.
  */
 class BuyPanel extends HTMLElement {
   connectedCallback() {
@@ -12,28 +17,27 @@ class BuyPanel extends HTMLElement {
 
       switch (button.dataset.action) {
         case 'open':
-          return this.#goTo('size', false);
+          // Instant swap; CSS animates the sizes spreading out.
+          return void (this.dataset.state = 'size');
         case 'info':
-          return this.#goTo('info', false);
+          return this.#showInfo();
         case 'close':
-          return this.#goTo('default', true);
+          return this.#fadeTo('default');
         case 'size':
           return this.#addToCart(button.dataset.variantId);
       }
     });
   }
 
-  /**
-   * Opening swaps instantly (CSS animates the sizes in); closing fades out and back in.
-   * @param {string} state
-   * @param {boolean} fade
-   */
-  #goTo(state, fade) {
-    if (!fade) {
-      this.dataset.state = state;
-      return;
-    }
+  /** Size row fades out while the information text fades in, in the same place. */
+  #showInfo() {
+    this.toggleAttribute('data-leaving', true);
+    this.dataset.state = 'info';
+    setTimeout(() => this.removeAttribute('data-leaving'), CROSSFADE_MS);
+  }
 
+  /** @param {string} state */
+  #fadeTo(state) {
     this.classList.add('is-fading');
 
     setTimeout(() => {
@@ -48,10 +52,24 @@ class BuyPanel extends HTMLElement {
     const idInput = form?.querySelector('input[name="id"]');
     if (!variantId || !form || !(idInput instanceof HTMLInputElement)) return;
 
+    // Show "ADDING" right away; Horizon's cart round trip takes a moment.
+    this.dataset.state = 'adding';
+
+    const done = () => {
+      clearTimeout(timeout);
+      if (this.dataset.state === 'adding') this.dataset.state = 'size';
+    };
+    const timeout = setTimeout(done, ADDING_TIMEOUT_MS);
+
+    document.addEventListener(
+      StandardEvents.cartLinesUpdate,
+      (event) => /** @type {any} */ (event).promise?.then(done, done) ?? done(),
+      { once: true }
+    );
+
     // Horizon's <product-form-component> submits whatever variant id the form holds.
     idInput.value = variantId;
     form.requestSubmit();
-    this.#goTo('default', true);
   }
 }
 

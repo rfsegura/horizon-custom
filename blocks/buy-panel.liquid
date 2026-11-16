@@ -101,12 +101,12 @@
 
     <div class="buy-panel__head" data-fade>
       <span class="buy-panel__title" data-show="default">{{ product.title | upcase }}</span>
-      <span class="buy-panel__title" data-show="size info">{{ 'Select size' | upcase }}</span>
+      <span class="buy-panel__title" data-show="size info adding">{{ 'Select size' | upcase }}</span>
       <button
         type="button"
         class="buy-panel__close button-unstyled"
         data-action="close"
-        data-show="size info"
+        data-show="size info adding"
         aria-label="Close"
       >
         &times;
@@ -130,19 +130,32 @@
         <span class="buy-panel__sold-out" data-show="default">{{ 'products.product.sold_out' | t | upcase }}</span>
       {%- endif -%}
 
-      <div class="buy-panel__sizes" role="group" aria-label="Select size" data-show="size">
-        {{ size_buttons }}
-      </div>
-      <button
-        type="button"
-        class="buy-panel__info-link button-unstyled"
-        data-action="info"
-        data-show="size"
-      >
-        {{ 'Information' | upcase }}
-      </button>
+      {%- comment -%}
+        The size, adding and info panes share one grid cell so the size row can fade out while the
+        information text fades in at the same moment, in the same place.
+      {%- endcomment -%}
+      <div class="buy-panel__stack" data-show="size info adding">
+        <div class="buy-panel__pane buy-panel__pane--size" data-show="size">
+          <div class="buy-panel__sizes" role="group" aria-label="Select size">
+            {{ size_buttons }}
+          </div>
+          <button
+            type="button"
+            class="buy-panel__info-link button-unstyled"
+            data-action="info"
+          >
+            {{ 'Information' | upcase }}
+          </button>
+        </div>
 
-      <div class="buy-panel__info" data-show="info">{{ product.description }}</div>
+        <div class="buy-panel__pane buy-panel__pane--adding" data-show="adding" aria-live="polite">
+          {{ 'Adding' | upcase }}
+        </div>
+
+        <div class="buy-panel__pane buy-panel__pane--info buy-panel__info" data-show="info">
+          {{ product.description }}
+        </div>
+      </div>
     </div>
   </buy-panel>
 {%- endif -%}
@@ -227,15 +240,42 @@
     animation: buy-panel-drop 0.3s var(--ease) both;
   }
 
-  /* Information text settles from light grey to full colour. */
-  .buy-panel__info {
-    animation: buy-panel-settle 1s var(--ease) both;
+  /* The size, adding and info panes overlap in one grid cell so they can crossfade in place. */
+  .buy-panel__pane {
+    grid-area: 1 / 1;
   }
 
-  @keyframes buy-panel-settle {
+  /* Information text fades in from faint grey to full colour as the size row fades out. */
+  .buy-panel__info {
+    animation: buy-panel-in 0.2s var(--ease) both;
+  }
+
+  @keyframes buy-panel-in {
     from {
-      color: color-mix(in srgb, currentcolor 35%, transparent);
+      opacity: 0;
+      color: gray;
     }
+  }
+
+  @keyframes buy-panel-out {
+    to {
+      opacity: 0;
+    }
+  }
+
+  /* While the info text fades in, keep the size pane on screen just long enough to fade out. */
+  .buy-panel[data-leaving] .buy-panel__pane--size {
+    display: block;
+    animation: buy-panel-out 0.2s var(--ease) both;
+  }
+
+  .buy-panel[data-leaving] .buy-panel__sizes,
+  .buy-panel[data-leaving] .buy-panel__info-link {
+    animation: none;
+  }
+
+  .buy-panel__pane--adding {
+    text-align: center;
   }
 
   /* Only the elements for the current state are shown. */
@@ -245,12 +285,13 @@
 
   .buy-panel[data-state='default'] [data-show~='default'],
   .buy-panel[data-state='size'] [data-show~='size'],
-  .buy-panel[data-state='info'] [data-show~='info'] {
+  .buy-panel[data-state='info'] [data-show~='info'],
+  .buy-panel[data-state='adding'] [data-show~='adding'] {
     display: revert;
   }
 
-  .buy-panel[data-state='size'] .buy-panel__sizes {
-    display: flex;
+  .buy-panel:not([data-state='default']) .buy-panel__stack {
+    display: grid;
   }
 
   /* Only closing fades out then in: the JS swaps data-state while .is-fading is set. Opening is instant. */
@@ -269,7 +310,8 @@
 
     .buy-panel__info,
     .buy-panel__sizes,
-    .buy-panel__info-link {
+    .buy-panel__info-link,
+    .buy-panel[data-leaving] .buy-panel__pane--size {
       animation: none;
     }
   }

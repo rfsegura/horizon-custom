@@ -113,17 +113,19 @@
     assign sorted_media = selected_product.media | where: 'id', selected_variant_media.id
   endif
 
-  if variant_extra_media.first
-    for extra_media in variant_extra_media
-      if extra_media.id != selected_variant_media.id
-        assign found_media = variant_extra_media | where: 'id', extra_media.id
-        assign sorted_media = sorted_media | concat: found_media
-      endif
-    endfor
+  if variant_extra_media.size > 0
+    assign sorted_media = sorted_media | concat: variant_extra_media | uniq
   endif
 
   if sorted_media.size == 0
     assign sorted_media = selected_product.media
+  endif
+
+  # The arrows (and single-media styling) above were decided from the whole product's media count;
+  # redo it for the filtered list so a single visible image gets no arrows.
+  if sorted_media.size <= 1
+    assign render_slideshow_arrows = false
+    assign slideshow_class = 'product-media-gallery__slideshow--single-media slideshow--single-media'
   endif
   assign has_image_drop = sorted_media | has: 'media_type', 'image'
 

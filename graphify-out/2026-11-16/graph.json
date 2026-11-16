@@ -594,7 +594,7 @@
       "label": ".#goTo()",
       "file_type": "code",
       "source_file": "assets/buy-panel.js",
-      "source_location": "L27",
+      "source_location": "L31",
       "_callable": true,
       "_origin": "ast",
       "id": "assets_buy_panel_buypanel_goto",
@@ -606,7 +606,7 @@
       "label": ".#addToCart()",
       "file_type": "code",
       "source_file": "assets/buy-panel.js",
-      "source_location": "L37",
+      "source_location": "L46",
       "_callable": true,
       "_origin": "ast",
       "id": "assets_buy_panel_buypanel_addtocart",
@@ -16669,7 +16669,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/buy-panel.js",
-      "source_location": "L37",
+      "source_location": "L46",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_buy_panel_buypanel",
@@ -16691,7 +16691,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/buy-panel.js",
-      "source_location": "L27",
+      "source_location": "L31",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_buy_panel_buypanel",
@@ -16727,7 +16727,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/buy-panel.js",
-      "source_location": "L45",
+      "source_location": "L54",
       "weight": 1.0,
       "_origin": "ast",
       "source": "assets_buy_panel_buypanel_addtocart",
@@ -45306,5 +45306,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "21f3abb4bf02d9b06a040ffb838f1523ceda1975"
+  "built_at_commit": "aa42fda09c8fa29fe2c18cd640a815123d32887d"
 }
