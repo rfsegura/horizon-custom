@@ -45,8 +45,8 @@
       order: 0 !important;
     }
 
-    /* Content is 64% of the column, centered. The image is 25.6% of it (half of the previous
-       51.2%), and also capped by the viewport height so image + panel always fit on screen. */
+    /* Desktop: the buy panel is 35.84% of the column, the image 25.6% (plus the arrow gutters), both
+       centered. The image is also capped by the viewport height so image + panel always fit. */
     .product-information__media,
     .product-details {
       min-width: 0 !important;
@@ -54,7 +54,7 @@
     }
 
     .product-details {
-      width: 51.2% !important;
+      width: 35.84% !important;
       position: static !important;
       order: 1 !important;
     }
@@ -73,7 +73,7 @@
 
   /* Space reserved either side of the image for the arrows, so they never overlap it. */
   .product-information__media {
-    --arrow-gutter: 2.5rem;
+    --arrow-gutter: 4.5rem;
   }
 
   media-gallery slideshow-container {
