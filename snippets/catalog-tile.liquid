@@ -1,0 +1,19 @@
+{% doc %}
+  A catalog grid tile: product image plus uppercase code label, linking to `href`.
+
+  @param {string} href - Link target
+  @param {object} image - Image to show
+  @param {string} title - Label text
+  @param {string} alt - Image alt text
+{% enddoc %}
+
+<a href="{{ href }}" class="catalog__link">
+  {%- if image -%}
+    {{
+      image
+      | image_url: width: 600
+      | image_tag: widths: '200, 400, 600', sizes: '(min-width: 750px) 17vw, 34vw', loading: 'lazy', alt: alt, class: 'catalog__image'
+    }}
+  {%- endif -%}
+  <span class="catalog__label">{{ title | upcase }}</span>
+</a>

@@ -75,7 +75,7 @@
   </header>
 
   {%- comment -%} ponytail: a for-loop outside a paginate block returns at most 50 products. Raise via paginate if the catalog grows. {%- endcomment -%}
-  <ul class="catalog__grid" role="list">
+  <ul class="catalog__grid" role="list" data-main-grid>
     {%- for product in section.settings.collection.products limit: 50 -%}
       {%- assign tags = product.tags | join: '|' | downcase | prepend: '|' | append: '|' -%}
       {%- assign is_male = false -%}
@@ -84,25 +84,57 @@
       {%- if tags contains female_key -%}{%- assign is_female = true -%}{%- endif -%}
 
       {%- if is_male or is_female -%}
+        {%- comment -%}
+          One tile per Color option value (first available variant of that color, else its first variant).
+          More than one color: the tile opens the color picker instead of the product page.
+        {%- endcomment -%}
+        {%- assign color_index = nil -%}
+        {%- for option in product.options_with_values -%}
+          {%- assign option_name = option.name | downcase -%}
+          {%- if option_name == 'color' or option_name == 'colour' -%}
+            {%- assign color_index = forloop.index0 -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- assign seen = '|' -%}
+        {%- assign color_count = 0 -%}
+        {%- capture color_tiles -%}
+          {%- if color_index != nil -%}
+            {%- for pass in (1..2) -%}
+              {%- for variant in product.variants -%}
+                {%- assign color = variant.options[color_index] -%}
+                {%- assign color_key = color | downcase | prepend: '|' | append: '|' -%}
+                {%- unless seen contains color_key -%}
+                  {%- if pass == 2 or variant.available -%}
+                    {%- assign seen = seen | append: color_key -%}
+                    {%- assign color_count = color_count | plus: 1 -%}
+                    <li class="catalog__tile">
+                      {%- assign color_image = variant.featured_image | default: product.featured_image -%}
+                      {%- assign color_alt = product.title | append: ' ' | append: color -%}
+                      {% render 'catalog-tile', href: variant.url, image: color_image, title: product.title, alt: color_alt %}
+                    </li>
+                  {%- endif -%}
+                {%- endunless -%}
+              {%- endfor -%}
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endcapture -%}
+
         <li
           class="catalog__tile"
           data-gender="{% if is_male %}male{% endif %} {% if is_female %}female{% endif %}"
           {% unless is_male %}hidden{% endunless %}
         >
-          <a href="{{ product.url }}" class="catalog__link">
-            {%- if product.featured_image -%}
-              {{
-                product.featured_image
-                | image_url: width: 600
-                | image_tag: widths: '200, 400, 600', sizes: '(min-width: 750px) 17vw, 34vw', loading: 'lazy', alt: product.title, class: 'catalog__image'
-              }}
-            {%- endif -%}
-            <span class="catalog__label">{{ product.title | upcase }}</span>
-          </a>
+          {% render 'catalog-tile', href: product.url, image: product.featured_image, title: product.title, alt: product.title %}
+          {%- if color_count > 1 -%}
+            <template data-colors>{{ color_tiles }}</template>
+          {%- endif -%}
         </li>
       {%- endif -%}
     {%- endfor -%}
   </ul>
+
+  <ul class="catalog__grid" role="list" data-color-grid hidden></ul>
 </catalog-grid>
 
 <style>
@@ -188,6 +220,7 @@
     list-style: none;
   }
 
+  .catalog__grid[hidden],
   .catalog__tile[hidden] {
     display: none;
   }
