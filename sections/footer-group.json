@@ -95,6 +95,7 @@
         "text_qpRYfF": {
           "type": "text",
           "name": "t:names.text",
+          "disabled": true,
           "settings": {
             "text": "<p><a href=\"https://clothing-au-y4ub6fzq.myshopify.com/pages/order-status\" title=\"https://clothing-au-y4ub6fzq.myshopify.com/pages/order-status\">ORDER STATUS</a></p>",
             "width": "fit-content",
