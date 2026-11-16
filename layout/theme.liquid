@@ -159,9 +159,12 @@
         {{ content_for_layout }}
       </main>
 
-      <footer>
-        {% sections 'footer-group' %}
-      </footer>
+      {%- comment -%} Product pages are a single screen: the footer is not rendered at all there. {%- endcomment -%}
+      {%- unless request.page_type == 'product' -%}
+        <footer>
+          {% sections 'footer-group' %}
+        </footer>
+      {%- endunless -%}
     </div>
 
     {% render 'cart-drawer', render_wrapper: true %}
