@@ -11,12 +11,32 @@
   "sections": {
     "catalog": {
       "type": "catalog",
+      "blocks": {
+        "filter_male": {
+          "type": "_catalog-filter",
+          "settings": {
+            "label": "MALE",
+            "tag": "male",
+            "sub_mode": "dynamic"
+          }
+        },
+        "filter_female": {
+          "type": "_catalog-filter",
+          "settings": {
+            "label": "FEMALE",
+            "tag": "female",
+            "sub_mode": "dynamic"
+          }
+        }
+      },
+      "block_order": [
+        "filter_male",
+        "filter_female"
+      ],
       "settings": {
         "collection": "all",
-        "male_label": "MALE",
-        "male_tag": "male",
-        "female_label": "FEMALE",
-        "female_tag": "female"
+        "sub_trigger": "hover",
+        "sub_logic": "or"
       }
     }
   },

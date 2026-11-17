@@ -435,8 +435,8 @@
     "semantic_hash": ""
   },
   "config/settings_data.json": {
-    "mtime": 1794800301.4391403,
-    "ast_hash": "50250d1d11dbe98a7a4296d0971abf50",
+    "mtime": 1794888017.3227923,
+    "ast_hash": "abc49d13a5bcec1f479803daa359be46",
     "semantic_hash": ""
   },
   "config/settings_schema.json": {
@@ -730,8 +730,8 @@
     "semantic_hash": ""
   },
   "sections/footer-group.json": {
-    "mtime": 1794793537.8110232,
-    "ast_hash": "58db1b9fac4a5ff4d2724438a839ce93",
+    "mtime": 1794887200.8662636,
+    "ast_hash": "9d23c2c5410496d10a3fdfd344db3d09",
     "semantic_hash": ""
   },
   "sections/header-group.json": {
@@ -765,8 +765,8 @@
     "semantic_hash": ""
   },
   "templates/index.json": {
-    "mtime": 1794797180.6879337,
-    "ast_hash": "a0f27275955e6bf43c67d47a0ef79660",
+    "mtime": 1794890102.9049885,
+    "ast_hash": "c5e5c1edc6f982d092d343bc5f25f845",
     "semantic_hash": ""
   },
   "templates/list-collections.json": {
@@ -775,8 +775,8 @@
     "semantic_hash": ""
   },
   "templates/page.contact.json": {
-    "mtime": 1788774620.536133,
-    "ast_hash": "67db32379b255c963851316aefd22a1f",
+    "mtime": 1794887200.883437,
+    "ast_hash": "9d620189eb8f3cc5a9da67cefc64b3e5",
     "semantic_hash": ""
   },
   "templates/page.json": {
@@ -785,8 +785,8 @@
     "semantic_hash": ""
   },
   "templates/product.json": {
-    "mtime": 1794809563.247084,
-    "ast_hash": "bc921c5848a7495e1d7035584532ffd0",
+    "mtime": 1794886777.2710333,
+    "ast_hash": "5c4b176a8bcf172b2fcc8de2042eda9f",
     "semantic_hash": ""
   },
   "templates/search.json": {
@@ -985,8 +985,8 @@
     "semantic_hash": ""
   },
   "assets/catalog-grid.js": {
-    "mtime": 1794823660.9327865,
-    "ast_hash": "70aece0fb27e983d3b04cc52c3781457",
+    "mtime": 1794890130.2376838,
+    "ast_hash": "aa44cc646c7a82ddb6bbe0058d651cfa",
     "semantic_hash": ""
   },
   "assets/catalog-transitions.js": {

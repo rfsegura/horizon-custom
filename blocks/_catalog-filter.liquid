@@ -1,0 +1,80 @@
+{% doc %}
+  One main filter of the catalog homepage: a label button plus its sub-filter menu.
+  Manual sub-filters are child blocks. Dynamic ones are built by catalog-grid.js from the tags of
+  this filter's products (minus every main filter tag and the excluded tags).
+{% enddoc %}
+
+{%- assign mode = block.settings.sub_mode -%}
+
+<div
+  class="catalog__filter"
+  data-filter
+  data-tag="{{ block.settings.tag | strip | downcase | escape }}"
+  data-sub-mode="{{ mode }}"
+  data-exclude="{{ block.settings.exclude_tags | downcase | escape }}"
+  {{ block.shopify_attributes }}
+>
+  <button
+    type="button"
+    class="catalog__btn button-unstyled"
+    data-filter-btn
+    aria-pressed="false"
+  >
+    {{- block.settings.label | escape -}}
+  </button>
+
+  <div class="catalog__sub" data-sub-menu role="group" aria-label="{{ block.settings.label | escape }}">
+    {%- if mode == 'manual' -%}
+      {% content_for 'blocks' %}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Filter",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "_catalog-subfilter"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "MALE"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Product tag",
+      "default": "male"
+    },
+    {
+      "type": "select",
+      "id": "sub_mode",
+      "label": "Sub-filters",
+      "options": [
+        {
+          "value": "dynamic",
+          "label": "Dynamic: from the tags of this filter's products"
+        },
+        {
+          "value": "manual",
+          "label": "Manual: add Sub-filter blocks under this filter"
+        }
+      ],
+      "default": "dynamic"
+    },
+    {
+      "type": "text",
+      "id": "exclude_tags",
+      "label": "Tags to leave out (comma-separated)",
+      "info": "Dynamic only. Other filters' tags are always left out.",
+      "visible_if": "{{ block.settings.sub_mode == 'dynamic' }}"
+    }
+  ]
+}
+{% endschema %}

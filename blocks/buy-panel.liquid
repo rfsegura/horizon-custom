@@ -357,6 +357,11 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    line-height: inherit;
+  }
+
+  .buy-panel__size {
+    line-height: inherit;
   }
 
   .buy-panel__size:only-child {
@@ -390,10 +395,11 @@
     cursor: not-allowed;
   }
 
+  /* Same 20px rhythm as the rest of the panel: the sizes row and the link share the panel's line height. */
   .buy-panel__info-link {
     display: block;
     margin: 20px auto 0;
-    text-decoration: underline;
+    line-height: inherit;
     animation: buy-panel-drop 0.3s var(--ease) both;
   }
 

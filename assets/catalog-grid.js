@@ -3,24 +3,42 @@ import { startViewTransition } from '@theme/utilities';
 const TILE_NAME = 'catalog-tile';
 
 /**
- * Catalog homepage: MALE/FEMALE tile toggle, grid density toggle, and the color picker for
- * multi-color products. None of it changes the URL; color tiles link to real product URLs.
+ * Catalog homepage: tag filters (up to 10, each with sub-filters), grid density toggle, and the
+ * color picker for multi-color products. None of it changes the URL; color tiles link to real
+ * product URLs. Tiles carry their lowercased tags as "|a|b|" in data-tags.
  */
 class CatalogGrid extends HTMLElement {
   /** @type {Element | null} The grid tile whose colors are currently shown */
   #openedTile = null;
 
+  /** @type {HTMLElement | null} The active main filter */
+  #filter = null;
+
+  /** @type {Set<string>} Sub-filter tags picked under the active filter */
+  #subs = new Set();
+
   connectedCallback() {
+    this.#buildDynamicSubs();
+    const first = this.querySelector('[data-filter]');
+    if (first instanceof HTMLElement) {
+      this.#filter = first;
+      this.#applyFilters(false);
+    }
 
     this.addEventListener('click', (event) => {
       const target = /** @type {Element} */ (event.target);
-      const genderButton = target.closest('[data-gender-btn]');
+      const filterButton = target.closest('[data-filter-btn]');
+      const subButton = target.closest('[data-sub-btn]');
       const menuButton = target.closest('[data-menu]');
-      const tile = target.closest('[data-gender]');
+      const tile = target.closest('[data-tags]');
       const colors = tile?.querySelector('template[data-colors]');
 
-      if (genderButton instanceof HTMLElement) {
-        this.#closeColors(() => this.#showGender(genderButton.dataset.genderBtn ?? ''));
+      if (filterButton) {
+        const filter = /** @type {HTMLElement} */ (filterButton.closest('[data-filter]'));
+        this.#closeColors(() => this.#pickFilter(filter));
+      } else if (subButton instanceof HTMLElement) {
+        const filter = /** @type {HTMLElement} */ (subButton.closest('[data-filter]'));
+        this.#closeColors(() => this.#pickSub(filter, subButton.dataset.tag ?? ''));
       } else if (menuButton) {
         // "<" while the picker is open goes back to the grid; otherwise the button toggles density.
         if (this.#colorGrid.hidden) this.toggleAttribute('dense');
@@ -32,9 +50,92 @@ class CatalogGrid extends HTMLElement {
       }
     });
 
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') this.#closeColors();
+    // Click anywhere outside a filter closes its sub-filter menu (click mode).
+    document.addEventListener('click', (event) => {
+      if (!(/** @type {Element} */ (event.target).closest('[data-filter]'))) this.#openMenu(null);
     });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      this.#openMenu(null);
+      this.#closeColors();
+    });
+  }
+
+  /** Sub-filters open on click when the section says so, and always on touch screens. */
+  get #clickMode() {
+    return this.dataset.subTrigger === 'click' || !window.matchMedia('(hover: hover)').matches;
+  }
+
+  /** @param {Element | null} filter Opens this filter's sub-filter menu and closes the others */
+  #openMenu(filter) {
+    for (const el of this.querySelectorAll('[data-filter]')) {
+      el.toggleAttribute('data-open', el === filter);
+      el.querySelector('[data-filter-btn]')?.setAttribute('aria-expanded', String(el === filter));
+    }
+  }
+
+  /** @param {HTMLElement} filter */
+  #pickFilter(filter) {
+    if (filter !== this.#filter) {
+      this.#filter = filter;
+      this.#subs.clear();
+      this.#applyFilters();
+      if (this.#clickMode) this.#openMenu(filter);
+    } else if (this.#clickMode) {
+      this.#openMenu(filter.hasAttribute('data-open') ? null : filter);
+    }
+  }
+
+  /**
+   * Picking a sub-filter of another main filter switches to that filter first (clearing the old
+   * sub-filters). Picking an already-picked one turns it off.
+   * @param {HTMLElement} filter
+   * @param {string} tag
+   */
+  #pickSub(filter, tag) {
+    if (filter !== this.#filter) {
+      this.#filter = filter;
+      this.#subs.clear();
+    }
+    if (!this.#subs.delete(tag)) this.#subs.add(tag);
+    this.#applyFilters();
+  }
+
+  /**
+   * Dynamic sub-filters: the tags found on a filter's products, minus every main filter's tag and
+   * the filter's own "leave out" list. Built once, shown always (even if a product is hidden).
+   */
+  #buildDynamicSubs() {
+    const filters = /** @type {HTMLElement[]} */ ([...this.querySelectorAll('[data-filter]')]);
+    const mainTags = new Set(filters.map((filter) => filter.dataset.tag));
+    const tiles = /** @type {HTMLElement[]} */ ([...this.querySelectorAll('[data-main-grid] > [data-tags]')]);
+
+    for (const filter of filters) {
+      if (filter.dataset.subMode !== 'dynamic') continue;
+
+      const leaveOut = new Set((filter.dataset.exclude ?? '').split(',').map((tag) => tag.trim()));
+      const found = new Set();
+
+      for (const tile of tiles) {
+        if (!tile.dataset.tags?.includes(`|${filter.dataset.tag}|`)) continue;
+        for (const tag of tile.dataset.tags.split('|')) {
+          if (tag && !mainTags.has(tag) && !leaveOut.has(tag)) found.add(tag);
+        }
+      }
+
+      const menu = filter.querySelector('[data-sub-menu]');
+      for (const tag of [...found].sort()) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'catalog__sub-btn button-unstyled';
+        button.dataset.subBtn = '';
+        button.dataset.tag = tag;
+        button.setAttribute('aria-pressed', 'false');
+        button.textContent = tag;
+        menu?.append(button);
+      }
+    }
   }
 
   get #mainGrid() {
@@ -109,24 +210,37 @@ class CatalogGrid extends HTMLElement {
     );
   }
 
-  /** @param {string} gender */
-  #showGender(gender) {
+  /**
+   * A tile shows when it has the active filter's tag and, if sub-filters are picked, matches them:
+   * any of them (OR) or all of them (AND), per the section setting.
+   * @param {HTMLElement} tile
+   */
+  #matches(tile) {
+    const tags = tile.dataset.tags ?? '';
+    if (!this.#filter || !tags.includes(`|${this.#filter.dataset.tag}|`)) return false;
+    if (!this.#subs.size) return true;
+
+    const has = (/** @type {string} */ tag) => tags.includes(`|${tag}|`);
+    return this.dataset.subLogic === 'and' ? [...this.#subs].every(has) : [...this.#subs].some(has);
+  }
+
+  /** @param {boolean} [glide] Animate the tiles to their new places (default true) */
+  #applyFilters(glide = true) {
     // FLIP: remember where every visible tile is, switch the view, then glide the tiles that are in
     // both views from their old place to their new one. Skipped while the grid itself is hidden
     // (colour picker open: nothing to measure) and for people who prefer reduced motion.
-    const animate = !this.#mainGrid.hidden && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const animate = glide && !this.#mainGrid.hidden && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     /** @type {Map<HTMLElement, DOMRect>} */
     const before = new Map();
 
     if (animate) {
-      for (const tile of this.querySelectorAll('[data-gender]')) {
+      for (const tile of this.querySelectorAll('[data-tags]')) {
         if (!(/** @type {HTMLElement} */ (tile).hidden)) before.set(/** @type {HTMLElement} */ (tile), tile.getBoundingClientRect());
       }
     }
 
-    for (const tile of this.querySelectorAll('[data-gender]')) {
-      const genders = /** @type {HTMLElement} */ (tile).dataset.gender?.split(' ') ?? [];
-      /** @type {HTMLElement} */ (tile).hidden = !genders.includes(gender);
+    for (const tile of this.querySelectorAll('[data-tags]')) {
+      /** @type {HTMLElement} */ (tile).hidden = !this.#matches(/** @type {HTMLElement} */ (tile));
     }
 
     for (const [tile, from] of before) {
@@ -143,8 +257,15 @@ class CatalogGrid extends HTMLElement {
       );
     }
 
-    for (const button of this.querySelectorAll('[data-gender-btn]')) {
-      button.setAttribute('aria-pressed', String(/** @type {HTMLElement} */ (button).dataset.genderBtn === gender));
+    for (const filter of this.querySelectorAll('[data-filter]')) {
+      const active = filter === this.#filter;
+      filter.querySelector('[data-filter-btn]')?.setAttribute('aria-pressed', String(active));
+      filter.toggleAttribute('data-has-sub', active && this.#subs.size > 0);
+
+      for (const button of filter.querySelectorAll('[data-sub-btn]')) {
+        const picked = active && this.#subs.has(/** @type {HTMLElement} */ (button).dataset.tag ?? '');
+        button.setAttribute('aria-pressed', String(picked));
+      }
     }
   }
 }

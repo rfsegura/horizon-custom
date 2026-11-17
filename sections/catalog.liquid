@@ -1,6 +1,7 @@
 {%- comment -%}
-  Minimal catalog homepage: header bar (density "+", MALE/FEMALE toggle, bag) + product grid.
-  The toggle shows/hides tiles client-side, so the URL stays "/". Tiles are filtered by product tag.
+  Minimal catalog homepage: header bar (density "+", filters, bag) + product grid.
+  Filters are blocks (blocks/_catalog-filter.liquid, up to 10, each with optional sub-filters). They
+  show/hide tiles client-side, so the URL stays "/". Tiles are filtered by product tag (data-tags).
 {%- endcomment -%}
 
 <script
@@ -8,11 +9,22 @@
   src="{{ 'catalog-grid.js' | asset_url }}"
 ></script>
 {%- liquid
-  assign male_key = '|' | append: section.settings.male_tag | downcase | append: '|'
-  assign female_key = '|' | append: section.settings.female_tag | downcase | append: '|'
+  # The first filter is active on load; with no filters at all every product is shown.
+  assign first_key = ''
+  if section.blocks.size > 0
+    assign first_tag = section.blocks.first.settings.tag | strip | downcase
+    if first_tag != blank
+      assign first_key = '|' | append: first_tag | append: '|'
+    endif
+  endif
 -%}
 
-<catalog-grid class="catalog" data-testid="catalog-{{ section.id }}">
+<catalog-grid
+  class="catalog"
+  data-testid="catalog-{{ section.id }}"
+  data-sub-trigger="{{ section.settings.sub_trigger }}"
+  data-sub-logic="{{ section.settings.sub_logic }}"
+>
   <header class="catalog__bar">
     <button
       type="button"
@@ -24,12 +36,7 @@
     </button>
 
     <div class="catalog__toggle" role="group" aria-label="Collection">
-      <button type="button" class="catalog__btn button-unstyled" data-gender-btn="male" aria-pressed="true">
-        {{- section.settings.male_label -}}
-      </button>
-      <button type="button" class="catalog__btn button-unstyled" data-gender-btn="female" aria-pressed="false">
-        {{- section.settings.female_label -}}
-      </button>
+      {% content_for 'blocks' %}
     </div>
 
     {% render 'catalog-cart-button', class: 'catalog__btn catalog__cart' %}
@@ -39,13 +46,12 @@
   <ul class="catalog__grid" role="list" data-main-grid>
     {%- for product in section.settings.collection.products limit: 50 -%}
       {%- assign tags = product.tags | join: '|' | downcase | prepend: '|' | append: '|' -%}
-      {%- assign is_male = false -%}
-      {%- assign is_female = false -%}
-      {%- if tags contains male_key -%}{%- assign is_male = true -%}{%- endif -%}
-      {%- if tags contains female_key -%}{%- assign is_female = true -%}{%- endif -%}
+      {%- assign in_first = true -%}
+      {%- if first_key != blank -%}
+        {%- unless tags contains first_key -%}{%- assign in_first = false -%}{%- endunless -%}
+      {%- endif -%}
 
-      {%- if is_male or is_female -%}
-        {%- comment -%}
+      {%- comment -%}
           One tile per Color option value (first available variant of that color, else its first variant).
           More than one color: the tile opens the color picker instead of the product page.
         {%- endcomment -%}
@@ -83,15 +89,14 @@
 
         <li
           class="catalog__tile"
-          data-gender="{% if is_male %}male{% endif %} {% if is_female %}female{% endif %}"
-          {% unless is_male %}hidden{% endunless %}
+          data-tags="{{ tags | escape }}"
+          {% unless in_first %}hidden{% endunless %}
         >
           {% render 'catalog-tile', href: product.url, image: product.featured_image, title: product.title, alt: product.title %}
           {%- if color_count > 1 -%}
             <template data-colors>{{ color_tiles }}</template>
           {%- endif -%}
         </li>
-      {%- endif -%}
     {%- endfor -%}
   </ul>
 
@@ -141,7 +146,52 @@
 
   .catalog__toggle {
     display: flex;
-    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 24px;
+  }
+
+  .catalog__filter {
+    position: relative;
+  }
+
+  /* Sub-filter menu: under its filter, shown on hover or after a click (section setting). */
+  .catalog__sub {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 5;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    translate: -50% 0;
+    background: #fff;
+    white-space: nowrap;
+    animation: catalog-fade 0.2s ease both;
+  }
+
+  .catalog__filter[data-open] > .catalog__sub:has(*) {
+    display: flex;
+  }
+
+  @media (hover: hover) {
+    .catalog[data-sub-trigger='hover'] .catalog__filter:is(:hover, :has(:focus-visible)) > .catalog__sub:has(*) {
+      display: flex;
+    }
+  }
+
+  .catalog__sub-btn {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Once something is picked, the other sub-filters of that filter dim. */
+  .catalog__filter[data-has-sub] .catalog__sub-btn[aria-pressed='false'] {
+    opacity: 0.2;
   }
 
   .catalog__btn {
@@ -159,12 +209,12 @@
     justify-self: end;
   }
 
-  /* MALE / FEMALE: the active label is solid, the other at 20%, cross-fading over 0.3s. */
-  .catalog__btn[data-gender-btn] {
+  /* Filters: the active label is solid, the others at 20%, cross-fading over 0.3s. */
+  .catalog__btn[data-filter-btn] {
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .catalog__btn[aria-pressed='false'][data-gender-btn] {
+  .catalog__btn[aria-pressed='false'][data-filter-btn] {
     opacity: 0.2;
   }
 
@@ -240,6 +290,12 @@
 {% schema %}
 {
   "name": "Catalog",
+  "max_blocks": 10,
+  "blocks": [
+    {
+      "type": "_catalog-filter"
+    }
+  ],
   "settings": [
     {
       "type": "collection",
@@ -247,33 +303,62 @@
       "label": "Collection"
     },
     {
-      "type": "text",
-      "id": "male_label",
-      "label": "First toggle label",
-      "default": "MALE"
+      "type": "paragraph",
+      "content": "Add up to 10 filters with Add Filter below. The first one is active when the page opens. Each filter can have sub-filters."
     },
     {
-      "type": "text",
-      "id": "male_tag",
-      "label": "First toggle product tag",
-      "default": "male"
+      "type": "select",
+      "id": "sub_trigger",
+      "label": "Show sub-filters on",
+      "options": [
+        {
+          "value": "hover",
+          "label": "Hover"
+        },
+        {
+          "value": "click",
+          "label": "Click"
+        }
+      ],
+      "default": "hover",
+      "info": "Touch screens always use click."
     },
     {
-      "type": "text",
-      "id": "female_label",
-      "label": "Second toggle label",
-      "default": "FEMALE"
-    },
-    {
-      "type": "text",
-      "id": "female_tag",
-      "label": "Second toggle product tag",
-      "default": "female"
+      "type": "select",
+      "id": "sub_logic",
+      "label": "Several sub-filters picked",
+      "options": [
+        {
+          "value": "or",
+          "label": "OR: products with any of them"
+        },
+        {
+          "value": "and",
+          "label": "AND: products with all of them"
+        }
+      ],
+      "default": "or"
     }
   ],
   "presets": [
     {
-      "name": "Catalog"
+      "name": "Catalog",
+      "blocks": [
+        {
+          "type": "_catalog-filter",
+          "settings": {
+            "label": "MALE",
+            "tag": "male"
+          }
+        },
+        {
+          "type": "_catalog-filter",
+          "settings": {
+            "label": "FEMALE",
+            "tag": "female"
+          }
+        }
+      ]
     }
   ]
 }

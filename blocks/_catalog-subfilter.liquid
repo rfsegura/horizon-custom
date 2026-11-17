@@ -1,0 +1,36 @@
+{% doc %}
+  One manual sub-filter under a catalog filter. catalog-grid.js narrows the grid to products that
+  have the main filter's tag AND this tag (several sub-filters combine with AND / OR, a section setting).
+{% enddoc %}
+
+<button
+  type="button"
+  class="catalog__sub-btn button-unstyled"
+  data-sub-btn
+  data-tag="{{ block.settings.tag | strip | downcase | escape }}"
+  aria-pressed="false"
+  {{ block.shopify_attributes }}
+>
+  {{- block.settings.label | escape -}}
+</button>
+
+{% schema %}
+{
+  "name": "Sub-filter",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "T-SHIRT"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Product tag",
+      "default": "t-shirt"
+    }
+  ]
+}
+{% endschema %}
