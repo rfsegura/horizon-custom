@@ -89,7 +89,16 @@
             "buy_panel": {
               "type": "buy-panel",
               "settings": {},
-              "blocks": {}
+              "blocks": {
+                "sold-out-signup": {
+                  "type": "email-signup",
+                  "static": true,
+                  "settings": {
+                    "label": "Subscribe"
+                  },
+                  "blocks": {}
+                }
+              }
             }
           },
           "block_order": [

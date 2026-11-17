@@ -3,6 +3,10 @@
   place ("SELECT SIZE"); clicking a size adds that variant to the cart; "INFORMATION" shows the
   description; "X" closes. Replaces the title, price, variant picker, buy buttons and description blocks.
   Sizes shown are the variants sharing the selected variant's Color option.
+
+  Sold out (no size of this color available): no price. The default view is a newsletter signup
+  under "Receive <name> Updates" (Horizon's own email-signup block, as a static block) with
+  INFORMATION below it. INFORMATION swaps the signup for the description; the X brings it back.
 {%- enddoc -%}
 
 {%- liquid
@@ -73,6 +77,9 @@
   {%- endfor -%}
 {%- endcapture -%}
 
+{%- assign sold_out = true -%}
+{%- if any_available -%}{%- assign sold_out = false -%}{%- endif -%}
+
 {%- comment -%}
   Colors of this product in option order, one link per color (its first variant), for scrolling
   between colors on the product page (assets/catalog-transitions.js). Printed inside the section so
@@ -117,6 +124,9 @@
   <buy-panel
     class="buy-panel"
     data-state="default"
+    {% if sold_out %}
+      data-sold-out
+    {% endif %}
     {{ block.shopify_attributes }}
   >
     <product-form-component
@@ -144,31 +154,69 @@
     </product-form-component>
 
     <div class="buy-panel__head" data-fade>
-      <button
-        type="button"
-        class="buy-panel__help button-unstyled"
-        data-show="size info adding"
-        aria-label="Show numeric sizes"
-      >
-        ?
-      </button>
-      <span class="buy-panel__title" data-show="default">{{ product.title | upcase }}</span>
-      <span class="buy-panel__title" data-show="size info adding">{{ 'Select size' | upcase }}</span>
-      <button
-        type="button"
-        class="buy-panel__close button-unstyled"
-        data-action="close"
-        data-show="size info adding"
-        aria-label="Close"
-      >
-        &times;
-      </button>
+      {%- if sold_out -%}
+        <span class="buy-panel__title" data-show="default">
+          {{- 'Receive ' | append: product.title | append: ' Updates' | upcase | escape -}}
+        </span>
+        <span class="buy-panel__title" data-show="info">{{ product.title | upcase | escape }}</span>
+        <button
+          type="button"
+          class="buy-panel__close button-unstyled"
+          data-action="close"
+          data-show="info"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+      {%- else -%}
+        <button
+          type="button"
+          class="buy-panel__help button-unstyled"
+          data-show="size info adding"
+          aria-label="Show numeric sizes"
+        >
+          ?
+        </button>
+        <span class="buy-panel__title" data-show="default">{{ product.title | upcase }}</span>
+        <span class="buy-panel__title" data-show="size info adding">{{ 'Select size' | upcase }}</span>
+        <button
+          type="button"
+          class="buy-panel__close button-unstyled"
+          data-action="close"
+          data-show="size info adding"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+      {%- endif -%}
     </div>
 
-    <p class="buy-panel__price">{% render 'format-price', price: selected.price %}</p>
+    {%- unless sold_out -%}
+      <p class="buy-panel__price">{% render 'format-price', price: selected.price %}</p>
+    {%- endunless -%}
 
     <div class="buy-panel__action" data-fade>
-      {%- if any_available -%}
+      {%- if sold_out -%}
+        {%- comment -%}
+          The signup and the description share one grid cell, like the sizes and the description do.
+        {%- endcomment -%}
+        <div class="buy-panel__stack" data-show="default info">
+          <div class="buy-panel__pane buy-panel__pane--soldout" data-show="default">
+            {% content_for 'block', type: 'email-signup', id: 'sold-out-signup' %}
+            <button
+              type="button"
+              class="buy-panel__info-link button-unstyled"
+              data-action="info"
+            >
+              {{ 'Information' | upcase }}
+            </button>
+          </div>
+
+          <div class="buy-panel__pane buy-panel__pane--info buy-panel__info" data-show="info">
+            {{ product.description }}
+          </div>
+        </div>
+      {%- else -%}
         <button
           type="button"
           class="buy-panel__plus button-unstyled"
@@ -178,36 +226,34 @@
         >
           +
         </button>
-      {%- else -%}
-        <span class="buy-panel__sold-out" data-show="default">{{ 'products.product.sold_out' | t | upcase }}</span>
-      {%- endif -%}
 
-      {%- comment -%}
-        The size, adding and info panes share one grid cell so the size row can fade out while the
-        information text fades in at the same moment, in the same place.
-      {%- endcomment -%}
-      <div class="buy-panel__stack" data-show="size info adding">
-        <div class="buy-panel__pane buy-panel__pane--size" data-show="size">
-          <div class="buy-panel__sizes" role="group" aria-label="Select size" style="--n: {{ size_count }}">
-            {{ size_buttons }}
+        {%- comment -%}
+          The size, adding and info panes share one grid cell so the size row can fade out while the
+          information text fades in at the same moment, in the same place.
+        {%- endcomment -%}
+        <div class="buy-panel__stack" data-show="size info adding">
+          <div class="buy-panel__pane buy-panel__pane--size" data-show="size">
+            <div class="buy-panel__sizes" role="group" aria-label="Select size" style="--n: {{ size_count }}">
+              {{ size_buttons }}
+            </div>
+            <button
+              type="button"
+              class="buy-panel__info-link button-unstyled"
+              data-action="info"
+            >
+              {{ 'Information' | upcase }}
+            </button>
           </div>
-          <button
-            type="button"
-            class="buy-panel__info-link button-unstyled"
-            data-action="info"
-          >
-            {{ 'Information' | upcase }}
-          </button>
-        </div>
 
-        <div class="buy-panel__pane buy-panel__pane--adding" data-show="adding" aria-live="polite">
-          {{ 'Adding' | upcase }}
-        </div>
+          <div class="buy-panel__pane buy-panel__pane--adding" data-show="adding" aria-live="polite">
+            {{ 'Adding' | upcase }}
+          </div>
 
-        <div class="buy-panel__pane buy-panel__pane--info buy-panel__info" data-show="info">
-          {{ product.description }}
+          <div class="buy-panel__pane buy-panel__pane--info buy-panel__info" data-show="info">
+            {{ product.description }}
+          </div>
         </div>
-      </div>
+      {%- endif -%}
     </div>
   </buy-panel>
 {%- endif -%}
@@ -401,7 +447,8 @@
   }
 
   /* While the info text fades in, keep the size pane on screen just long enough to fade out. */
-  .buy-panel[data-leaving] .buy-panel__pane--size {
+  .buy-panel[data-leaving] .buy-panel__pane--size,
+  .buy-panel[data-leaving] .buy-panel__pane--soldout {
     display: block;
     animation: buy-panel-out 0.35s var(--ease) both;
   }
@@ -427,8 +474,14 @@
     display: revert;
   }
 
-  .buy-panel:not([data-state='default']) .buy-panel__stack {
+  .buy-panel:not([data-state='default']) .buy-panel__stack,
+  .buy-panel[data-sold-out] .buy-panel__stack {
     display: grid;
+  }
+
+  /* Sold out: room for the signup (heading is in the head row) and the INFORMATION link. */
+  .buy-panel[data-sold-out] .buy-panel__action {
+    height: 10rem;
   }
 
   /* Only closing fades out then in: the JS swaps data-state while .is-fading is set. Opening is instant. */
@@ -448,7 +501,8 @@
     .buy-panel__info,
     .buy-panel__size,
     .buy-panel__info-link,
-    .buy-panel[data-leaving] .buy-panel__pane--size {
+    .buy-panel[data-leaving] .buy-panel__pane--size,
+    .buy-panel[data-leaving] .buy-panel__pane--soldout {
       animation: none;
     }
   }
