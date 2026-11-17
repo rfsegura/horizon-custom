@@ -35,15 +35,18 @@
     transform: translate(-50%, -50%) rotate(90deg);
   }
 
-  /* "<": two arms meeting at the left, centred a quarter above and below the middle. */
+  /*
+    "<": two arms meeting at the left. Arm length 10.6px at 45 degrees makes it 15px tall, the same
+    as the "+" (each arm sits 3.75px above / below the middle).
+  */
   .catalog-icon[data-back] i {
-    top: 25%;
-    width: 16.5px;
+    top: calc(50% - 3.75px);
+    width: 10.6px;
     transform: translate(-50%, -50%) rotate(-45deg);
   }
 
   .catalog-icon[data-back] i:last-child {
-    top: 75%;
+    top: calc(50% + 3.75px);
     transform: translate(-50%, -50%) rotate(45deg);
   }
 
