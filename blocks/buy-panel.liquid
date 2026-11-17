@@ -265,8 +265,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 20px;
     font-size: 1.125rem;
+    line-height: 1.6;
     text-align: center;
     text-transform: uppercase;
   }
@@ -391,7 +392,7 @@
 
   .buy-panel__info-link {
     display: block;
-    margin: 12px auto 0;
+    margin: 20px auto 0;
     text-decoration: underline;
     animation: buy-panel-drop 0.3s var(--ease) both;
   }
@@ -411,7 +412,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 8rem;
+    height: 9rem;
   }
 
   .buy-panel__stack {
@@ -420,7 +421,7 @@
   }
 
   .buy-panel__pane--info {
-    max-height: 8rem;
+    max-height: 9rem;
     overflow-y: auto;
     scrollbar-width: none;
   }
@@ -481,7 +482,38 @@
 
   /* Sold out: room for the signup (heading is in the head row) and the INFORMATION link. */
   .buy-panel[data-sold-out] .buy-panel__action {
-    height: 10rem;
+    height: 14rem;
+  }
+
+  /* "Receive ... Updates" is left-aligned (the name shown with the description stays centred). */
+  .buy-panel[data-sold-out][data-state='default'] .buy-panel__head {
+    text-align: left;
+  }
+
+  /* Signup: email field on top, button underneath at the same width. */
+  .buy-panel .email-signup-block {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .buy-panel .email-signup__input-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .buy-panel .email-signup__input,
+  .buy-panel .email-signup__button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .buy-panel .email-signup__button {
+    margin: 0;
+  }
+
+  .buy-panel__pane--soldout .buy-panel__info-link {
+    margin-top: 32px;
   }
 
   /* Only closing fades out then in: the JS swaps data-state while .is-fading is set. Opening is instant. */
